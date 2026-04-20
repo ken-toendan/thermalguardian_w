@@ -633,9 +633,9 @@ h1, h2, h3 {
     --pad-x: 20px;
   }
 
-  .section-head h2 { font-size: 28px; overflow-wrap: break-word; word-break: break-word; }
+  .section-head h2 { font-size: 28px; overflow-wrap: break-word; }
   .hero__inner { max-width: 100%; }
-  .hero__headline { font-size: 30px; overflow-wrap: break-word; word-break: break-word; letter-spacing: -0.01em; }
+  .hero__headline { font-size: 30px; overflow-wrap: break-word; letter-spacing: -0.01em; }
   .hero__sub { font-size: 16px; }
 
   .kicker { font-size: 10px; letter-spacing: 0.12em; padding: 4px 8px; }
