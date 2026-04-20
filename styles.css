@@ -330,3 +330,68 @@ h1, h2, h3 {
   line-height: 1.4;
   letter-spacing: -0.01em;
 }
+
+/* ─── Wedge ────────────────────────────────────────── */
+.wedge-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.wedge-card {
+  padding: 28px 24px;
+  background: #fff;
+  border: 1px solid var(--ink-10);
+  border-radius: var(--radius-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.wedge-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--orange);
+  opacity: 0.85;
+}
+
+.wedge-card__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--ink);
+  color: var(--orange);
+  font-size: 18px;
+  margin-bottom: 14px;
+}
+
+.wedge-card h3 {
+  font-size: 17px;
+  margin-bottom: 8px;
+}
+
+.wedge-card p {
+  font-size: 14px;
+  color: var(--ink-80);
+  line-height: 1.55;
+}
+
+.wedge-close {
+  margin-top: 40px;
+  font-size: 16px;
+  color: var(--ink-80);
+  max-width: 780px;
+}
+
+.wedge-close em {
+  color: var(--ink);
+  font-style: normal;
+  font-weight: 600;
+  background: rgba(255, 117, 31, 0.12);
+  padding: 0 4px;
+  border-radius: 3px;
+}
