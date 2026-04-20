@@ -28,3 +28,10 @@ HTML, CSS (custom properties), vanilla JS. DM Sans + Inter via Google Fonts. Inl
 ## License
 
 MIT — see `LICENSE`.
+
+## TODO before public launch
+
+- [ ] Swap `assets/brand/logo.svg` with final logo
+- [ ] Replace `Member 1–4` names and contacts in `index.html`
+- [ ] Swap `hello@thermalguardian.example` with the real team email
+- [ ] Confirm or remove `Tokyo, Japan` location line
