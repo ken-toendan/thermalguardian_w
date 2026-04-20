@@ -509,3 +509,53 @@ h1, h2, h3 {
   color: var(--ink-80);
   line-height: 1.55;
 }
+
+/* ─── Team ─────────────────────────────────────────── */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.team-card {
+  padding: 28px 20px;
+  border: 1px solid var(--ink-10);
+  border-radius: var(--radius-md);
+  background: #fff;
+  text-align: center;
+}
+
+.team-card__avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  margin: 0 auto 16px auto;
+  background: var(--cream);
+  border: 2px solid var(--ink);
+  position: relative;
+}
+
+.team-card__avatar::after {
+  content: '';
+  position: absolute;
+  inset: 18px;
+  border-radius: 50%;
+  border: 1.5px solid var(--ink-40);
+  border-top-color: transparent;
+}
+
+.team-card__name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.team-card__contact {
+  font-size: 12px;
+  color: var(--ink-60);
+  word-break: break-word;
+  transition: color 0.15s ease;
+}
+
+.team-card__contact:hover { color: var(--orange); }
