@@ -24,8 +24,8 @@
 
 /* ─── Reset ──────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body { margin: 0; padding: 0; overflow-x: hidden; }
 h1, h2, h3, h4, h5, h6, p, ul, ol { margin: 0; padding: 0; }
 ul, ol { list-style: none; }
 a { color: inherit; text-decoration: none; }
@@ -633,9 +633,11 @@ h1, h2, h3 {
     --pad-x: 20px;
   }
 
-  .section-head h2 { font-size: 28px; }
-  .hero__headline { font-size: 36px; }
+  .section-head h2 { font-size: 28px; overflow-wrap: break-word; }
+  .hero__headline { font-size: 32px; overflow-wrap: break-word; }
   .hero__sub { font-size: 16px; }
+
+  .kicker { font-size: 10px; letter-spacing: 0.12em; padding: 4px 8px; }
 
   /* Nav collapse */
   .nav-toggle { display: flex; }
