@@ -4,12 +4,13 @@
 **Owner:** ken-toendan (Yumei)
 **Target deploy:** `https://ken-toendan.github.io/thermalguardian`
 **Context deadline:** iCAN 2026 Japan Preliminary — 2026-04-26 (six days out)
+**Second-brain anchor:** [[ThermalGuardian Investor Site]] (parent: [[ThermalGuardian]])
 
 ---
 
 ## 1. Purpose
 
-A single-page public website for Thermal Guardian that an investor, conference visitor, or academic collaborator can open cold and understand in under two minutes: what the system is, why it matters, how it works at a surface level, who built it, and how to reach the team.
+A single-page public website for Thermal Guardian (main project: [[ThermalGuardian]]) that an investor, conference visitor, or academic collaborator can open cold and understand in under two minutes: what the system is, why it matters, how it works at a surface level, who built it, and how to reach the team. Copy is derived from the existing [[ThermalGuardian iCAN 2026 Briefing]] and booth script — no new pitch content invented.
 
 **Tone:** clinical, trustworthy, confident. Not alarmist, not gimmicky.
 
@@ -214,3 +215,14 @@ None blocking. All design-level decisions are resolved. Content placeholders lis
 - All eight sections are present, in the order above, with real copy (no lorem ipsum).
 - Deployed `.github.io/thermalguardian` URL returns 200, renders within 2 seconds on a cold cache.
 - User can swap any placeholder (logo, names, email) with a single file edit each.
+
+## 15. Related (second brain)
+
+Wikilinks resolve when this spec is opened from an Obsidian vault that contains the second-brain vault (`C:\Users\yumei\ObsidianVault\second-brain\`).
+
+- [[ThermalGuardian Investor Site]] — synthesis page for this sub-project (parent of this spec in the knowledge graph).
+- [[ThermalGuardian]] — canonical project page; tech stack, architecture, session timeline, open threads.
+- [[ThermalGuardian iCAN 2026 Briefing]] — source of the pitch copy (problem stats, medical background, three novelties).
+- [[Arthur akaiduz]] — project creator; candidate for one of the four team cards.
+- [[projects/_index|Projects]] — wiki index; this sub-project is listed under ThermalGuardian.
+- [[areas/Academic]] — KUAS ubicomp lab context.
