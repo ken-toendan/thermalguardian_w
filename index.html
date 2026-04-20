@@ -138,7 +138,74 @@
         <p class="wedge-close">Thermal Guardian combines all three signals, stage-aware — so a high heart rate <em>during immersion</em> means something different than a high heart rate <em>after exit</em>.</p>
       </div>
     </section>
-    <!-- how-it-works (Task 8) -->
+    <section id="how-it-works" class="section section--alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">How it works</span>
+          <h2>Three layers. One local hub. No camera in the bathroom.</h2>
+          <p>Sensors watch the body and the room. A hub in the home interprets context. Caregivers get alerts — with a fallback to emergency services if nobody is reachable.</p>
+        </div>
+
+        <div class="diagram-wrap">
+          <svg class="flow-diagram" viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="System flow diagram: wearable and room sensors feed a local hub, which alerts the caregiver app, with a fallback to emergency services.">
+            <defs>
+              <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#ff751f"/>
+              </marker>
+              <marker id="arrow-dashed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M0,0 L10,5 L0,10 z" fill="#11192b" fill-opacity="0.4"/>
+              </marker>
+            </defs>
+
+            <!-- Node: Wearable -->
+            <g transform="translate(40, 40)">
+              <rect width="180" height="72" rx="10" fill="#f7f5ef" stroke="#11192b" stroke-width="1.5"/>
+              <text x="90" y="32" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" fill="#11192b">Waterproof wearable</text>
+              <text x="90" y="52" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#11192b" fill-opacity="0.6">wrist-worn · ESP32-S3</text>
+            </g>
+
+            <!-- Node: Room sensors -->
+            <g transform="translate(480, 40)">
+              <rect width="180" height="72" rx="10" fill="#f7f5ef" stroke="#11192b" stroke-width="1.5"/>
+              <text x="90" y="32" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" fill="#11192b">Room sensors</text>
+              <text x="90" y="52" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#11192b" fill-opacity="0.6">bathroom + changing room</text>
+            </g>
+
+            <!-- Node: Pi hub -->
+            <g transform="translate(260, 170)">
+              <rect width="180" height="72" rx="10" fill="#11192b"/>
+              <text x="90" y="32" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" fill="#f7f5ef">Local hub</text>
+              <text x="90" y="52" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#f7f5ef" fill-opacity="0.7">Raspberry Pi · on-device logic</text>
+            </g>
+
+            <!-- Node: App -->
+            <g transform="translate(260, 280)">
+              <rect width="180" height="72" rx="10" fill="#f7f5ef" stroke="#11192b" stroke-width="1.5"/>
+              <text x="90" y="32" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" fill="#11192b">Caregiver app</text>
+              <text x="90" y="52" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#11192b" fill-opacity="0.6">web + mobile</text>
+            </g>
+
+            <!-- Node: Emergency (fallback) -->
+            <g transform="translate(260, 360)" opacity="0.7">
+              <rect width="180" height="48" rx="8" fill="#f7f5ef" stroke="#11192b" stroke-width="1" stroke-dasharray="4 4"/>
+              <text x="90" y="30" text-anchor="middle" font-family="Inter, sans-serif" font-size="12" fill="#11192b">Emergency services (fallback)</text>
+            </g>
+
+            <!-- Arrows -->
+            <path d="M130,112 L130,150 L260,200" fill="none" stroke="#ff751f" stroke-width="2" marker-end="url(#arrow)"/>
+            <path d="M570,112 L570,150 L440,200" fill="none" stroke="#ff751f" stroke-width="2" marker-end="url(#arrow)"/>
+            <path d="M350,242 L350,275" fill="none" stroke="#ff751f" stroke-width="2" marker-end="url(#arrow)"/>
+            <path d="M350,352 L350,360" fill="none" stroke="#11192b" stroke-opacity="0.4" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#arrow-dashed)"/>
+          </svg>
+        </div>
+
+        <ol class="how-steps">
+          <li><strong>Sensors read body and environment continuously.</strong> Heart rate, motion, skin and air temperature, humidity — all at once, all while the user bathes.</li>
+          <li><strong>The local hub interprets context and confirms risk on-device.</strong> No camera, no cloud round-trip for alert decisions. It knows whether the user is in pre-bath, immersed, or exiting, and applies thresholds accordingly.</li>
+          <li><strong>Caregivers get alerts instantly.</strong> Emergency services are a fallback only when nobody is reachable — the default path is human, not 119.</li>
+        </ol>
+      </div>
+    </section>
     <!-- novelties (Task 9) -->
     <!-- validation (Task 10) -->
     <!-- team (Task 11) -->
