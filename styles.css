@@ -253,3 +253,80 @@ h1, h2, h3 {
   margin-right: 8px;
   vertical-align: middle;
 }
+
+/* ─── Problem ──────────────────────────────────────── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 32px 0;
+  border-top: 1px solid var(--ink-20);
+  border-bottom: 1px solid var(--ink-20);
+}
+
+.stat-row li { display: flex; flex-direction: column; gap: 6px; }
+
+.stat-row__num {
+  font-family: var(--font-display);
+  font-size: 54px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+}
+
+.stat-row__label {
+  font-size: 13px;
+  color: var(--ink-60);
+  line-height: 1.4;
+}
+
+.subhead {
+  margin-top: 56px;
+  margin-bottom: 20px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.risk-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.risk-card {
+  padding: 24px;
+  background: var(--cream);
+  border: 1px solid var(--ink-10);
+  border-radius: var(--radius-md);
+}
+
+.risk-card__label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 10px;
+}
+
+.risk-card p {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-80);
+}
+
+.pullquote {
+  margin: 56px 0 0 0;
+  padding: 24px 28px;
+  background: var(--ink);
+  color: var(--cream);
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
