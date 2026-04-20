@@ -475,3 +475,37 @@ h1, h2, h3 {
   line-height: 1.6;
   color: rgba(247, 245, 239, 0.75);
 }
+
+/* ─── Validation ───────────────────────────────────── */
+.validation-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.validation-item {
+  padding: 26px 24px;
+  border: 1px solid var(--ink-10);
+  border-radius: var(--radius-md);
+  background: var(--cream);
+}
+
+.validation-item__label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 12px;
+}
+
+.validation-item h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.validation-item p {
+  font-size: 13px;
+  color: var(--ink-80);
+  line-height: 1.55;
+}
