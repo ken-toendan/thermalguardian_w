@@ -2,7 +2,7 @@
 
 Public single-page landing site for [Thermal Guardian](https://github.com/KUAS-ubicomp-lab/ThermalGuardian), a wearable IoT system for preventing bath-related accidents in elderly care.
 
-**Live:** https://ken-toendan.github.io/thermalguardian
+**Live:** https://ken-toendan.github.io/thermalguardian_w
 
 ## What this is
 
