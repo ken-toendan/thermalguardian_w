@@ -146,10 +146,30 @@
           <p>Sensors watch the body and the room. A hub in the home interprets context. Caregivers get alerts — with a fallback to emergency services if nobody is reachable.</p>
         </div>
 
-        <figure class="hardware-shot">
-          <img src="assets/hardware/device.png" alt="The Thermal Guardian hardware: an orange wrist-worn wearable and two white IoT sensor nodes for the bathroom and changing room.">
-          <figcaption>The hardware — wrist wearable (IPX7) and two IoT sensor nodes.</figcaption>
-        </figure>
+        <div class="hardware-detail">
+          <figure class="hardware-shot">
+            <img src="assets/hardware/device.png" alt="The Thermal Guardian hardware: an orange wrist-worn wearable and two white IoT sensor nodes for the bathroom and changing room.">
+            <figcaption>Three pieces, one system — a wrist wearable (orange) plus two IoT nodes (white).</figcaption>
+          </figure>
+
+          <ul class="hardware-callouts">
+            <li class="hardware-callout hardware-callout--wearable">
+              <span class="hardware-callout__tag">Wearable</span>
+              <h4>IPX7 wrist band</h4>
+              <p>Seeed XIAO ESP32-S3 · 6-axis IMU (ISM330DHCX) · PPG (MAX30101) · skin-temp (MCP9808) · env temp + humidity (SHT40) · haptic motor for local alerts.</p>
+            </li>
+            <li class="hardware-callout hardware-callout--bathroom">
+              <span class="hardware-callout__tag">Bathroom node</span>
+              <h4>Ambient watcher with voice</h4>
+              <p>Tracks bathroom air temperature and humidity. Onboard I2S speaker (MAX98357A) delivers multilingual voice alerts during immersion.</p>
+            </li>
+            <li class="hardware-callout hardware-callout--changing">
+              <span class="hardware-callout__tag">Changing-room node</span>
+              <h4>Heat-shock sentinel</h4>
+              <p>Measures the cold-to-hot differential that starts most fatal events. Triggers a warning when the temperature gap crosses the 15 °C threshold.</p>
+            </li>
+          </ul>
+        </div>
 
         <div class="diagram-wrap">
           <svg class="flow-diagram" viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="System flow diagram: wearable and room sensors feed a local hub, which alerts the caregiver app, with a fallback to emergency services.">
@@ -209,6 +229,30 @@
           <li><strong>The local hub interprets context and confirms risk on-device.</strong> No camera, no cloud round-trip for alert decisions. It knows whether the user is in pre-bath, immersed, or exiting, and applies thresholds accordingly.</li>
           <li><strong>Caregivers get alerts instantly.</strong> Emergency services are a fallback only when nobody is reachable — the default path is human, not 119.</li>
         </ol>
+
+        <h3 class="subhead subhead--under-hood">Under the hood</h3>
+        <ul class="tech-grid">
+          <li class="tech-card tech-card--teal">
+            <span class="tech-card__label">Signal processing</span>
+            <h4>6-state Markov context engine</h4>
+            <p><code>NOT_WORN → BASELINE → PRE_BATH → IMMERSION → POST_EXIT → EMERGENCY</code>. Thresholds adapt to each state, so a high heart rate during immersion is expected — the same heart rate post-exit is an alert.</p>
+          </li>
+          <li class="tech-card tech-card--red">
+            <span class="tech-card__label">Clinical logic</span>
+            <h4>10 medical rules — M-001 to M-010</h4>
+            <p>Heat shock, orthostatic hypotension, hyperthermia timing (15 / 20 / 25 / 30 min escalation), fall detection, and cardiovascular events. Each rule is numbered so it can be cited in clinical audit documentation.</p>
+          </li>
+          <li class="tech-card tech-card--sky">
+            <span class="tech-card__label">Sensor fusion</span>
+            <h4>Multi-modal at 100 Hz, published at 1 Hz</h4>
+            <p>Raw samples are averaged into one-second windows before leaving the device — a single noisy reading can't trigger an alert, and network load stays low.</p>
+          </li>
+          <li class="tech-card tech-card--amber">
+            <span class="tech-card__label">Validation</span>
+            <h4>250+ pytest tests · v3.1 hardware deployed</h4>
+            <p>Full v3 local-hub architecture running in lab. Pipeline covered by 250+ tests (Markov transitions, medical rules, filters). 18 months of iteration — active since October 2024.</p>
+          </li>
+        </ul>
       </div>
     </section>
     <section id="novelties" class="section">
@@ -259,6 +303,36 @@
             <div class="validation-item__label">Maturity</div>
             <h3>18 months of R&amp;D</h3>
             <p>Active development since October 2024. Currently running v3.1 with hardware deployed in lab conditions.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <section id="resources" class="section section--alt">
+      <div class="container">
+        <div class="section-head">
+          <span class="kicker">Resources</span>
+          <h2>Download the deck and briefing materials.</h2>
+          <p>Everything we've presented publicly, downloadable as PDF. Technical detail, medical background, and the pitch as we deliver it at the booth.</p>
+        </div>
+
+        <ul class="resource-grid">
+          <li class="resource-card">
+            <span class="resource-card__badge">PDF · 2.5 MB</span>
+            <h3>HEALTHINF 2026 presentation</h3>
+            <p>The slide deck we brought to the international health-informatics conference — full problem framing, architecture, clinical logic, and results.</p>
+            <a class="resource-card__link" href="assets/docs/healthinf-2026-presentation.pdf" download>Download ↓</a>
+          </li>
+          <li class="resource-card">
+            <span class="resource-card__badge">PDF · 800 KB</span>
+            <h3>Team briefing (EN)</h3>
+            <p>D-day reference document we use at the booth: problem, medical pathways, system architecture, clinical logic, competitive landscape, glossary.</p>
+            <a class="resource-card__link" href="assets/docs/team-briefing-en.pdf" download>Download ↓</a>
+          </li>
+          <li class="resource-card">
+            <span class="resource-card__badge">PDF · 80 KB</span>
+            <h3>Booth script (EN)</h3>
+            <p>The modular pitch used at the iCAN booth — short, self-contained sections for any visitor question.</p>
+            <a class="resource-card__link" href="assets/docs/booth-script-en.pdf" download>Download ↓</a>
           </li>
         </ul>
       </div>
