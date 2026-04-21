@@ -56,7 +56,7 @@ export const content = {
       },
       {
         en: "iCAN 2026 · Apr 26",
-        ja: "iCAN 2026 · 4月26日",
+        ja: "iCAN 2026 4月26日",
       },
       {
         en: "R&D since Oct 2025",
@@ -187,7 +187,7 @@ export const content = {
         title: { en: "IPX7 wrist band", ja: "IPX7 防水リストバンド" },
         body: {
           en: "6-axis IMU · PPG heart-rate · skin-temp · env temp + humidity · haptic motor for local alerts.",
-          ja: "6 軸 IMU · PPG 心拍 · 皮膚温 · 環境温湿度 · ローカル通知用の触覚モーター。",
+          ja: "6軸IMU、PPG心拍、皮膚温、環境温湿度、ローカル通知用の触覚モーター。",
         },
       },
       {
@@ -241,20 +241,20 @@ export const content = {
     ],
     diagramNodes: {
       wearable: { en: "Wearable", ja: "ウェアラブル" },
-      wearableSub1: { en: "HR · SpO₂ · IMU", ja: "心拍 · SpO₂ · IMU" },
-      wearableSub2: { en: "skin-temp · IPX7", ja: "皮膚温 · IPX7" },
+      wearableSub1: { en: "HR · SpO₂ · IMU", ja: "心拍 SpO₂ IMU" },
+      wearableSub2: { en: "skin-temp · IPX7", ja: "皮膚温 IPX7" },
       bathroom: { en: "Bathroom IoT", ja: "浴室 IoT" },
-      bathroomSub1: { en: "Temp · Humidity", ja: "温度 · 湿度" },
+      bathroomSub1: { en: "Temp · Humidity", ja: "温度 湿度" },
       bathroomSub2: { en: "Multilingual voice alerts", ja: "多言語音声アラート" },
       changing: { en: "Changing Room IoT", ja: "脱衣所 IoT" },
       changingSub1: { en: "Cold-to-hot differential", ja: "寒暖差センサー" },
       changingSub2: { en: "Heat-shock sentinel", ja: "ヒートショック検知" },
       hub: { en: "Local Hub", ja: "ローカルハブ" },
-      hubSub1: { en: "Raspberry Pi · on-device", ja: "Raspberry Pi · オンデバイス" },
+      hubSub1: { en: "Raspberry Pi · on-device", ja: "Raspberry Pi オンデバイス" },
       hubSub2: { en: "Markov state engine", ja: "マルコフ状態エンジン" },
       hubSub3: { en: "M-001…M-010 safety rules", ja: "M-001…M-010 安全ルール" },
       cloud: { en: "Cloud Database", ja: "クラウド DB" },
-      cloudSub1: { en: "Supabase · PostgreSQL", ja: "Supabase · PostgreSQL" },
+      cloudSub1: { en: "Supabase · PostgreSQL", ja: "Supabase PostgreSQL" },
       cloudSub2: { en: "Longitudinal records", ja: "履歴データ" },
       app: { en: "Caregiver App", ja: "介護者アプリ" },
       appSub1: { en: "Web + Android", ja: "Web + Android" },
@@ -327,21 +327,21 @@ export const content = {
     intro: { en: "The venues where the system is being presented in 2026.", ja: "2026 年にシステムを発表している場。" },
     items: [
       {
-        label: { en: "Academic · Accepted", ja: "学術 · 採択" },
+        label: { en: "Academic · Accepted", ja: "学術 採択" },
         title: { en: "HEALTHINF 2026 — abstract accepted", ja: "HEALTHINF 2026 アブストラクト採択" },
         body: {
           en: "Part of the BIOSTEC 2026 joint track. Marbella, Spain · 2–4 March 2026.",
-          ja: "BIOSTEC 2026 共同学会の一部。スペイン、マルベーリャ · 2026 年 3 月 2–4 日。",
+          ja: "BIOSTEC 2026 共同学会の一部。スペイン、マルベーリャ 2026 年 3 月 2–4 日。",
         },
         url: "https://healthinf.scitevents.org/?y=2026",
         image: "assets/achievements/healthinf-banner.png",
       },
       {
-        label: { en: "Industry · Japan Preliminary", ja: "産業 · 日本予選" },
+        label: { en: "Industry · Japan Preliminary", ja: "産業 日本予選" },
         title: { en: "iCAN 2026 — Japan Preliminary", ja: "iCAN 2026 日本予選" },
         body: {
           en: "Presenting the system at the International Contest of Innovation. Tohoku University · 2026-04-26.",
-          ja: "International Contest of Innovation にてシステムを発表。東北大学 · 2026 年 4 月 26 日。",
+          ja: "International Contest of Innovation にてシステムを発表。東北大学 2026 年 4 月 26 日。",
         },
         url: "https://www.mu-sic.tohoku.ac.jp/ican/ican2026/summary.html",
         image: "assets/achievements/ican-logo.jpg",
@@ -357,7 +357,7 @@ export const content = {
     },
     caption: {
       en: "Conference pitch · the full system, explained in under a few minutes.",
-      ja: "学会発表 · システムの全体像を数分で説明。",
+      ja: "学会発表 システムの全体像を数分で説明。",
     },
     videoId: "t1nbr8O1m8s",
     videoTitle: "Thermal Guardian — conference pitch",
@@ -381,7 +381,7 @@ export const content = {
     },
     email: "kuas.thermalguardian@gmail.com",
     basedInLabel: { en: "Based in", ja: "拠点" },
-    basedInLocation: { en: "Kyoto, Japan · KUAS · ubicomp lab", ja: "京都、日本 · KUAS · ubicomp lab" },
+    basedInLocation: { en: "Kyoto, Japan · KUAS · ubicomp lab", ja: "京都、日本 KUAS ubicomp lab" },
   },
   footer: {
     developedAt: { en: "Developed at", ja: "開発元" },
@@ -389,7 +389,7 @@ export const content = {
     labLocation: { en: "Kyoto, Japan", ja: "京都、日本" },
     legal: {
       en: "© 2026 Thermal Guardian · All rights reserved.",
-      ja: "© 2026 サーマルガーディアン · All rights reserved.",
+      ja: "© 2026 サーマルガーディアン All rights reserved.",
     },
   },
 } as const;

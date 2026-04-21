@@ -73,6 +73,23 @@
     font-family: var(--font-jp);
   }
 
+  html[lang="ja"] h1,
+  html[lang="ja"] h2,
+  html[lang="ja"] h3,
+  html[lang="ja"] h4,
+  html[lang="ja"] h5,
+  html[lang="ja"] h6,
+  html[lang="ja"] .hero-headline {
+    word-break: auto-phrase;
+    overflow-wrap: break-word;
+    line-break: strict;
+    text-wrap: balance;
+  }
+
+  html[lang="ja"] p {
+    line-break: strict;
+  }
+
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;

@@ -45,11 +45,10 @@ export function Contact() {
                 </>
               ) : (
                 <>
-                  京都、日本 ·{" "}
+                  京都、日本{" "}
                   <a href="https://www.kuas.ac.jp/en/" rel="noopener" className="text-brand hover:underline">
                     KUAS
                   </a>{" "}
-                  ·{" "}
                   <a href="https://www.ubicomp-lab.org/" rel="noopener" className="text-brand hover:underline">
                     ubicomp lab
                   </a>

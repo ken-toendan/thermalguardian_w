@@ -18,7 +18,7 @@ export function Footer() {
             <a href="https://www.ubicomp-lab.org/" rel="noopener" className="text-cream hover:text-brand transition-colors font-semibold">
               {t(f.labName, lang)}
             </a>
-            <span className="ml-1 text-cream/50">· {t(f.labLocation, lang)}</span>
+            <span className="ml-2 text-cream/50">{lang === "en" ? "· " : ""}{t(f.labLocation, lang)}</span>
           </p>
         </div>
         <div className="flex flex-col md:items-end gap-3">
