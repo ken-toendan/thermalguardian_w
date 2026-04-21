@@ -857,7 +857,7 @@ h1, h2, h3 {
 .site-footer__kuas {
   display: inline-block;
   background: var(--cream);
-  padding: 16px 22px;
+  padding: 20px 26px;
   border-radius: var(--radius-md);
   transition: transform 0.2s ease;
 }
@@ -865,7 +865,7 @@ h1, h2, h3 {
 .site-footer__kuas:hover { transform: translateY(-1px); }
 
 .site-footer__kuas img {
-  width: 260px;
+  width: 220px;
   height: auto;
   display: block;
 }
@@ -984,7 +984,7 @@ h1, h2, h3 {
     text-align: left;
   }
 
-  .site-footer__kuas img { width: 200px; }
+  .site-footer__kuas img { width: 180px; }
   .site-footer__lab a { font-size: 20px; }
 
   .site-nav { top: 104px; }
