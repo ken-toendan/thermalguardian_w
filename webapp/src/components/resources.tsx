@@ -1,4 +1,5 @@
 import { Container, Section, SectionHead } from "@/components/section";
+import { Reveal } from "@/components/motion/reveal";
 import { useLang } from "@/hooks/use-lang";
 import { content, t } from "@/content/i18n";
 
@@ -9,12 +10,15 @@ export function Resources() {
   return (
     <Section id="resources" alt>
       <Container>
-        <SectionHead
-          kicker={t(r.kicker, lang)}
-          title={t(r.heading, lang)}
-          intro={t(r.intro, lang)}
-        />
+        <Reveal>
+          <SectionHead
+            kicker={t(r.kicker, lang)}
+            title={t(r.heading, lang)}
+            intro={t(r.intro, lang)}
+          />
+        </Reveal>
 
+        <Reveal delay={0.1}>
         <figure className="max-w-4xl mx-auto flex flex-col gap-4">
           <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-ink border border-ink/10 shadow-sm">
             <iframe
@@ -31,6 +35,7 @@ export function Resources() {
             {t(r.caption, lang)}
           </figcaption>
         </figure>
+        </Reveal>
       </Container>
     </Section>
   );

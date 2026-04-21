@@ -1,4 +1,6 @@
+import { motion } from "motion/react";
 import { Container, Section, SectionHead } from "@/components/section";
+import { Reveal, Stagger, staggerChild } from "@/components/motion/reveal";
 import { useLang } from "@/hooks/use-lang";
 import { content, t } from "@/content/i18n";
 
@@ -9,13 +11,19 @@ export function Novelties() {
   return (
     <Section id="novelties">
       <Container>
-        <SectionHead kicker={t(n.kicker, lang)} title={t(n.heading, lang)} />
+        <Reveal>
+          <SectionHead kicker={t(n.kicker, lang)} title={t(n.heading, lang)} />
+        </Reveal>
 
+        <Stagger stagger={0.12}>
         <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {n.items.map((item, i) => (
-            <li
+            <motion.li
               key={i}
-              className="relative rounded-2xl bg-ink text-cream p-7 md:p-8 flex flex-col gap-4 transition-transform hover:-translate-y-0.5"
+              variants={staggerChild}
+              whileHover={{ y: -4 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              className="relative rounded-2xl bg-ink text-cream p-7 md:p-8 flex flex-col gap-4"
             >
               <span className="kicker-uppercase text-brand">
                 {String(i + 1).padStart(2, "0")}
@@ -26,9 +34,10 @@ export function Novelties() {
               <p className="text-sm leading-relaxed text-cream/75">
                 {t(item.body, lang)}
               </p>
-            </li>
+            </motion.li>
           ))}
         </ul>
+        </Stagger>
       </Container>
     </Section>
   );

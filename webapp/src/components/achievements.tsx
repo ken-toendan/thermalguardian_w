@@ -1,4 +1,6 @@
+import { motion } from "motion/react";
 import { Container, Section, SectionHead } from "@/components/section";
+import { Reveal, Stagger, staggerChild } from "@/components/motion/reveal";
 import { useLang } from "@/hooks/use-lang";
 import { content, t } from "@/content/i18n";
 
@@ -9,17 +11,23 @@ export function Achievements() {
   return (
     <Section id="achievements" alt>
       <Container>
-        <SectionHead
-          kicker={t(a.kicker, lang)}
-          title={t(a.heading, lang)}
-          intro={t(a.intro, lang)}
-        />
+        <Reveal>
+          <SectionHead
+            kicker={t(a.kicker, lang)}
+            title={t(a.heading, lang)}
+            intro={t(a.intro, lang)}
+          />
+        </Reveal>
 
+        <Stagger stagger={0.12}>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {a.items.map((item, i) => (
-            <li
+            <motion.li
               key={i}
-              className="rounded-2xl bg-white border border-ink/10 overflow-hidden transition-transform hover:-translate-y-0.5 hover:shadow-md flex flex-col"
+              variants={staggerChild}
+              whileHover={{ y: -4 }}
+              transition={{ type: "spring", stiffness: 260, damping: 20 }}
+              className="rounded-2xl bg-white border border-ink/10 overflow-hidden hover:shadow-md flex flex-col"
             >
               <a
                 href={item.url}
@@ -38,9 +46,10 @@ export function Achievements() {
                 <h3 className="font-display text-lg font-bold">{t(item.title, lang)}</h3>
                 <p className="text-sm text-ink/70 leading-relaxed">{t(item.body, lang)}</p>
               </div>
-            </li>
+            </motion.li>
           ))}
         </ul>
+        </Stagger>
       </Container>
     </Section>
   );

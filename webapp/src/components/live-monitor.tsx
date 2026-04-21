@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Container, Section, SectionHead } from "@/components/section";
+import { Reveal } from "@/components/motion/reveal";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useLang } from "@/hooks/use-lang";
@@ -185,12 +186,15 @@ export function LiveMonitor() {
   return (
     <Section id="live-monitor">
       <Container>
-        <SectionHead
-          kicker={t(lm.kicker, lang)}
-          title={t(lm.heading, lang)}
-          intro={t(lm.intro, lang)}
-        />
+        <Reveal>
+          <SectionHead
+            kicker={t(lm.kicker, lang)}
+            title={t(lm.heading, lang)}
+            intro={t(lm.intro, lang)}
+          />
+        </Reveal>
 
+        <Reveal delay={0.1}>
         <Card className="overflow-hidden bg-[#0b1220] text-cream border-white/5 p-6 md:p-8 shadow-xl">
           <div className="grid md:grid-cols-5 gap-6 md:gap-8">
             <div className="md:col-span-3 flex flex-col gap-3">
@@ -257,6 +261,7 @@ export function LiveMonitor() {
             </div>
           </div>
         </Card>
+        </Reveal>
       </Container>
     </Section>
   );

@@ -1,4 +1,6 @@
+import { motion } from "motion/react";
 import { Container, Section, SectionHead } from "@/components/section";
+import { Reveal, Stagger, staggerChild } from "@/components/motion/reveal";
 import { useLang } from "@/hooks/use-lang";
 import { content, t } from "@/content/i18n";
 import { cn } from "@/lib/utils";
@@ -12,13 +14,16 @@ export function HowItWorks() {
   return (
     <Section id="how-it-works" alt>
       <Container>
-        <SectionHead
-          kicker={t(h.kicker, lang)}
-          title={t(h.heading, lang)}
-          intro={t(h.intro, lang)}
-        />
+        <Reveal>
+          <SectionHead
+            kicker={t(h.kicker, lang)}
+            title={t(h.heading, lang)}
+            intro={t(h.intro, lang)}
+          />
+        </Reveal>
 
         <div className="grid lg:grid-cols-[1fr_1fr] gap-10 md:gap-14 items-start">
+          <Reveal>
           <figure className="flex flex-col gap-4">
             <div className="rounded-2xl bg-white border border-ink/10 p-6 md:p-8 flex items-center justify-center">
               <img
@@ -32,11 +37,16 @@ export function HowItWorks() {
               {t(h.hardwareCaption, lang)}
             </figcaption>
           </figure>
+          </Reveal>
 
+          <Stagger stagger={0.1}>
           <ul className="flex flex-col gap-4">
             {h.callouts.map((c, i) => (
-              <li
+              <motion.li
                 key={i}
+                variants={staggerChild}
+                whileHover={{ x: 3 }}
+                transition={{ type: "spring", stiffness: 260, damping: 20 }}
                 className="rounded-xl bg-white border border-ink/10 border-l-2 p-5"
                 style={{ borderLeftColor: ["#ff751f", "#0ea5e9", "#f59e0b"][i] }}
               >
@@ -49,19 +59,24 @@ export function HowItWorks() {
                 <p className="text-sm text-ink/70 leading-relaxed">
                   {t(c.body, lang)}
                 </p>
-              </li>
+              </motion.li>
             ))}
           </ul>
+          </Stagger>
         </div>
 
-        <div className="mt-14 md:mt-20 rounded-2xl bg-white border border-ink/10 p-4 md:p-8 overflow-x-auto">
-          <FlowDiagram />
-        </div>
+        <Reveal delay={0.1}>
+          <div className="mt-14 md:mt-20 rounded-2xl bg-white border border-ink/10 p-4 md:p-8 overflow-x-auto">
+            <FlowDiagram />
+          </div>
+        </Reveal>
 
-        <ol className="mt-12 max-w-3xl flex flex-col gap-5 list-none counter-reset-[tg-step]">
+        <Stagger stagger={0.12}>
+        <ol className="mt-12 max-w-3xl flex flex-col gap-5 list-none">
           {h.steps.map((step, i) => (
-            <li
+            <motion.li
               key={i}
+              variants={staggerChild}
               className="grid grid-cols-[auto_1fr] gap-5 items-start"
             >
               <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-ink text-cream font-display font-bold text-sm">
@@ -73,9 +88,10 @@ export function HowItWorks() {
                   <span className="text-ink/70">{t(step.body, lang)}</span>
                 </p>
               </div>
-            </li>
+            </motion.li>
           ))}
         </ol>
+        </Stagger>
       </Container>
     </Section>
   );
