@@ -85,6 +85,7 @@
     ".hero__sub",
     ".hero__ctas",
     ".hero__meta",
+    ".hero__visual",
     ".hero .kicker",
     ".stat-row li",
     ".risk-card",
