@@ -328,7 +328,7 @@ export const content = {
     items: [
       {
         label: { en: "Academic · Accepted", ja: "学術 · 採択" },
-        title: { en: "HEALTHINF 2026 — paper accepted", ja: "HEALTHINF 2026 論文採択" },
+        title: { en: "HEALTHINF 2026 — abstract accepted", ja: "HEALTHINF 2026 アブストラクト採択" },
         body: {
           en: "Part of the BIOSTEC 2026 joint track. Marbella, Spain · 2–4 March 2026.",
           ja: "BIOSTEC 2026 共同学会の一部。スペイン、マルベーリャ · 2026 年 3 月 2–4 日。",
