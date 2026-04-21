@@ -123,8 +123,8 @@
     font-family: var(--font-display);
     font-weight: 800;
     letter-spacing: -0.028em;
-    line-height: 1.02;
-    font-size: clamp(36px, 4.6vw + 14px, 64px);
+    line-height: 1.04;
+    font-size: clamp(32px, 3.2vw + 14px, 56px);
   }
 
   .dot-grid {

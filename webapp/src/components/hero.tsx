@@ -84,7 +84,7 @@ export function Hero() {
         delay={1.5}
       />
 
-      <Container className="grid md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-10 md:gap-14 items-center">
+      <Container className="grid md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-10 md:gap-20 items-center">
         <motion.div
           variants={container}
           initial="hidden"
@@ -280,7 +280,7 @@ function HeroVisual() {
       initial={{ opacity: 0, y: 30, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.85, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className="relative aspect-[5/4] flex items-center justify-center [perspective:1200px]"
+      className="relative aspect-[5/4] flex items-center justify-center md:justify-end [perspective:1200px]"
       aria-hidden="true"
     >
       <HeroEcg />
