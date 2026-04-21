@@ -856,16 +856,13 @@ h1, h2, h3 {
 
 .site-footer__kuas {
   display: inline-block;
-  background: var(--cream);
-  padding: 20px 26px;
-  border-radius: var(--radius-md);
   transition: transform 0.2s ease;
 }
 
 .site-footer__kuas:hover { transform: translateY(-1px); }
 
 .site-footer__kuas img {
-  width: 220px;
+  width: 200px;
   height: auto;
   display: block;
 }
