@@ -325,6 +325,14 @@ h1, h2, h3 {
   margin-bottom: 10px;
 }
 
+.risk-grid li:nth-child(1) .risk-card__label { color: var(--red); }
+.risk-grid li:nth-child(2) .risk-card__label { color: var(--amber); }
+.risk-grid li:nth-child(3) .risk-card__label { color: var(--sky); }
+
+.risk-grid li:nth-child(1) .risk-card { border-top: 2px solid var(--red); }
+.risk-grid li:nth-child(2) .risk-card { border-top: 2px solid var(--amber); }
+.risk-grid li:nth-child(3) .risk-card { border-top: 2px solid var(--sky); }
+
 .risk-card p {
   font-size: 14px;
   line-height: 1.55;
@@ -911,4 +919,63 @@ h1, h2, h3 {
   .contact__intro h2 { font-size: 28px; }
 
   .site-footer__inner { flex-direction: column; text-align: center; }
+
+  .hardware-detail { gap: 24px; }
+  .subhead--under-hood { margin-top: 48px; padding-top: 24px; }
+}
+
+/* ─── Scroll reveal ────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s cubic-bezier(0.2, 0.7, 0.2, 1),
+              transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger within common grids */
+.stat-row li.reveal:nth-child(2),
+.risk-grid li.reveal:nth-child(2),
+.wedge-grid li.reveal:nth-child(2),
+.novelty-grid li.reveal:nth-child(2),
+.validation-row li.reveal:nth-child(2),
+.resource-grid li.reveal:nth-child(2),
+.team-grid li.reveal:nth-child(2),
+.tech-grid li.reveal:nth-child(2),
+.hardware-callouts li.reveal:nth-child(2),
+.how-steps li.reveal:nth-child(2) { transition-delay: 0.08s; }
+
+.stat-row li.reveal:nth-child(3),
+.risk-grid li.reveal:nth-child(3),
+.wedge-grid li.reveal:nth-child(3),
+.novelty-grid li.reveal:nth-child(3),
+.validation-row li.reveal:nth-child(3),
+.resource-grid li.reveal:nth-child(3),
+.team-grid li.reveal:nth-child(3),
+.tech-grid li.reveal:nth-child(3),
+.hardware-callouts li.reveal:nth-child(3),
+.how-steps li.reveal:nth-child(3) { transition-delay: 0.16s; }
+
+.team-grid li.reveal:nth-child(4),
+.tech-grid li.reveal:nth-child(4) { transition-delay: 0.24s; }
+
+/* Hero stagger */
+.hero .kicker.reveal { transition-delay: 0s; }
+.hero__headline.reveal { transition-delay: 0.08s; }
+.hero__sub.reveal { transition-delay: 0.16s; }
+.hero__ctas.reveal { transition-delay: 0.24s; }
+.hero__meta.reveal { transition-delay: 0.32s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
