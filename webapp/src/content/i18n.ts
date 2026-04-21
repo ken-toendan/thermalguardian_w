@@ -66,7 +66,7 @@ export const content = {
   },
   problem: {
     kicker: { en: "The Problem", ja: "問題" },
-    heading: { en: "A silent crisis in Japanese homes.", ja: "日本の家庭で起きている静かな危機。" },
+    heading: { en: "A hidden danger in every Japanese bathroom.", ja: "日本の浴室に潜む、見えない危険。" },
     intro: {
       en: "Deaths in bathtubs are one of the most under-reported preventable risks for elderly Japanese — a cultural bathing norm colliding with aging circulatory systems.",
       ja: "入浴関連の事故は、日本の高齢者にとって最も見過ごされてきた予防可能なリスクの一つ。入浴文化と加齢による循環器系の変化が重なって発生する、深刻な問題。",
