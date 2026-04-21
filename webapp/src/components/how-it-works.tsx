@@ -5,7 +5,7 @@ import { useLang } from "@/hooks/use-lang";
 import { content, t } from "@/content/i18n";
 import { cn } from "@/lib/utils";
 
-const calloutAccent = ["text-brand", "text-amber-brand", "text-sky-brand"];
+const calloutAccent = ["text-brand", "text-sky-brand", "text-amber-brand"];
 
 export function HowItWorks() {
   const { lang } = useLang();
@@ -27,8 +27,8 @@ export function HowItWorks() {
           <figure className="flex flex-col gap-4">
             <div className="rounded-2xl bg-white border border-ink/10 p-6 md:p-8 flex items-center justify-center">
               <img
-                src="assets/hardware/device.png"
-                alt="The Thermal Guardian hardware: an orange wrist-worn wearable and two white IoT sensor nodes for the bathroom and changing room."
+                src={lang === "ja" ? "assets/hardware/device-labeled-ja.png" : "assets/hardware/device-labeled-en.png"}
+                alt="The Thermal Guardian hardware: an orange wrist-worn wearable and two white IoT sensor nodes for the bathroom and changing room, with labels."
                 className="max-w-full"
                 loading="lazy"
               />
@@ -48,7 +48,7 @@ export function HowItWorks() {
                 whileHover={{ x: 3 }}
                 transition={{ type: "spring", stiffness: 260, damping: 20 }}
                 className="rounded-xl bg-white border border-ink/10 border-l-2 p-5"
-                style={{ borderLeftColor: ["#ff751f", "#0ea5e9", "#f59e0b"][i] }}
+                style={{ borderLeftColor: ["#ff751f", "#7b886b", "#f3993e"][i] }}
               >
                 <span className={cn("kicker-uppercase block mb-2", calloutAccent[i])}>
                   {t(c.tag, lang)}
@@ -112,10 +112,10 @@ function FlowDiagram() {
     >
       <defs>
         <marker id="tg-arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" fill="#2563eb" />
+          <path d="M0,0 L10,5 L0,10 z" fill="#304251" />
         </marker>
         <marker id="tg-arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-          <path d="M0,0 L10,5 L0,10 z" fill="#dc2626" />
+          <path d="M0,0 L10,5 L0,10 z" fill="#ff751f" />
         </marker>
       </defs>
 
@@ -147,31 +147,31 @@ function FlowDiagram() {
       </g>
 
       <g transform="translate(620, 20)">
-        <rect width="210" height="100" rx="10" fill="#0d9488" />
+        <rect width="210" height="100" rx="10" fill="#304251" />
         <text x="20" y="36" fontFamily="DM Sans" fontSize="18" fontWeight="800" fill="#fff">{txt(n.cloud)}</text>
         <text x="20" y="62" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.cloudSub1)}</text>
         <text x="20" y="80" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.cloudSub2)}</text>
       </g>
       <g transform="translate(620, 150)">
-        <rect width="210" height="100" rx="10" fill="#16a34a" />
+        <rect width="210" height="100" rx="10" fill="#7b886b" />
         <text x="20" y="36" fontFamily="DM Sans" fontSize="18" fontWeight="800" fill="#fff">{txt(n.app)}</text>
         <text x="20" y="62" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.appSub1)}</text>
         <text x="20" y="80" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.appSub2)}</text>
       </g>
       <g transform="translate(620, 280)">
-        <rect width="210" height="100" rx="10" fill="#dc2626" />
+        <rect width="210" height="100" rx="10" fill="#f3993e" />
         <text x="20" y="36" fontFamily="DM Sans" fontSize="18" fontWeight="800" fill="#fff">{txt(n.push)}</text>
         <text x="20" y="62" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.pushSub1)}</text>
         <text x="20" y="80" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.pushSub2)}</text>
       </g>
 
-      <line x1="240" y1="70" x2="325" y2="190" stroke="#2563eb" strokeWidth="2" markerEnd="url(#tg-arrow-blue)" />
-      <line x1="240" y1="200" x2="325" y2="210" stroke="#2563eb" strokeWidth="2" markerEnd="url(#tg-arrow-blue)" />
-      <line x1="240" y1="330" x2="325" y2="240" stroke="#2563eb" strokeWidth="2" markerEnd="url(#tg-arrow-blue)" />
+      <line x1="240" y1="70" x2="325" y2="190" stroke="#304251" strokeWidth="2" markerEnd="url(#tg-arrow-blue)" />
+      <line x1="240" y1="200" x2="325" y2="210" stroke="#304251" strokeWidth="2" markerEnd="url(#tg-arrow-blue)" />
+      <line x1="240" y1="330" x2="325" y2="240" stroke="#304251" strokeWidth="2" markerEnd="url(#tg-arrow-blue)" />
 
-      <line x1="535" y1="180" x2="620" y2="80" stroke="#2563eb" strokeWidth="2" markerEnd="url(#tg-arrow-blue)" />
-      <line x1="535" y1="210" x2="620" y2="200" stroke="#2563eb" strokeWidth="2" markerEnd="url(#tg-arrow-blue)" />
-      <line x1="535" y1="240" x2="620" y2="330" stroke="#dc2626" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#tg-arrow-red)" />
+      <line x1="535" y1="180" x2="620" y2="80" stroke="#304251" strokeWidth="2" markerEnd="url(#tg-arrow-blue)" />
+      <line x1="535" y1="210" x2="620" y2="200" stroke="#304251" strokeWidth="2" markerEnd="url(#tg-arrow-blue)" />
+      <line x1="535" y1="240" x2="620" y2="330" stroke="#ff751f" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#tg-arrow-red)" />
     </svg>
   );
 }

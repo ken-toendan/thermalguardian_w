@@ -22,12 +22,14 @@
   --color-ink-60: rgba(17, 25, 43, 0.6);
   --color-ink-20: rgba(17, 25, 43, 0.2);
   --color-ink-10: rgba(17, 25, 43, 0.1);
+  --color-slate-brand: #304251;
   --color-cream: #f7f5ef;
-  --color-cream-2: #efece2;
-  --color-amber-brand: #f59e0b;
-  --color-sky-brand: #0ea5e9;
-  --color-red-brand: #dc2626;
-  --color-emerald-brand: #10b981;
+  --color-cream-2: #e9f3f5;
+  --color-sage: #7b886b;
+  --color-amber-brand: #f3993e;
+  --color-sky-brand: #7b886b;
+  --color-red-brand: #ff751f;
+  --color-emerald-brand: #7b886b;
 
   --radius: 0.75rem;
 }
