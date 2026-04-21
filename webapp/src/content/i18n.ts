@@ -186,16 +186,16 @@ export const content = {
         tag: { en: "Wearable", ja: "ウェアラブル" },
         title: { en: "IPX7 wrist band", ja: "IPX7 防水リストバンド" },
         body: {
-          en: "Seeed XIAO ESP32-S3 · 6-axis IMU (ISM330DHCX) · PPG (MAX30101) · skin-temp (MCP9808) · env temp + humidity (SHT40) · haptic motor for local alerts.",
-          ja: "Seeed XIAO ESP32-S3 · 6 軸 IMU (ISM330DHCX) · PPG (MAX30101) · 皮膚温 (MCP9808) · 環境温湿度 (SHT40) · ローカル通知用の触覚モーター。",
+          en: "6-axis IMU · PPG heart-rate · skin-temp · env temp + humidity · haptic motor for local alerts.",
+          ja: "6 軸 IMU · PPG 心拍 · 皮膚温 · 環境温湿度 · ローカル通知用の触覚モーター。",
         },
       },
       {
         tag: { en: "Bathroom node", ja: "浴室 IoT センサー" },
         title: { en: "Ambient watcher with voice", ja: "環境モニター + 音声警告" },
         body: {
-          en: "Tracks bathroom air temperature and humidity. Onboard I2S speaker (MAX98357A) delivers multilingual voice alerts during immersion.",
-          ja: "浴室の気温と湿度をモニタリング。I2S スピーカー (MAX98357A) が入浴中に多言語の音声警告を再生する。",
+          en: "Tracks bathroom air temperature and humidity. Onboard speaker delivers multilingual voice alerts during immersion.",
+          ja: "浴室の気温と湿度をモニタリング。内蔵スピーカーが入浴中に多言語の音声警告を再生する。",
         },
       },
       {
