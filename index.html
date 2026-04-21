@@ -62,7 +62,10 @@
     <section class="hero">
       <div class="container hero__inner">
         <div class="hero__copy">
-          <span class="kicker" data-en="Preventing silent bathroom deaths" data-ja="静かな入浴事故を防ぐ">Preventing silent bathroom deaths</span>
+          <span class="kicker kicker--live">
+            <span class="kicker__pulse" aria-hidden="true"></span>
+            <span data-en="Preventing silent bathroom deaths" data-ja="静かな入浴事故を防ぐ">Preventing silent bathroom deaths</span>
+          </span>
           <h1 class="hero__headline"
               data-en='A wearable safety system for elderly bathing — built to prevent <span class="hero__accent">19,000</span> silent deaths every year.'
               data-ja='高齢者のための入浴事故予防ウェアラブルシステム — 毎年<span class="hero__accent">19,000件</span>の入浴関連死を防ぐために。'>
@@ -89,6 +92,20 @@
           </ul>
         </div>
         <figure class="hero__visual" aria-hidden="true">
+          <svg class="hero__ecg" viewBox="0 0 600 200" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="ecgFade" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0" stop-color="#ff751f" stop-opacity="0"/>
+                <stop offset="0.15" stop-color="#ff751f" stop-opacity="0.85"/>
+                <stop offset="0.85" stop-color="#ff751f" stop-opacity="0.85"/>
+                <stop offset="1" stop-color="#ff751f" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path class="hero__ecg-path"
+                  d="M0 100 L60 100 L90 100 L105 95 L115 100 L130 100 L145 40 L160 160 L175 100 L200 100 L220 85 L260 100 L320 100 L335 95 L345 100 L360 100 L375 40 L390 160 L405 100 L440 100 L460 85 L500 100 L600 100"
+                  fill="none" stroke="url(#ecgFade)" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
           <img src="assets/hardware/device.png" alt="" loading="eager" decoding="async">
         </figure>
       </div>
