@@ -66,7 +66,7 @@ export const content = {
   },
   problem: {
     kicker: { en: "The Problem", ja: "問題" },
-    heading: { en: "A hidden danger in every Japanese bathroom.", ja: "日本の浴室に潜む、見えない危険。" },
+    heading: { en: "A hidden danger in every Japanese bathroom", ja: "日本の浴室に潜む、見えない危険" },
     intro: {
       en: "Deaths in bathtubs are one of the most under-reported preventable risks for elderly Japanese — a cultural bathing norm colliding with aging circulatory systems.",
       ja: "入浴関連の事故は、日本の高齢者にとって最も見過ごされてきた予防可能なリスクの一つ。入浴文化と加齢による循環器系の変化が重なって発生する、深刻な問題。",
@@ -129,8 +129,8 @@ export const content = {
   wedge: {
     kicker: { en: "Why existing solutions fall short", ja: "既存のソリューションでは足りない理由" },
     heading: {
-      en: "Most systems watch one thing. Bathing accidents happen when three fail together.",
-      ja: "ほとんどのシステムは一つの側面しか見ていない。入浴事故は3つが重なって発生する。",
+      en: "Most systems watch one thing. Bathing accidents happen when three fail together",
+      ja: "ほとんどのシステムは一つの側面しか見ていない。入浴事故は3つが重なって発生する",
     },
     intro: {
       en: "Existing wearables, nurse-call systems, and smart bathroom devices each solve part of the problem. None of them see how the pieces interact.",
@@ -170,8 +170,8 @@ export const content = {
   how: {
     kicker: { en: "How it works", ja: "仕組み" },
     heading: {
-      en: "Three layers. One local hub. No camera in the bathroom.",
-      ja: "3 つの層、1 つのローカルハブ、浴室にカメラはない。",
+      en: "Three layers. One local hub. No camera in the bathroom",
+      ja: "3 つの層、1 つのローカルハブ、浴室にカメラはない",
     },
     intro: {
       en: "Sensors watch the body and the room. A hub in the home interprets context. Caregivers get alerts — with a fallback to emergency services if nobody is reachable.",
@@ -266,7 +266,7 @@ export const content = {
   },
   liveMonitor: {
     kicker: { en: "Live system preview", ja: "ライブシステムプレビュー" },
-    heading: { en: "The product, working.", ja: "実際に動くシステム。" },
+    heading: { en: "The product, working", ja: "実際に動くシステム" },
     intro: {
       en: "A simulated run of the stage-aware safety logic — cycling through pre-bath, immersion, and exit as the sensors would see them in the home.",
       ja: "段階対応型の安全アルゴリズムを擬似動作で再現 — 入浴前、入浴中、退出後のセンサーが家庭内で見る信号の流れを表示。",
@@ -296,7 +296,7 @@ export const content = {
   },
   novelties: {
     kicker: { en: "What makes it different", ja: "私たちの独自性" },
-    heading: { en: "Three things set Thermal Guardian apart.", ja: "サーマルガーディアンを他と分ける 3 つの特徴。" },
+    heading: { en: "Three things set Thermal Guardian apart", ja: "サーマルガーディアンを他と分ける 3 つの特徴" },
     items: [
       {
         title: { en: "Multi-modal sensing", ja: "マルチモーダルセンシング" },
@@ -323,7 +323,7 @@ export const content = {
   },
   achievements: {
     kicker: { en: "Achievements", ja: "実績" },
-    heading: { en: "HEALTHINF 2026 and iCAN 2026.", ja: "HEALTHINF 2026 と iCAN 2026。" },
+    heading: { en: "HEALTHINF 2026 and iCAN 2026", ja: "HEALTHINF 2026 と iCAN 2026" },
     intro: { en: "The venues where the system is being presented in 2026.", ja: "2026 年にシステムを発表している場。" },
     items: [
       {
@@ -350,7 +350,7 @@ export const content = {
   },
   resources: {
     kicker: { en: "Resources", ja: "資料" },
-    heading: { en: "See the pitch.", ja: "ピッチを見る。" },
+    heading: { en: "Watch the conference talk", ja: "学会発表を見る" },
     intro: {
       en: "A short conference talk that walks through the problem, the system, and the clinical logic behind it.",
       ja: "問題、システム、そして背景にある医学的ロジックを短い学会発表で解説。",
@@ -364,7 +364,7 @@ export const content = {
   },
   team: {
     kicker: { en: "Team", ja: "チーム" },
-    heading: { en: "The people behind Thermal Guardian.", ja: "サーマルガーディアンを支えるチーム。" },
+    heading: { en: "The people behind Thermal Guardian", ja: "サーマルガーディアンを支えるチーム" },
     members: [
       { name: "Joseph Arthur Koo", image: "assets/team/joseph.jpg" },
       { name: "Ken Argani Toendan", image: "assets/team/ken.jpg" },
@@ -374,7 +374,7 @@ export const content = {
   },
   contact: {
     kicker: { en: "Contact", ja: "お問い合わせ" },
-    heading: { en: "Talk to us.", ja: "ご連絡ください。" },
+    heading: { en: "Talk to us", ja: "ご連絡ください" },
     intro: {
       en: "Investors, partners, and press — we welcome briefings, collaboration proposals, and clinical-partner introductions. We typically reply within two working days.",
       ja: "投資家、パートナー、報道関係者へ — 資料請求、協業のご提案、臨床パートナーのご紹介を歓迎します。通常 2 営業日以内にご返信いたします。",
