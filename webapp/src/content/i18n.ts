@@ -59,8 +59,8 @@ export const content = {
         ja: "iCAN 2026 · 4月26日",
       },
       {
-        en: "R&D since Oct 2024",
-        ja: "2024年10月から研究開発",
+        en: "R&D since Oct 2025",
+        ja: "2025年10月から研究開発",
       },
     ] as BiText[],
   },
