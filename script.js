@@ -1,8 +1,38 @@
-// Smooth-scroll for same-page anchors, mobile menu toggle, and scroll-reveal.
+// Smooth-scroll for same-page anchors, mobile menu toggle, scroll-reveal, and EN/JP swap.
 (function () {
   "use strict";
 
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ─── Language toggle ──────────────────────────────────
+  const langGroup = document.querySelector(".lang-toggle");
+  const langButtons = langGroup ? langGroup.querySelectorAll("button[data-lang]") : [];
+
+  function applyLang(lang) {
+    const target = lang === "ja" ? "ja" : "en";
+    document.documentElement.lang = target;
+    document.querySelectorAll("[data-en]").forEach((el) => {
+      const txt = el.getAttribute("data-" + target) || el.getAttribute("data-en");
+      if (txt == null) return;
+      if (el.namespaceURI === "http://www.w3.org/2000/svg") {
+        el.textContent = txt;
+      } else {
+        el.innerHTML = txt;
+      }
+    });
+    langButtons.forEach((b) => {
+      b.setAttribute("aria-pressed", b.dataset.lang === target ? "true" : "false");
+    });
+    try { localStorage.setItem("tg-lang", target); } catch (e) {}
+  }
+
+  const savedLang = (() => { try { return localStorage.getItem("tg-lang"); } catch (e) { return null; } })();
+  const browserJa = (navigator.language || "").toLowerCase().startsWith("ja");
+  applyLang(savedLang || (browserJa ? "ja" : "en"));
+
+  langButtons.forEach((btn) => {
+    btn.addEventListener("click", () => applyLang(btn.dataset.lang));
+  });
 
   // ─── Smooth scroll + mobile menu ──────────────────────
   const toggle = document.querySelector(".nav-toggle");
@@ -64,10 +94,9 @@
     ".hardware-callout",
     ".diagram-wrap",
     ".how-steps li",
-    ".tech-card",
+    ".video-embed",
     ".novelty",
-    ".validation-item",
-    ".resource-card",
+    ".achievement",
     ".team-card",
     ".pullquote",
     ".contact__actions",
