@@ -38,7 +38,7 @@ export function Header() {
     >
       <Container className="flex h-16 md:h-20 items-center justify-between gap-4">
         <a href="#top" className="flex items-center gap-2" aria-label="Thermal Guardian home">
-          <img src="assets/brand/logo-lockup.png" alt="Thermal Guardian" className="h-8 md:h-10" />
+          <img src="assets/brand/logo-lockup.png" alt="Thermal Guardian" className="h-12 md:h-14" />
         </a>
 
         <nav className="hidden md:flex items-center gap-8" aria-label="Main">

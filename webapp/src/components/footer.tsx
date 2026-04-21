@@ -11,8 +11,8 @@ export function Footer() {
       <Container className="py-12 md:py-16 grid gap-10 md:grid-cols-[1fr_auto] items-start">
         <div className="flex flex-col gap-3">
           <span className="kicker-uppercase text-cream/50">{t(f.developedAt, lang)}</span>
-          <a href="https://www.kuas.ac.jp/en/" rel="noopener" className="inline-block max-w-[160px]">
-            <img src="assets/brand/kuas-logo.png" alt="Kyoto University of Advanced Science (KUAS)" className="h-12 w-auto" />
+          <a href="https://www.kuas.ac.jp/en/" rel="noopener" className="inline-block">
+            <img src="assets/brand/kuas-logo.png" alt="Kyoto University of Advanced Science (KUAS)" className="h-36 w-auto" />
           </a>
           <p className="text-sm text-cream/70">
             <a href="https://www.ubicomp-lab.org/" rel="noopener" className="text-cream hover:text-brand transition-colors font-semibold">

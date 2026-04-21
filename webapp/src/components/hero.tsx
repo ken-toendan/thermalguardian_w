@@ -303,7 +303,7 @@ function HeroEcg() {
     <svg
       viewBox="0 0 600 200"
       preserveAspectRatio="none"
-      className="absolute inset-x-0 top-[38%] h-[24%] w-full z-0 opacity-60"
+      className="absolute inset-x-0 top-[28%] h-[44%] w-full z-0 opacity-90"
       aria-hidden="true"
     >
       <defs>
@@ -318,7 +318,7 @@ function HeroEcg() {
         d="M0 100 L60 100 L90 100 L105 95 L115 100 L130 100 L145 40 L160 160 L175 100 L200 100 L220 85 L260 100 L320 100 L335 95 L345 100 L360 100 L375 40 L390 160 L405 100 L440 100 L460 85 L500 100 L600 100"
         fill="none"
         stroke="url(#heroEcgFade)"
-        strokeWidth="2.5"
+        strokeWidth="4"
         strokeLinecap="round"
         strokeLinejoin="round"
         initial={{ pathLength: 0, opacity: 0 }}

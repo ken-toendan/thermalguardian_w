@@ -21,7 +21,9 @@ export function Achievements() {
 
         <Stagger stagger={0.12}>
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {a.items.map((item, i) => (
+          {a.items.map((item, i) => {
+            const isIcan = item.image.includes("ican");
+            return (
             <motion.li
               key={i}
               variants={staggerChild}
@@ -33,12 +35,12 @@ export function Achievements() {
                 href={item.url}
                 target="_blank"
                 rel="noopener"
-                className="block aspect-[16/9] bg-ink/5 flex items-center justify-center"
+                className="block aspect-[16/9] bg-white flex items-center justify-center"
               >
                 <img
                   src={item.image}
                   alt={t(item.title, lang)}
-                  className="h-full w-full object-contain p-6 bg-white"
+                  className={isIcan ? "max-h-[45%] max-w-[40%] object-contain" : "max-h-[75%] max-w-[80%] object-contain"}
                 />
               </a>
               <div className="p-6 flex flex-col gap-2">
@@ -47,7 +49,8 @@ export function Achievements() {
                 <p className="text-sm text-ink/70 leading-relaxed">{t(item.body, lang)}</p>
               </div>
             </motion.li>
-          ))}
+            );
+          })}
         </ul>
         </Stagger>
       </Container>
