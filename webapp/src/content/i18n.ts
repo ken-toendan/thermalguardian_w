@@ -13,7 +13,7 @@ export const content = {
     },
     description: {
       en: "A wearable safety system for elderly bathing — built to prevent the 19,000 silent deaths that happen in Japanese bathtubs every year.",
-      ja: "高齢者のための入浴事故予防ウェアラブルシステム — 毎年日本の浴室で起きる19,000件の静かな入浴関連死を防ぐために。",
+      ja: "高齢者のための入浴事故予防 ウェアラブルシステム — 毎年日本の浴室で起きる19,000件の静かな入浴関連死を防ぐために。",
     },
   },
   nav: {
@@ -33,7 +33,7 @@ export const content = {
     },
     headlineBefore: {
       en: "A wearable safety system for elderly bathing — built to prevent ",
-      ja: "高齢者のための入浴事故予防ウェアラブルシステム — 毎年",
+      ja: "高齢者のための入浴事故予防 ウェアラブルシステム — 毎年",
     },
     headlineAfter: {
       en: " silent deaths every year",
