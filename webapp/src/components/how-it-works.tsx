@@ -71,6 +71,33 @@ export function HowItWorks() {
           </div>
         </Reveal>
 
+        <Reveal delay={0.15}>
+          <div className="mt-8 md:mt-10 rounded-2xl bg-white border border-ink/10 p-6 md:p-8">
+            <div className="flex items-baseline gap-3 flex-wrap mb-3">
+              <span className="kicker-uppercase text-brand">
+                {t(h.measurementsLabel, lang)}
+              </span>
+              <p className="text-sm text-ink/70 leading-relaxed">
+                {t(h.measurementsIntro, lang)}
+              </p>
+            </div>
+            <ul className="flex flex-wrap gap-x-6 gap-y-2 mt-4">
+              {h.measurements.map((m, i) => (
+                <li
+                  key={i}
+                  className="flex items-center gap-2 text-base text-ink"
+                >
+                  <span
+                    aria-hidden
+                    className="inline-block h-1.5 w-1.5 rounded-full bg-brand"
+                  />
+                  <span>{t(m, lang)}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Reveal>
+
         <Stagger stagger={0.12}>
         <ol className="mt-12 max-w-3xl flex flex-col gap-5 list-none">
           {h.steps.map((step, i) => (
@@ -104,74 +131,125 @@ function FlowDiagram() {
 
   return (
     <svg
-      viewBox="0 0 860 420"
+      viewBox="0 0 820 500"
       xmlns="http://www.w3.org/2000/svg"
       role="img"
-      className="w-full min-w-[560px] h-auto"
+      className="w-full min-w-[620px] h-auto"
       aria-label="System flow diagram"
     >
       <defs>
-        <marker id="tg-arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+        <marker id="tg-arrow-ink" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 z" fill="#304251" />
         </marker>
-        <marker id="tg-arrow-red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+        <marker id="tg-arrow-brand" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
           <path d="M0,0 L10,5 L0,10 z" fill="#ff751f" />
         </marker>
       </defs>
 
-      <g transform="translate(30, 20)">
-        <rect width="210" height="100" rx="10" fill="#ff751f" />
-        <text x="20" y="36" fontFamily="DM Sans" fontSize="18" fontWeight="800" fill="#fff">{txt(n.wearable)}</text>
-        <text x="20" y="62" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.wearableSub1)}</text>
-        <text x="20" y="80" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.wearableSub2)}</text>
-      </g>
-      <g transform="translate(30, 150)">
-        <rect width="210" height="100" rx="10" fill="#ff751f" />
-        <text x="20" y="36" fontFamily="DM Sans" fontSize="18" fontWeight="800" fill="#fff">{txt(n.bathroom)}</text>
-        <text x="20" y="62" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.bathroomSub1)}</text>
-        <text x="20" y="80" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.bathroomSub2)}</text>
-      </g>
-      <g transform="translate(30, 280)">
-        <rect width="210" height="100" rx="10" fill="#ff751f" />
-        <text x="20" y="36" fontFamily="DM Sans" fontSize="18" fontWeight="800" fill="#fff">{txt(n.changing)}</text>
-        <text x="20" y="62" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.changingSub1)}</text>
-        <text x="20" y="80" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.changingSub2)}</text>
+      {/* Monitoring devices — wearable + 2 IoT group */}
+      <g transform="translate(20, 30)">
+        <rect width="230" height="100" rx="12" fill="#ff751f" />
+        <text x="18" y="34" fontFamily="DM Sans" fontSize="17" fontWeight="800" fill="#fff">{txt(n.monitoring)}</text>
+        <text x="18" y="58" fontFamily="Inter" fontSize="11.5" fill="#fff" fillOpacity="0.95">{txt(n.monitoringSub1)}</text>
+        <text x="18" y="84" fontFamily="Inter" fontSize="11" fill="#fff" fillOpacity="0.9">{txt(n.monitoringSub2)}</text>
       </g>
 
-      <g transform="translate(325, 150)">
-        <rect width="210" height="120" rx="10" fill="#11192b" />
-        <text x="20" y="36" fontFamily="DM Sans" fontSize="18" fontWeight="800" fill="#fff">{txt(n.hub)}</text>
+      {/* WiFi CSI node */}
+      <g transform="translate(20, 160)">
+        <rect width="230" height="96" rx="12" fill="#e9f3f5" stroke="#11192b" strokeOpacity="0.12" strokeWidth="1.5" />
+        <text x="18" y="32" fontFamily="DM Sans" fontSize="16" fontWeight="800" fill="#11192b">{txt(n.csi)}</text>
+        <text x="18" y="58" fontFamily="Inter" fontSize="11.5" fill="#11192b" fillOpacity="0.7">{txt(n.csiSub1)}</text>
+        <text x="18" y="76" fontFamily="Inter" fontSize="11.5" fill="#11192b" fillOpacity="0.7">{txt(n.csiSub2)}</text>
+      </g>
+
+      {/* mmWave radar */}
+      <g transform="translate(20, 286)">
+        <rect width="230" height="96" rx="12" fill="#7b886b" />
+        <text x="18" y="32" fontFamily="DM Sans" fontSize="16" fontWeight="800" fill="#fff">{txt(n.radar)}</text>
+        <text x="18" y="58" fontFamily="Inter" fontSize="11.5" fill="#fff" fillOpacity="0.9">{txt(n.radarSub1)}</text>
+        <text x="18" y="76" fontFamily="Inter" fontSize="11.5" fill="#fff" fillOpacity="0.9">{txt(n.radarSub2)}</text>
+      </g>
+
+      {/* Data Processing — Pi Hub (centre) */}
+      <g transform="translate(330, 150)">
+        <rect width="220" height="150" rx="12" fill="#11192b" />
+        <text x="20" y="34" fontFamily="DM Sans" fontSize="18" fontWeight="800" fill="#fff">{txt(n.hub)}</text>
         <text x="20" y="62" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.75">{txt(n.hubSub1)}</text>
-        <text x="20" y="82" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.75">{txt(n.hubSub2)}</text>
-        <text x="20" y="102" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.75">{txt(n.hubSub3)}</text>
+        <text x="20" y="86" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.75">{txt(n.hubSub2)}</text>
+        <text x="20" y="110" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.75">{txt(n.hubSub3)}</text>
       </g>
 
-      <g transform="translate(620, 20)">
-        <rect width="210" height="100" rx="10" fill="#304251" />
-        <text x="20" y="36" fontFamily="DM Sans" fontSize="18" fontWeight="800" fill="#fff">{txt(n.cloud)}</text>
-        <text x="20" y="62" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.cloudSub1)}</text>
-        <text x="20" y="80" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.cloudSub2)}</text>
-      </g>
-      <g transform="translate(620, 150)">
-        <rect width="210" height="100" rx="10" fill="#7b886b" />
-        <text x="20" y="36" fontFamily="DM Sans" fontSize="18" fontWeight="800" fill="#fff">{txt(n.app)}</text>
-        <text x="20" y="62" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.appSub1)}</text>
-        <text x="20" y="80" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.appSub2)}</text>
-      </g>
-      <g transform="translate(620, 280)">
-        <rect width="210" height="100" rx="10" fill="#f3993e" />
-        <text x="20" y="36" fontFamily="DM Sans" fontSize="18" fontWeight="800" fill="#fff">{txt(n.push)}</text>
-        <text x="20" y="62" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.pushSub1)}</text>
-        <text x="20" y="80" fontFamily="Inter" fontSize="12" fill="#fff" fillOpacity="0.92">{txt(n.pushSub2)}</text>
+      {/* Cloud */}
+      <g transform="translate(620, 166)">
+        <rect width="180" height="118" rx="12" fill="#304251" />
+        <text x="18" y="34" fontFamily="DM Sans" fontSize="17" fontWeight="800" fill="#fff">{txt(n.cloud)}</text>
+        <text x="18" y="62" fontFamily="Inter" fontSize="11.5" fill="#fff" fillOpacity="0.85">{txt(n.cloudSub1)}</text>
+        <text x="18" y="82" fontFamily="Inter" fontSize="11.5" fill="#fff" fillOpacity="0.85">{txt(n.cloudSub2)}</text>
       </g>
 
-      <line x1="240" y1="70" x2="325" y2="190" stroke="#304251" strokeWidth="2" markerEnd="url(#tg-arrow-blue)" />
-      <line x1="240" y1="200" x2="325" y2="210" stroke="#304251" strokeWidth="2" markerEnd="url(#tg-arrow-blue)" />
-      <line x1="240" y1="330" x2="325" y2="240" stroke="#304251" strokeWidth="2" markerEnd="url(#tg-arrow-blue)" />
+      {/* Web + Mobile App */}
+      <g transform="translate(330, 360)">
+        <rect width="220" height="96" rx="12" fill="#f3993e" />
+        <text x="18" y="34" fontFamily="DM Sans" fontSize="16" fontWeight="800" fill="#fff">{txt(n.app)}</text>
+        <text x="18" y="60" fontFamily="Inter" fontSize="11.5" fill="#fff" fillOpacity="0.95">{txt(n.appSub1)}</text>
+        <text x="18" y="78" fontFamily="Inter" fontSize="11.5" fill="#fff" fillOpacity="0.95">{txt(n.appSub2)}</text>
+      </g>
 
-      <line x1="535" y1="180" x2="620" y2="80" stroke="#304251" strokeWidth="2" markerEnd="url(#tg-arrow-blue)" />
-      <line x1="535" y1="210" x2="620" y2="200" stroke="#304251" strokeWidth="2" markerEnd="url(#tg-arrow-blue)" />
-      <line x1="535" y1="240" x2="620" y2="330" stroke="#ff751f" strokeWidth="2" strokeDasharray="6 4" markerEnd="url(#tg-arrow-red)" />
+      {/* Caregivers & Family */}
+      <g transform="translate(620, 360)">
+        <rect width="180" height="96" rx="12" fill="#dc2626" />
+        <text x="18" y="34" fontFamily="DM Sans" fontSize="15" fontWeight="800" fill="#fff">{txt(n.caregivers)}</text>
+        <text x="18" y="60" fontFamily="Inter" fontSize="11.5" fill="#fff" fillOpacity="0.95">{txt(n.caregiversSub1)}</text>
+      </g>
+
+      {/* Top-left label + pulsing radio-wave glyph */}
+      <g transform="translate(20, 10)">
+        <text x="22" y="13" fontFamily="Inter" fontSize="11" fontWeight="700" fill="#304251" letterSpacing="0.08em">
+          {txt(n.wirelessLabel)}
+        </text>
+        {/* Three concentric wifi-style arcs that pulse outward */}
+        {[0, 0.5, 1].map((delay, i) => (
+          <motion.path
+            key={i}
+            d="M 2 14 Q 8 8 14 14"
+            fill="none"
+            stroke="#ff751f"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: [0, 1, 0], scale: [0.6, 1.15, 1.4] }}
+            transition={{ duration: 1.6, repeat: Infinity, delay, ease: "easeOut" }}
+            style={{ transformOrigin: "8px 14px" }}
+          />
+        ))}
+        <circle cx="8" cy="14" r="1.6" fill="#ff751f" />
+      </g>
+
+      {/* Flows: sensors → hub — flowing dashes to show data in motion */}
+      {[
+        { x1: 250, y1: 80,  x2: 330, y2: 195 },
+        { x1: 250, y1: 208, x2: 330, y2: 225 },
+        { x1: 250, y1: 334, x2: 330, y2: 255 },
+      ].map((a, i) => (
+        <motion.line
+          key={i}
+          x1={a.x1} y1={a.y1} x2={a.x2} y2={a.y2}
+          stroke="#304251" strokeWidth={2}
+          strokeDasharray="6 4"
+          markerEnd="url(#tg-arrow-ink)"
+          animate={{ strokeDashoffset: [0, -20] }}
+          transition={{ duration: 1.2, repeat: Infinity, ease: "linear", delay: i * 0.15 }}
+        />
+      ))}
+
+      {/* Flow: hub → cloud */}
+      <line x1="550" y1="225" x2="620" y2="225" stroke="#304251" strokeWidth="2" markerEnd="url(#tg-arrow-ink)" />
+
+      {/* Flow: cloud → app (vertical down then left to app) */}
+      <line x1="710" y1="284" x2="550" y2="400" stroke="#304251" strokeWidth="2" markerEnd="url(#tg-arrow-ink)" />
+
+      {/* Flow: app → caregivers (alert path, brand orange) */}
+      <line x1="550" y1="408" x2="620" y2="408" stroke="#ff751f" strokeWidth="2.5" markerEnd="url(#tg-arrow-brand)" />
     </svg>
   );
 }
