@@ -178,13 +178,13 @@ export const content = {
       ja: "センサーが身体と室内を監視し、家庭内のハブが状況を解釈する。介護者と家族へアラートを送り、連絡がつかない場合のみ救急サービスへフォールバックする。",
     },
     hardwareCaption: {
-      en: "Three pieces, one system — a wrist wearable (orange) plus two IoT nodes (white).",
-      ja: "3つのピース、1つのシステム — リストウェアラブル（オレンジ）と 2 つの IoT ノード（白）。",
+      en: "Three pieces, one system — an upper-arm wearable (orange) plus two IoT nodes (white).",
+      ja: "3つのピース、1つのシステム — 上腕ウェアラブル（オレンジ）と 2 つの IoT ノード（白）。",
     },
     callouts: [
       {
         tag: { en: "Wearable", ja: "ウェアラブル" },
-        title: { en: "IPX7 wrist band", ja: "IPX7 防水リストバンド" },
+        title: { en: "IPX7 armband", ja: "IPX7 防水アームバンド" },
         body: {
           en: "6-axis IMU · PPG heart-rate · skin-temp · env temp + humidity · haptic motor for local alerts.",
           ja: "6軸IMU、PPG心拍、皮膚温、環境温湿度、ローカル通知用の触覚モーター。",

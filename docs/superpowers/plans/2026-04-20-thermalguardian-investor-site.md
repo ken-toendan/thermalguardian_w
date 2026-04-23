@@ -910,7 +910,7 @@ Replace `<!-- how-it-works (Task 8) -->` with:
         <g transform="translate(40, 40)">
           <rect width="180" height="72" rx="10" fill="#f7f5ef" stroke="#11192b" stroke-width="1.5"/>
           <text x="90" y="32" text-anchor="middle" font-family="DM Sans, sans-serif" font-size="14" font-weight="700" fill="#11192b">Waterproof wearable</text>
-          <text x="90" y="52" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#11192b" fill-opacity="0.6">wrist-worn · ESP32-S3</text>
+          <text x="90" y="52" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" fill="#11192b" fill-opacity="0.6">upper-arm · ESP32-S3</text>
         </g>
 
         <!-- Node: Room sensors -->

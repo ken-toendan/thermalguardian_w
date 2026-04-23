@@ -28,7 +28,7 @@ export function HowItWorks() {
             <div className="rounded-2xl bg-white border border-ink/10 p-6 md:p-8 flex items-center justify-center">
               <img
                 src={lang === "ja" ? "assets/hardware/device-labeled-ja.png" : "assets/hardware/device-labeled-en.png"}
-                alt="The Thermal Guardian hardware: an orange wrist-worn wearable and two white IoT sensor nodes for the bathroom and changing room, with labels."
+                alt="The Thermal Guardian hardware: an orange upper-arm wearable and two white IoT sensor nodes for the bathroom and changing room, with labels."
                 className="max-w-full"
                 loading="lazy"
               />

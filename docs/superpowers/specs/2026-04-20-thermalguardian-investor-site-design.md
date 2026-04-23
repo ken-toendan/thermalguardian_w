@@ -105,7 +105,7 @@ Secondary: **academic collaborators** looking for a credible landing reference f
 ### 7.4 How It Works
 - Headline: *Three layers, one local hub.*
 - Custom inline SVG diagram (not the poster PNG). Node labels only:
-  - Two parallel inputs — **Waterproof wearable** (wrist) and **Bathroom + changing-room sensors** — both feed **Raspberry Pi hub**. Hub feeds **Caregiver app (web/mobile)**. A dashed line from the app branches to **Emergency services** as a fallback.
+  - Two parallel inputs — **Waterproof wearable** (upper arm) and **Bathroom + changing-room sensors** — both feed **Raspberry Pi hub**. Hub feeds **Caregiver app (web/mobile)**. A dashed line from the app branches to **Emergency services** as a fallback.
   - Style: ink nodes on cream, orange solid arrows for the primary flow, subtle dashed line for the fallback path.
 - Three short bullets below:
   1. Sensors read body and environment continuously.
