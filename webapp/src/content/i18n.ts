@@ -25,6 +25,7 @@ export const content = {
     openMenu: { en: "Open menu", ja: "メニューを開く" },
     closeMenu: { en: "Close menu", ja: "メニューを閉じる" },
     language: { en: "Language", ja: "言語" },
+    demo: { en: "Live demo", ja: "デモを見る" },
   },
   hero: {
     kicker: {

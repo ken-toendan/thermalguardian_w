@@ -11,6 +11,7 @@ import { Resources } from "@/components/resources";
 import { Team } from "@/components/team";
 import { Contact } from "@/components/contact";
 import { Footer } from "@/components/footer";
+import { DemoBubble } from "@/components/demo-bubble";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Contact />
         </main>
         <Footer />
+        <DemoBubble />
       </div>
     </LangProvider>
   );
