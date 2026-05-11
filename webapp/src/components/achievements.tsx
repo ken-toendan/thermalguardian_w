@@ -20,9 +20,15 @@ export function Achievements() {
         </Reveal>
 
         <Stagger stagger={0.12}>
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {a.items.map((item, i) => {
-            const isIcan = item.image.includes("ican");
+            const imgClass =
+              item.imageStyle === "photo"
+                ? "w-full h-full object-cover"
+                : item.imageStyle === "logo"
+                ? "max-h-[45%] max-w-[40%] object-contain"
+                : "max-h-[75%] max-w-[80%] object-contain";
+            const wrapperBg = item.imageStyle === "photo" ? "bg-ink" : "bg-white";
             return (
             <motion.li
               key={i}
@@ -35,12 +41,12 @@ export function Achievements() {
                 href={item.url}
                 target="_blank"
                 rel="noopener"
-                className="block aspect-[16/9] bg-white flex items-center justify-center"
+                className={`block aspect-[16/9] ${wrapperBg} flex items-center justify-center`}
               >
                 <img
                   src={item.image}
                   alt={t(item.title, lang)}
-                  className={isIcan ? "max-h-[45%] max-w-[40%] object-contain" : "max-h-[75%] max-w-[80%] object-contain"}
+                  className={imgClass}
                 />
               </a>
               <div className="p-6 flex flex-col gap-2">

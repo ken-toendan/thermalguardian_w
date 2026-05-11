@@ -350,32 +350,57 @@ export const content = {
         },
         url: "https://healthinf.scitevents.org/?y=2026",
         image: "assets/achievements/healthinf-banner.png",
+        imageStyle: "banner" as const,
       },
       {
         label: { en: "Industry · Japan Preliminary", ja: "産業 日本予選" },
         title: { en: "iCAN 2026 — Japan Preliminary", ja: "iCAN 2026 日本予選" },
         body: {
-          en: "Presenting the system at the International Contest of Innovation. Tohoku University · 2026-04-26.",
+          en: "Presented the system at the International Contest of Innovation. Tohoku University · 2026-04-26.",
           ja: "International Contest of Innovation にてシステムを発表。東北大学 2026 年 4 月 26 日。",
         },
         url: "https://www.mu-sic.tohoku.ac.jp/ican/ican2026/summary.html",
         image: "assets/achievements/ican-logo.jpg",
+        imageStyle: "logo" as const,
+      },
+      {
+        label: { en: "Industry · 2nd Place", ja: "産業 第2位" },
+        title: { en: "iCAN 2026 — 2nd place, Japan Preliminary", ja: "iCAN 2026 日本予選 第2位" },
+        body: {
+          en: "Awarded 2nd place at the Japan Preliminary. Advancing to the iCAN international finals.",
+          ja: "日本予選で第2位を受賞。iCAN 国際決勝大会に進出。",
+        },
+        url: "https://youtu.be/U9No2XLw9bI",
+        image: "assets/achievements/ican-winning-jp.jpg",
+        imageStyle: "photo" as const,
       },
     ],
   },
   resources: {
     kicker: { en: "Resources", ja: "資料" },
-    heading: { en: "Watch the conference talk", ja: "学会発表を見る" },
+    heading: { en: "Watch the talks", ja: "発表動画を見る" },
     intro: {
-      en: "A short conference talk that walks through the problem, the system, and the clinical logic behind it.",
-      ja: "問題、システム、そして背景にある医学的ロジックを短い学会発表で解説。",
+      en: "Two short talks covering the problem, the system, and the clinical logic behind it.",
+      ja: "問題、システム、そして背景にある医学的ロジックを2本の短い発表で解説。",
     },
-    caption: {
-      en: "Conference pitch · the full system, explained in under a few minutes.",
-      ja: "学会発表 システムの全体像を数分で説明。",
-    },
-    videoId: "t1nbr8O1m8s",
-    videoTitle: "Thermal Guardian — conference pitch",
+    videos: [
+      {
+        id: "t1nbr8O1m8s",
+        title: "Thermal Guardian — conference pitch",
+        caption: {
+          en: "Conference pitch · the full system, explained in under a few minutes.",
+          ja: "学会発表 システムの全体像を数分で説明。",
+        },
+      },
+      {
+        id: "U9No2XLw9bI",
+        title: "Thermal Guardian — iCAN 2026 presentation",
+        caption: {
+          en: "iCAN 2026 Japan Preliminary presentation · awarded 2nd place.",
+          ja: "iCAN 2026 日本予選プレゼンテーション 第2位受賞。",
+        },
+      },
+    ],
   },
   team: {
     kicker: { en: "Team", ja: "チーム" },

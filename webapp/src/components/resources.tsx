@@ -18,24 +18,28 @@ export function Resources() {
           />
         </Reveal>
 
-        <Reveal delay={0.1}>
-        <figure className="max-w-4xl mx-auto flex flex-col gap-4">
-          <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-ink border border-ink/10 shadow-sm">
-            <iframe
-              src={`https://www.youtube-nocookie.com/embed/${r.videoId}`}
-              title={r.videoTitle}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-              loading="lazy"
-              className="absolute inset-0 w-full h-full border-0"
-            />
-          </div>
-          <figcaption className="text-center text-sm text-ink/60">
-            {t(r.caption, lang)}
-          </figcaption>
-        </figure>
-        </Reveal>
+        <div className="max-w-4xl mx-auto flex flex-col gap-10">
+          {r.videos.map((video, i) => (
+            <Reveal key={video.id} delay={0.1 + i * 0.05}>
+              <figure className="flex flex-col gap-4">
+                <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-ink border border-ink/10 shadow-sm">
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${video.id}`}
+                    title={video.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                    loading="lazy"
+                    className="absolute inset-0 w-full h-full border-0"
+                  />
+                </div>
+                <figcaption className="text-center text-sm text-ink/60">
+                  {t(video.caption, lang)}
+                </figcaption>
+              </figure>
+            </Reveal>
+          ))}
+        </div>
       </Container>
     </Section>
   );
