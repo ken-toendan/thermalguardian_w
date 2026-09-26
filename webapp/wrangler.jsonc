@@ -5,5 +5,8 @@
   "compatibility_date": "2026-09-26",
   "assets": {
     "directory": "./dist"
-  }
+  },
+  // Required by `npx wrangler preview` (the default Preview command for
+  // non-production branches). Empty: previews need no separate settings.
+  "previews": {}
 }
