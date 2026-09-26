@@ -26,6 +26,7 @@ export const content = {
     closeMenu: { en: "Close menu", ja: "メニューを閉じる" },
     language: { en: "Language", ja: "言語" },
     demo: { en: "Live demo", ja: "デモを見る" },
+    menu: { en: "Menu", ja: "メニュー" },
   },
   hero: {
     kicker: {
@@ -34,7 +35,7 @@ export const content = {
     },
     headlineBefore: {
       en: "A wearable safety system for elderly bathing — built to prevent ",
-      ja: "高齢者のための入浴事故予防 ウェアラブルシステム — 毎年",
+      ja: "高齢者のための入浴事故予防 ウェアラブルシステム — 毎年",
     },
     headlineAfter: {
       en: " silent deaths every year",

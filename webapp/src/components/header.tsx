@@ -1,8 +1,10 @@
 import * as React from "react";
-import { Menu } from "lucide-react";
+import { Menu, ExternalLink } from "lucide-react";
 import { Container } from "@/components/section";
+import { Button } from "@/components/ui/button";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { DEMO_URL } from "@/components/demo-bubble";
 import { useLang } from "@/hooks/use-lang";
 import { content, t } from "@/content/i18n";
 import { cn } from "@/lib/utils";
@@ -54,6 +56,13 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <Button asChild variant="brand" size="sm" className="hidden md:inline-flex">
+            <a href={DEMO_URL} target="_blank" rel="noopener noreferrer">
+              {t(content.nav.demo, lang)}
+              <ExternalLink className="h-3.5 w-3.5" />
+            </a>
+          </Button>
+
           <ToggleGroup
             type="single"
             value={lang}
@@ -72,18 +81,29 @@ export function Header() {
             >
               <Menu className="h-5 w-5" />
             </SheetTrigger>
-            <SheetContent side="right" className="p-6">
-              <nav className="mt-10 flex flex-col gap-5" aria-label="Main">
+            <SheetContent side="right" className="p-6" aria-describedby={undefined}>
+              <SheetTitle className="sr-only">{t(content.nav.menu, lang)}</SheetTitle>
+              <nav className="mt-10 flex flex-col gap-1" aria-label="Main">
                 {links.map((link) => (
                   <a
                     key={link.key}
                     href={link.href}
                     onClick={() => setSheetOpen(false)}
-                    className="text-lg font-semibold text-ink hover:text-brand-700 transition-colors"
+                    className="block py-2.5 text-lg font-semibold text-ink hover:text-brand-700 transition-colors"
                   >
                     {t(content.nav[link.key], lang)}
                   </a>
                 ))}
+                <a
+                  href={DEMO_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setSheetOpen(false)}
+                  className="inline-flex items-center gap-2 py-2.5 text-lg font-semibold text-brand-700 hover:text-brand-600 transition-colors"
+                >
+                  {t(content.nav.demo, lang)}
+                  <ExternalLink className="h-4 w-4" />
+                </a>
               </nav>
               <div className="mt-10 sm:hidden">
                 <ToggleGroup
@@ -91,8 +111,8 @@ export function Header() {
                   value={lang}
                   onValueChange={(v) => v && setLang(v as "en" | "ja")}
                 >
-                  <ToggleGroupItem value="en">EN</ToggleGroupItem>
-                  <ToggleGroupItem value="ja">日本語</ToggleGroupItem>
+                  <ToggleGroupItem value="en" className="h-11 px-4 text-sm">EN</ToggleGroupItem>
+                  <ToggleGroupItem value="ja" className="h-11 px-4 text-sm">日本語</ToggleGroupItem>
                 </ToggleGroup>
               </div>
             </SheetContent>

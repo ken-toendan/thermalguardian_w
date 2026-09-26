@@ -21,8 +21,6 @@ export function Novelties() {
             <motion.li
               key={i}
               variants={staggerChild}
-              whileHover={{ y: -4 }}
-              transition={{ type: "spring", stiffness: 260, damping: 20 }}
               className="relative rounded-2xl bg-white/[0.04] ring-1 ring-white/10 text-cream p-7 md:p-8 flex flex-col gap-4"
             >
               <span className="kicker-uppercase text-brand">

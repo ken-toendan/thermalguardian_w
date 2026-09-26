@@ -1,5 +1,5 @@
 import * as React from "react";
-import { motion, useMotionValue, useSpring, useTransform, useReducedMotion, type Variants } from "motion/react";
+import { motion, useMotionValue, useSpring, useTransform, useMotionTemplate, useReducedMotion, type Variants } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/section";
@@ -31,6 +31,7 @@ export function Hero() {
   const sy = useSpring(mouseY, { stiffness: 50, damping: 20 });
   const spotlightX = useTransform(sx, (v) => `${v * 100}%`);
   const spotlightY = useTransform(sy, (v) => `${v * 100}%`);
+  const spotlightBackground = useMotionTemplate`radial-gradient(600px circle at ${spotlightX} ${spotlightY}, rgba(255,117,31,0.10), transparent 70%)`;
 
   const onMove = (e: React.MouseEvent<HTMLElement>) => {
     if (reduce) return;
@@ -41,6 +42,7 @@ export function Hero() {
 
   return (
     <section
+      id="hero"
       onMouseMove={onMove}
       className="relative overflow-hidden pt-8 pb-20 md:pt-14 md:pb-28 isolate"
     >
@@ -48,7 +50,7 @@ export function Hero() {
         aria-hidden="true"
         className="absolute inset-0 -z-20 pointer-events-none"
         style={{
-          background: `radial-gradient(600px circle at ${spotlightX.get()} ${spotlightY.get()}, rgba(255,117,31,0.10), transparent 70%)`,
+          background: spotlightBackground,
           x: useTransform(sx, (v) => `${(v - 0.5) * 20}px`),
           y: useTransform(sy, (v) => `${(v - 0.5) * 20}px`),
         }}
@@ -123,8 +125,8 @@ export function Hero() {
               </Button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button asChild variant="ghost" size="lg">
-                <a href="#how-it-works" className="inline-flex items-center gap-2 group">
+              <Button asChild variant="ghost" size="lg" className="pl-0 pr-6">
+                <a href="#how-it-works" className="group">
                   {t(h.ctaSecondary, lang)}
                   <ArrowRight className="h-4 w-4 text-brand-700 transition-transform group-hover:translate-x-0.5" />
                 </a>

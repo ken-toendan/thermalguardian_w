@@ -35,9 +35,7 @@ export function Wedge() {
                 <motion.li
                   key={i}
                   variants={staggerChild}
-                  whileHover={{ y: -3 }}
-                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
-                  className="rounded-xl bg-white border border-ink/10 p-6 hover:shadow-md"
+                  className="rounded-xl bg-white border border-ink/10 p-6"
                 >
                   <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand/10 text-brand-700 mb-4">
                     {Icon ? <Icon className="h-5 w-5" /> : null}

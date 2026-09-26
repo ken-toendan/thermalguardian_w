@@ -61,10 +61,8 @@ export function Problem() {
                 <motion.li
                   key={i}
                   variants={staggerChild}
-                  whileHover={{ y: -3 }}
-                  transition={{ type: "spring", stiffness: 260, damping: 20 }}
                   className={cn(
-                    "rounded-xl bg-cream border border-ink/10 border-t-2 p-6 hover:shadow-md",
+                    "rounded-xl bg-cream border border-ink/10 border-t-2 p-6",
                     border
                   )}
                 >

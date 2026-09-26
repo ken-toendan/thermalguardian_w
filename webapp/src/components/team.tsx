@@ -21,8 +21,6 @@ export function Team() {
             <motion.li
               key={m.name}
               variants={staggerChild}
-              whileHover={{ y: -3 }}
-              transition={{ type: "spring", stiffness: 260, damping: 20 }}
               className="flex flex-col items-center text-center gap-4"
             >
               <div className="h-32 w-32 md:h-40 md:w-40 rounded-full overflow-hidden bg-cream-2 ring-1 ring-ink/10">

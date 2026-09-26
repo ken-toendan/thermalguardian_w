@@ -94,7 +94,10 @@
     text-wrap: balance;
   }
 
-  html[lang="ja"] p {
+  html[lang="ja"] p,
+  html[lang="ja"] figcaption,
+  html[lang="ja"] li {
+    word-break: auto-phrase;
     line-break: strict;
   }
 
