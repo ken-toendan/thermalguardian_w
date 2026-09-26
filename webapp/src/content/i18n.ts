@@ -185,8 +185,8 @@ export const content = {
       ja: "センサーが身体と室内を監視し、家庭内のハブが状況を解釈する。介護者と家族へアラートを送り、連絡がつかない場合のみ救急サービスへフォールバックする。",
     },
     hardwareCaption: {
-      en: "Three pieces, one system — an upper-arm wearable (orange) plus two IoT nodes (white).",
-      ja: "3つのピース、1つのシステム — 上腕ウェアラブル（オレンジ）と 2 つの IoT ノード（白）。",
+      en: "One system: an upper-arm wearable, an mmWave radar node, a Raspberry Pi hub and two temperature nodes for the bathroom and changing room.",
+      ja: "1つのシステム：上腕ウェアラブル、mmWave レーダーノード、Raspberry Pi ハブ、浴室と脱衣所の温度ノード 2 台。",
     },
     callouts: [
       {

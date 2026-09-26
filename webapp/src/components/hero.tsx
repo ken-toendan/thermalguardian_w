@@ -288,11 +288,11 @@ function HeroVisual() {
     >
       <HeroEcg />
       <motion.img
-        src="assets/hardware/device.png"
+        src="assets/hardware/devices.webp"
         alt=""
         loading="eager"
         decoding="async"
-        className="relative z-10 max-w-full max-h-full drop-shadow-[0_24px_40px_rgba(17,25,43,0.12)] will-change-transform"
+        className="relative z-10 max-w-full max-h-full xl:max-w-none xl:w-[125%] drop-shadow-[0_24px_40px_rgba(17,25,43,0.12)] will-change-transform"
         style={{ rotateX: rx, rotateY: ry }}
         animate={reduce ? undefined : { y: [0, -8, 0] }}
         transition={reduce ? undefined : { duration: 5, repeat: Infinity, ease: "easeInOut" }}
