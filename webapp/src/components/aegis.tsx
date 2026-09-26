@@ -4,7 +4,7 @@ import { Container, Section } from "@/components/section";
 import { Reveal } from "@/components/motion/reveal";
 import { VideoFrame } from "@/components/video-frame";
 import { useLang } from "@/hooks/use-lang";
-import { content, t, type BiText, type Lang } from "@/content/i18n";
+import { content, t, type Lang } from "@/content/i18n";
 import { cn } from "@/lib/utils";
 
 // "Label / State" and "Title / Sub" pairs are encoded as a single string in
@@ -28,7 +28,7 @@ function SenseNode({ text }: { text: string }) {
   const [label, state] = splitPair(text);
   return (
     <div className="rounded-md bg-ae-grey border border-[#cfd5de] px-3 py-2 grid content-center gap-0.5 min-h-[52px]">
-      <span className="text-[11px] uppercase tracking-wide text-ae-slate">{label}</span>
+      <span className="text-[11px] tracking-wide text-ae-slate">{label}</span>
       <b className="text-[13.5px] text-ae-text">{state}</b>
     </div>
   );
@@ -203,14 +203,13 @@ function ResultsTable({ ae, lang }: { ae: typeof content.aegis; lang: Lang }) {
   );
 }
 
-function AegisVideoPlaceholder({ videoSoon }: { videoSoon: BiText }) {
+function AegisVideoPlaceholder({ label }: { label: string }) {
   return (
     <div className="flex flex-col items-center gap-2.5 px-4 text-center">
       <span className="grid place-items-center h-14 w-14 rounded-full border-[1.5px] border-ae-sky" aria-hidden="true">
         <Play className="h-4 w-4 translate-x-0.5 text-ae-sky" fill="currentColor" />
       </span>
-      <b className="font-display text-[17px] text-white">{videoSoon.en}</b>
-      <span className="font-jp text-[13px] text-ae-sky/90">{videoSoon.ja}</span>
+      <b className="font-display text-[17px] text-white">{label}</b>
     </div>
   );
 }
@@ -235,9 +234,10 @@ export function Aegis() {
 
         <Reveal delay={0.1}>
           <article className="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-sm text-ae-text">
-            <header className="bg-ae-navy border-b-[6px] border-ae-blue rounded-t-xl px-6 py-8 md:px-10 md:py-10 grid gap-3">
-              <span className="text-[13px] font-semibold text-ae-sky">{t(ae.venue, lang)}</span>
-              <h3 className="font-display text-[1.4rem] md:text-[2rem] font-extrabold leading-snug text-white">
+            <header className="bg-ae-navy border-b-[6px] border-ae-blue rounded-t-xl px-6 py-8 md:px-10 md:py-10 grid gap-3 [&>*]:min-w-0">
+              <span className="text-[13px] font-semibold text-ae-sky [overflow-wrap:anywhere]">{t(ae.venue, lang)}</span>
+              {/* anywhere: JA phrase-aware breaking keeps long katakana compounds whole, which overflowed at 390px */}
+              <h3 className="font-display text-[1.4rem] md:text-[2rem] font-extrabold leading-snug text-white [overflow-wrap:anywhere]">
                 {t(ae.title, lang)}
               </h3>
               <p className="text-[14px] text-white/70">{ae.authors}</p>
@@ -280,7 +280,7 @@ export function Aegis() {
                 videoId={ae.videoId}
                 title="Aegis"
                 className="max-w-[720px] mx-auto rounded-md bg-ae-navy border-0 border-b-[5px] border-ae-blue"
-                placeholder={<AegisVideoPlaceholder videoSoon={ae.videoSoon} />}
+                placeholder={<AegisVideoPlaceholder label={t(ae.videoSoon, lang)} />}
               />
 
               <div className="flex flex-wrap items-center gap-4">
