@@ -621,7 +621,7 @@ export const content = {
       { name: "Ken Argani Toendan", image: "assets/team/ken.jpg" },
       { name: "Ethan Taku Shimada", image: "assets/team/shimada.jpg" },
       { name: "A K M Akaiduzzaman", image: "assets/team/arthur.jpg" },
-      { name: null, image: null },
+      { name: "Kawai Rostum", image: null },
     ] as { name: string | null; image: string | null }[],
     placeholderName: { en: "New member", ja: "新メンバー" },
     placeholderNote: { en: "Profile coming soon", ja: "プロフィール準備中" },
