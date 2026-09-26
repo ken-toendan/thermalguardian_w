@@ -12,7 +12,9 @@ import { cn } from "@/lib/utils";
 const links = [
   { href: "#problem", key: "problem" },
   { href: "#how-it-works", key: "system" },
+  { href: "#aegis", key: "aegis" },
   { href: "#achievements", key: "achievements" },
+  { href: "#resources", key: "talks" },
   { href: "#team", key: "team" },
   { href: "#contact", key: "contact" },
 ] as const;
@@ -43,7 +45,7 @@ export function Header() {
           <img src="assets/brand/logo-lockup.png" alt="Thermal Guardian" className="h-12 md:h-14" />
         </a>
 
-        <nav className="hidden md:flex items-center gap-5 lg:gap-8" aria-label="Main">
+        <nav className="hidden lg:flex items-center gap-5 lg:gap-8" aria-label="Main">
           {links.map((link) => (
             <a
               key={link.key}
@@ -76,7 +78,7 @@ export function Header() {
 
           <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
             <SheetTrigger
-              className="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-full border border-ink/15 text-ink hover:bg-ink/5"
+              className="lg:hidden inline-flex items-center justify-center h-10 w-10 rounded-full border border-ink/15 text-ink hover:bg-ink/5"
               aria-label={t(content.nav.openMenu, lang)}
             >
               <Menu className="h-5 w-5" />

@@ -19,7 +19,9 @@ export const content = {
   nav: {
     problem: { en: "The Problem", ja: "問題" },
     system: { en: "System", ja: "システム" },
+    aegis: { en: "Aegis", ja: "Aegis" },
     achievements: { en: "Achievements", ja: "実績" },
+    talks: { en: "Talks", ja: "発表動画" },
     team: { en: "Team", ja: "チーム" },
     contact: { en: "Contact", ja: "お問い合わせ" },
     openMenu: { en: "Open menu", ja: "メニューを開く" },
@@ -617,9 +619,12 @@ export const content = {
     members: [
       { name: "Joseph Arthur Koo", image: "assets/team/joseph.jpg" },
       { name: "Ken Argani Toendan", image: "assets/team/ken.jpg" },
-      { name: "Shimada Ethan Taku", image: "assets/team/shimada.jpg" },
-      { name: "Akaiduzzaman A.K.M", image: "assets/team/arthur.jpg" },
-    ],
+      { name: "Ethan Taku Shimada", image: "assets/team/shimada.jpg" },
+      { name: "A K M Akaiduzzaman", image: "assets/team/arthur.jpg" },
+      { name: null, image: null },
+    ] as { name: string | null; image: string | null }[],
+    placeholderName: { en: "New member", ja: "新メンバー" },
+    placeholderNote: { en: "Profile coming soon", ja: "プロフィール準備中" },
   },
   contact: {
     kicker: { en: "Contact", ja: "お問い合わせ" },
