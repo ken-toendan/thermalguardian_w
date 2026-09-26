@@ -338,15 +338,19 @@ export const content = {
   },
   achievements: {
     kicker: { en: "Achievements", ja: "実績" },
-    heading: { en: "HEALTHINF 2026 and iCAN 2026", ja: "HEALTHINF 2026 と iCAN 2026" },
+    heading: { en: "HEALTHINF, iCAN, UbiComp and GCCE 2026", ja: "HEALTHINF・iCAN・UbiComp・GCCE 2026" },
     intro: { en: "The venues where the system is being presented in 2026.", ja: "2026 年にシステムを発表している場。" },
     items: [
       {
         label: { en: "Academic · Accepted", ja: "学術 採択" },
         title: { en: "HEALTHINF 2026 — abstract accepted", ja: "HEALTHINF 2026 アブストラクト採択" },
+        place: {
+          en: "Marbella, Spain · 2–4 March 2026 (online presentation)",
+          ja: "スペイン・マルベーリャ 2026 年 3 月 2–4 日（オンライン発表）",
+        },
         body: {
-          en: "Part of the BIOSTEC 2026 joint track. Marbella, Spain · 2–4 March 2026.",
-          ja: "BIOSTEC 2026 共同学会の一部。スペイン、マルベーリャ 2026 年 3 月 2–4 日。",
+          en: "Part of the BIOSTEC 2026 joint track.",
+          ja: "BIOSTEC 2026 共同学会の一部。",
         },
         url: "https://healthinf.scitevents.org/?y=2026",
         image: "assets/achievements/healthinf-banner.png",
@@ -355,9 +359,13 @@ export const content = {
       {
         label: { en: "Industry · Japan Preliminary", ja: "産業 日本予選" },
         title: { en: "iCAN 2026 — Japan Preliminary", ja: "iCAN 2026 日本予選" },
+        place: {
+          en: "Tohoku University, Japan · 26 April 2026",
+          ja: "東北大学 2026 年 4 月 26 日",
+        },
         body: {
-          en: "Presented the system at the International Contest of Innovation. Tohoku University · 2026-04-26.",
-          ja: "International Contest of Innovation にてシステムを発表。東北大学 2026 年 4 月 26 日。",
+          en: "Presented the system at the International Contest of Innovation.",
+          ja: "International Contest of Innovation にてシステムを発表。",
         },
         url: "https://www.mu-sic.tohoku.ac.jp/ican/ican2026/summary.html",
         image: "assets/achievements/ican-logo.jpg",
@@ -366,6 +374,10 @@ export const content = {
       {
         label: { en: "Industry · 2nd Place", ja: "産業 第2位" },
         title: { en: "iCAN 2026 — 2nd place, Japan Preliminary", ja: "iCAN 2026 日本予選 第2位" },
+        place: {
+          en: "Tohoku University, Japan · 26 April 2026",
+          ja: "東北大学 2026 年 4 月 26 日",
+        },
         body: {
           en: "Awarded 2nd place at the Japan Preliminary. Advancing to the iCAN international finals.",
           ja: "日本予選で第2位を受賞。iCAN 国際決勝大会に進出。",
@@ -373,6 +385,51 @@ export const content = {
         url: "https://youtu.be/U9No2XLw9bI",
         image: "assets/achievements/ican-winning-jp.jpg",
         imageStyle: "photo" as const,
+      },
+      {
+        label: { en: "Industry · International Final", ja: "産業 国際決勝" },
+        title: { en: "iCAN 2026 — international final", ja: "iCAN 2026 国際決勝大会" },
+        place: {
+          en: "Hosted under ELEKTRONIKA · venue to be announced",
+          ja: "ELEKTRONIKA にて開催 会場は追って発表",
+        },
+        body: {
+          en: "Qualified for the iCAN international final.",
+          ja: "iCAN 国際決勝大会への出場が決定。",
+        },
+        url: "https://www.mu-sic.tohoku.ac.jp/ican/ican2026/summary.html",
+        image: "assets/achievements/ican-logo.jpg",
+        imageStyle: "logo" as const,
+      },
+      {
+        label: { en: "Academic · Accepted", ja: "学術 採択" },
+        title: { en: "UbiComp/ISWC 2026 — Student Challenge accepted", ja: "UbiComp/ISWC 2026 スチューデントチャレンジ採択" },
+        place: {
+          en: "Shanghai, China · 11–15 October 2026",
+          ja: "中国・上海 2026 年 10 月 11–15 日",
+        },
+        body: {
+          en: "Accepted to the Student Challenge track of ACM UbiComp/ISWC 2026.",
+          ja: "ACM UbiComp/ISWC 2026 スチューデントチャレンジに採択。",
+        },
+        url: "https://www.ubicomp.org/ubicomp-iswc-2026/student-challenge-2026/",
+        image: "assets/achievements/ubicomp-2026-logo.png",
+        imageStyle: "banner" as const,
+      },
+      {
+        label: { en: "Academic · Accepted", ja: "学術 採択" },
+        title: { en: "IEEE GCCE 2026 — accepted", ja: "IEEE GCCE 2026 採択" },
+        place: {
+          en: "Kobe International Conference Center, Japan · 26–29 October 2026",
+          ja: "神戸国際会議場 2026 年 10 月 26–29 日",
+        },
+        body: {
+          en: "Accepted to the IEEE Global Conference on Consumer Electronics.",
+          ja: "IEEE Global Conference on Consumer Electronics に採択。",
+        },
+        url: "https://www.ieee-gcce.org/2026/",
+        image: "assets/achievements/gcce-2026-banner.png",
+        imageStyle: "banner" as const,
       },
     ],
   },

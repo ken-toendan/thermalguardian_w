@@ -1,4 +1,5 @@
 import { motion } from "motion/react";
+import { MapPin } from "lucide-react";
 import { Container, Section, SectionHead } from "@/components/section";
 import { Reveal, Stagger, staggerChild } from "@/components/motion/reveal";
 import { useLang } from "@/hooks/use-lang";
@@ -52,6 +53,10 @@ export function Achievements() {
               <div className="p-6 flex flex-col gap-2">
                 <span className="kicker-uppercase text-brand">{t(item.label, lang)}</span>
                 <h3 className="font-display text-lg font-bold">{t(item.title, lang)}</h3>
+                <p className="flex items-start gap-1.5 text-sm font-semibold text-ink">
+                  <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-brand" />
+                  {t(item.place, lang)}
+                </p>
                 <p className="text-sm text-ink/70 leading-relaxed">{t(item.body, lang)}</p>
               </div>
             </motion.li>
