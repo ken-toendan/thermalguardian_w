@@ -340,6 +340,154 @@ export const content = {
       },
     ],
   },
+  aegis: {
+    venue: {
+      en: "UbiComp / ISWC 2026 Student Challenge · Shanghai, 11–15 October 2026",
+      ja: "UbiComp / ISWC 2026 スチューデントチャレンジ・上海 2026 年 10 月 11–15 日",
+    },
+    title: {
+      en: "Aegis: An On-Device Foundation Model Agent for Resolving Conflicting Sensor Evidence in Elderly Bathing",
+      ja: "Aegis：高齢者の入浴における矛盾するセンサー情報を解決するオンデバイス基盤モデルエージェント",
+    },
+    pitch: {
+      en: "Aegis can prioritise and explain an alarm, but never silence it.",
+      ja: "Aegisはアラームの優先度を判断し、その理由を説明できるが、鳴り止ませることは決してない。",
+    },
+    authors: "A K M Akaiduzzaman, Ethan Taku Shimada, Joseph Arthur Koo, Ken Argani Toendan, Kawai Rostum, Zilu Liang",
+    lab: {
+      en: "Ubiquitous and Personal Computing Lab, Kyoto University of Advanced Science, Kyoto, Japan",
+      ja: "Ubiquitous and Personal Computing Lab・京都先端科学大学（京都）",
+    },
+    problemHeading: { en: "The problem", ja: "問題" },
+    problem: {
+      en: 'Rule M-011 fires when the wearable reports "not worn" while the room still reads occupied for 5 s. A deliberate exit and a collapse produce the same conflict, so a real exit from the bathroom always becomes a false alarm.',
+      ja: "ルール M-011 は、ウェアラブルが「未装着」を報告しているにもかかわらず、室内センサーが 5 秒間在室を示し続けると発動する。意図的な退出と昏倒は同じ矛盾を生むため、浴室からの実際の退出は常に誤報になってしまう。",
+    },
+    observationHeading: { en: "Key observation", ja: "重要な観察" },
+    observation: {
+      en: "Every genuine exit emptied the room for 10 to 23 s. No simulated collapse did.",
+      ja: "実際の退出では、いずれも室内が 10〜23 秒間無人になった。模擬昏倒では一度もそうならなかった。",
+    },
+    observationNote: {
+      en: "The discriminating evidence arrives only after the alarm, in how room occupancy evolves.",
+      ja: "判別の手がかりとなる証拠はアラーム発生後にしか得られず、在室状況の推移にそれが表れる。",
+    },
+    architectureHeading: { en: "Safety-constrained agent", ja: "安全制約付きエージェント" },
+    diagram: {
+      wearable: { en: "Wearable / Not worn", ja: "ウェアラブル / 未装着" },
+      wifiCsi: { en: "WiFi CSI / Occupied", ja: "WiFi CSI / 在室" },
+      mmwave: { en: "mmWave radar / Occupied", ja: "mmWave レーダー / 在室" },
+      ruleFires: { en: "Rule M-011 fires", ja: "ルール M-011 の発動" },
+      originalPath: { en: "Original M-011 alarm path", ja: "元の M-011 アラーム経路" },
+      neverBlocked: { en: "never blocked, delayed or suppressed", ja: "遮断・遅延・抑制されない" },
+      caregiver: { en: "Caregiver", ja: "介護者" },
+      sidecar: {
+        en: "Aegis sidecar · advisory · on-device · Qwen2.5 3B",
+        ja: "Aegis サイドカー・助言的・オンデバイス・Qwen2.5 3B",
+      },
+      evidenceBundle: { en: "EvidenceBundle / schema-validated states", ja: "EvidenceBundle / スキーマ検証済みの状態" },
+      agentLoop: {
+        en: "Agent loop / plan → act → observe, max 4 steps",
+        ja: "エージェントループ / 計画 → 行動 → 観察、最大 4 ステップ",
+      },
+      safetyGate: { en: "Safety gate / deterministic, τ = 0.55", ja: "安全ゲート / 決定論的、τ = 0.55" },
+      elevate: {
+        en: "Elevate / everything else, incl. errors and timeouts",
+        ja: "引き上げ / それ以外すべて（エラーやタイムアウトを含む）",
+      },
+      maintain: { en: "Maintain / only if exit-consistent and c ≥ τ", ja: "維持 / 退出と整合し、かつ c ≥ τ の場合のみ" },
+    },
+    invariant: {
+      en: "Safety invariant: P(Aegis) ≥ P(M-011). Aegis may raise the alarm priority or leave it unchanged. No action lowers or silences it.",
+      ja: "安全不変条件：P(Aegis) ≥ P(M-011)。Aegisはアラームの優先度を引き上げるか、変更せずそのまま保つかのいずれかしかできない。どの動作もそれを引き下げたり抑制したりすることはない。",
+    },
+    resultsHeading: { en: "Results", ja: "結果" },
+    results: {
+      headers: {
+        method: { en: "Method", ja: "手法" },
+        evidence: { en: "Evidence", ja: "エビデンス" },
+        exitsFound: { en: "Exits found", ja: "退出検出" },
+        falseEscalations: { en: "False escalations", ja: "誤エスカレーション" },
+        missedEscalations: { en: "Missed escalations", ja: "エスカレーション漏れ" },
+      },
+      rows: [
+        {
+          method: { en: "Always-escalate", ja: "常時エスカレーション" },
+          evidence: { en: "none", ja: "なし" },
+          exits: "0/4",
+          exitsShort: true,
+          falseEsc: "4/4",
+          falseEscShort: true,
+          missedEsc: "0/13",
+          missedEscShort: false,
+          highlight: false,
+        },
+        {
+          method: { en: "Dempster-Shafer fusion", ja: "Dempster-Shafer 融合" },
+          evidence: { en: "+temporal", ja: "+時系列" },
+          exits: "4/4",
+          exitsShort: false,
+          falseEsc: "0/4",
+          falseEscShort: false,
+          missedEsc: "1/13",
+          missedEscShort: true,
+          highlight: false,
+        },
+        {
+          method: { en: "Hand-written policy", ja: "人手で設計したポリシー" },
+          evidence: { en: "+temporal", ja: "+時系列" },
+          exits: "4/4",
+          exitsShort: false,
+          falseEsc: "0/4",
+          falseEscShort: false,
+          missedEsc: "0/13",
+          missedEscShort: false,
+          highlight: false,
+        },
+        {
+          method: { en: "Aegis 3B", ja: "Aegis 3B" },
+          evidence: { en: "+temporal", ja: "+時系列" },
+          exits: "4/4",
+          exitsShort: false,
+          falseEsc: "0/4",
+          falseEscShort: false,
+          missedEsc: "0/13",
+          missedEscShort: false,
+          highlight: true,
+        },
+      ] as {
+        method: BiText;
+        evidence: BiText;
+        exits: string;
+        exitsShort: boolean;
+        falseEsc: string;
+        falseEscShort: boolean;
+        missedEsc: string;
+        missedEscShort: boolean;
+        highlight: boolean;
+      }[],
+    },
+    tableCaption: {
+      en: "Selected rows from the poster's Table 1 · 17 conflict windows: 4 exits, 3 simulated collapses, 10 indeterminate. Values short of the ideal are coloured.",
+      ja: "ポスターの表1から抜粋・17件の競合ウィンドウ（退出4件、模擬昏倒3件、判定不能10件）。理想値に届かない値には色を付けている。",
+    },
+    summary: {
+      en: "Aegis 3B with post-trigger evidence: 4/4 exits found, 0/4 false escalations and 0/13 missed escalations in all five runs.",
+      ja: "トリガー後のエビデンスを用いたAegis 3Bは、5 回の実行すべてで退出検出4/4件、誤エスカレーション0/4件、エスカレーション漏れ0/13件だった。",
+    },
+    limitations: {
+      en: "Pilot scale: three participants, 17 scripted windows, simulated collapses. Zero errors here do not estimate real-world or clinical reliability.",
+      ja: "パイロット規模：参加者3名、台本に沿ったウィンドウ17件、模擬昏倒によるテスト。ここでのエラー0件は、実世界や臨床現場における信頼性を推定するものではない。",
+    },
+    videoId: null as string | null,
+    videoSoon: { en: "Aegis video coming soon", ja: "Aegis の動画は近日公開" },
+    citation: {
+      en: "UbiComp Companion '26 · DOI 10.1145/3798063.3837317",
+      ja: "UbiComp Companion '26・DOI 10.1145/3798063.3837317",
+    },
+    paperUrl: null as string | null,
+    paperButton: { en: "Read the paper", ja: "論文を読む" },
+  },
   achievements: {
     kicker: { en: "Achievements", ja: "実績" },
     heading: { en: "HEALTHINF, iCAN, UbiComp and GCCE 2026", ja: "HEALTHINF・iCAN・UbiComp・GCCE 2026" },

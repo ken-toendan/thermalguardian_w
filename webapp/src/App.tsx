@@ -7,6 +7,7 @@ import { Wedge } from "@/components/wedge";
 import { HowItWorks } from "@/components/how-it-works";
 import { LiveMonitor } from "@/components/live-monitor";
 import { Novelties } from "@/components/novelties";
+import { Aegis } from "@/components/aegis";
 import { Achievements } from "@/components/achievements";
 import { Resources } from "@/components/resources";
 import { Team } from "@/components/team";
@@ -27,6 +28,7 @@ function App() {
           <HowItWorks />
           <LiveMonitor />
           <Novelties />
+          <Aegis />
           <Achievements />
           <Resources />
           <Team />

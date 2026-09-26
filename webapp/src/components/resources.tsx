@@ -1,5 +1,6 @@
 import { Container, Section, SectionHead } from "@/components/section";
 import { Reveal } from "@/components/motion/reveal";
+import { VideoFrame } from "@/components/video-frame";
 import { useLang } from "@/hooks/use-lang";
 import { content, t } from "@/content/i18n";
 
@@ -23,17 +24,7 @@ export function Resources() {
           {r.videos.map((video, i) => (
             <Reveal key={video.id} delay={0.1 + i * 0.05}>
               <figure className="flex flex-col gap-4">
-                <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-ink border border-ink/10 shadow-sm">
-                  <iframe
-                    src={`https://www.youtube-nocookie.com/embed/${video.id}`}
-                    title={video.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerPolicy="strict-origin-when-cross-origin"
-                    allowFullScreen
-                    loading="lazy"
-                    className="absolute inset-0 w-full h-full border-0"
-                  />
-                </div>
+                <VideoFrame videoId={video.id} title={video.title} />
                 <figcaption className="text-center text-sm text-ink/70">
                   {t(video.caption, lang)}
                 </figcaption>
