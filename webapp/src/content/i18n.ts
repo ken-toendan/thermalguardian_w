@@ -29,6 +29,8 @@ export const content = {
     language: { en: "Language", ja: "言語" },
     demo: { en: "Live demo", ja: "デモを見る" },
     menu: { en: "Menu", ja: "メニュー" },
+    china: { en: "China", ja: "China" },
+    chinaHint: { en: "China version: videos play from Bilibili", ja: "中国版：動画は Bilibili で再生" },
   },
   hero: {
     kicker: {
@@ -538,6 +540,8 @@ export const content = {
       // "assets/video/aegis.mp4" once the file (≤ 25 MB, H.264) is in webapp/public/assets/video/.
       src: null as string | null,
       poster: null as string | null,
+      // Bilibili BV id for the China version, e.g. "BV1xx411c7mD".
+      bilibiliId: null as string | null,
     },
     citation: {
       en: "To appear in UbiComp Companion '26 · DOI 10.1145/3798063.3837317",
@@ -657,9 +661,13 @@ export const content = {
       en: "Two short talks covering the problem, the system, and the clinical logic behind it.",
       ja: "問題、システム、そして背景にある医学的ロジックを2本の短い発表で解説。",
     },
+    // Shown in the China version instead of a video until its Bilibili id is set.
+    chinaSoon: { en: "Video on Bilibili coming soon", ja: "Bilibili 版の動画は近日公開" },
+    // id = YouTube (international version); bilibiliId = BV id (China version).
     videos: [
       {
         id: "t1nbr8O1m8s",
+        bilibiliId: null as string | null,
         title: "Thermal Guardian — conference pitch",
         caption: {
           en: "Conference pitch · the full system, explained in under a few minutes.",
@@ -668,6 +676,7 @@ export const content = {
       },
       {
         id: "U9No2XLw9bI",
+        bilibiliId: null as string | null,
         title: "Thermal Guardian — iCAN 2026 presentation",
         caption: {
           en: "iCAN 2026 Japan Preliminary presentation · awarded 2nd place.",

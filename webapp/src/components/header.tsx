@@ -20,8 +20,22 @@ const links = [
 ] as const;
 
 export function Header() {
-  const { lang, setLang } = useLang();
+  const { lang, setLang, edition, setEdition } = useLang();
   const [scrolled, setScrolled] = React.useState(false);
+
+  // One toggle for EN / 日本語 / China. China keeps English text and switches videos to Bilibili.
+  const toggleValue = edition === "cn" ? "cn" : lang;
+  const onToggle = (v: string) => {
+    if (!v) return;
+    if (v === "cn") {
+      setLang("en");
+      setEdition("cn");
+    } else {
+      setLang(v as "en" | "ja");
+      setEdition("intl");
+    }
+  };
+  const chinaHint = t(content.nav.chinaHint, lang);
   const [sheetOpen, setSheetOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -67,13 +81,16 @@ export function Header() {
 
           <ToggleGroup
             type="single"
-            value={lang}
-            onValueChange={(v) => v && setLang(v as "en" | "ja")}
+            value={toggleValue}
+            onValueChange={onToggle}
             aria-label={t(content.nav.language, lang)}
             className="hidden sm:inline-flex"
           >
             <ToggleGroupItem value="en" aria-label="English">EN</ToggleGroupItem>
             <ToggleGroupItem value="ja" aria-label="日本語">日本語</ToggleGroupItem>
+            <ToggleGroupItem value="cn" aria-label={chinaHint} title={chinaHint}>
+              {t(content.nav.china, lang)}
+            </ToggleGroupItem>
           </ToggleGroup>
 
           <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
@@ -110,11 +127,15 @@ export function Header() {
               <div className="mt-10 sm:hidden">
                 <ToggleGroup
                   type="single"
-                  value={lang}
-                  onValueChange={(v) => v && setLang(v as "en" | "ja")}
+                  value={toggleValue}
+                  onValueChange={onToggle}
+                  aria-label={t(content.nav.language, lang)}
                 >
                   <ToggleGroupItem value="en" className="h-11 px-4 text-sm">EN</ToggleGroupItem>
                   <ToggleGroupItem value="ja" className="h-11 px-4 text-sm">日本語</ToggleGroupItem>
+                  <ToggleGroupItem value="cn" className="h-11 px-4 text-sm" aria-label={chinaHint} title={chinaHint}>
+                    {t(content.nav.china, lang)}
+                  </ToggleGroupItem>
                 </ToggleGroup>
               </div>
             </SheetContent>

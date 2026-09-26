@@ -284,6 +284,7 @@ export function Aegis() {
               <div className="mt-6 max-w-3xl mx-auto min-w-0">
                 <VideoFrame
                   videoId={null}
+                  bilibiliId={ae.video.bilibiliId}
                   src={ae.video.src}
                   poster={ae.video.poster}
                   title="Aegis"
