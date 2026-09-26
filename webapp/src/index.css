@@ -2,9 +2,9 @@
 
 @theme {
   --font-display: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
-  --font-jp: "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "DM Mono", "Noto Sans JP", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-sans: "Inter", "Noto Sans JP Variable", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+  --font-jp: "Noto Sans JP Variable", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "DM Mono", "Noto Sans JP Variable", "Noto Sans JP", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --color-brand: #ff751f;
   --color-brand-50: #fff3eb;
