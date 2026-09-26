@@ -9,7 +9,7 @@ export function Novelties() {
   const n = content.novelties;
 
   return (
-    <Section id="novelties" tone="navy">
+    <Section id="novelties" tone="navy" className="pt-0 md:pt-0">
       <Container>
         <Reveal>
           <SectionHead kicker={t(n.kicker, lang)} chapter="02" title={t(n.heading, lang)} tone="navy" />

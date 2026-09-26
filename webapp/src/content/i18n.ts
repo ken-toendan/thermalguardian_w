@@ -55,6 +55,13 @@ export const content = {
       en: "Presented and recognised at",
       ja: "発表・受賞歴",
     },
+    venues: [
+      { en: "HEALTHINF 2026", ja: "HEALTHINF 2026" },
+      { en: "iCAN 2026 · 2nd place", ja: "iCAN 2026 第2位" },
+      { en: "UbiComp / ISWC 2026", ja: "UbiComp / ISWC 2026" },
+      { en: "IEEE GCCE 2026", ja: "IEEE GCCE 2026" },
+      { en: "KUAS", ja: "KUAS" },
+    ] as BiText[],
     metaItems: [
       {
         en: "R&D since Oct 2025",

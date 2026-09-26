@@ -47,8 +47,8 @@ export function DemoBubble() {
       rel="noopener noreferrer"
       aria-label={label}
       className={cn(
-        "fixed bottom-6 right-6 z-50 md:hidden flex h-14 w-14 items-center justify-center rounded-full bg-brand text-ink shadow-lg shadow-brand/30 ring-2 ring-cream/40 transition-all hover:bg-brand-600 hover:scale-105 active:scale-95",
-        visible ? "opacity-100" : "opacity-0 pointer-events-none"
+        "fixed bottom-4 right-4 z-50 md:hidden flex h-12 w-12 items-center justify-center rounded-full bg-brand text-ink shadow-lg shadow-brand/30 ring-2 ring-cream/40 transition-all hover:bg-brand-600 hover:scale-105 active:scale-95",
+        visible ? "visible opacity-100" : "invisible opacity-0 pointer-events-none"
       )}
     >
       <span className="absolute top-2 right-2 flex h-2 w-2">

@@ -200,7 +200,7 @@ export function LiveMonitor() {
         <Card className="overflow-hidden bg-panel text-cream border-white/5 p-6 md:p-8 shadow-xl">
           <div className="grid md:grid-cols-5 gap-6 md:gap-8">
             <div className="md:col-span-3 flex flex-col gap-3">
-              <div className="flex items-center gap-2 kicker-uppercase text-white/50">
+              <div className="flex items-center gap-2 data-label text-white/60">
                 <span className="relative inline-flex size-2 rounded-full bg-brand">
                   <span className="absolute inset-0 rounded-full bg-brand opacity-60 animate-ping" />
                 </span>
@@ -238,7 +238,7 @@ export function LiveMonitor() {
 
             <div className="md:col-span-2 flex flex-col gap-3">
               <div className="flex items-center justify-between gap-3 px-4 py-3 rounded-lg bg-white/[0.04] ring-1 ring-white/5">
-                <span className="kicker-uppercase text-white/50">{t(lm.stageLabel, lang)}</span>
+                <span className="data-label text-white/60">{t(lm.stageLabel, lang)}</span>
                 <span className="font-display text-brand font-bold text-sm">
                   {stageLabel[lang]}
                 </span>
@@ -251,7 +251,7 @@ export function LiveMonitor() {
               </div>
 
               <div className={cn("flex items-center justify-between gap-3 px-4 py-3 rounded-lg", riskStyle[stage.risk])}>
-                <span className="kicker-uppercase">{t(lm.statusLabel, lang)}</span>
+                <span className="data-label">{t(lm.statusLabel, lang)}</span>
                 <Badge variant="outline" className="border-current text-current bg-transparent">
                   {t(lm.risk[stage.risk], lang)}
                 </Badge>
@@ -280,7 +280,7 @@ function MetricTile({
 }) {
   return (
     <div className="px-3 py-3 rounded-lg bg-white/[0.04] ring-1 ring-white/5">
-      <div className="text-[10px] font-bold tracking-[0.18em] uppercase text-white/40">
+      <div className="data-label text-white/60">
         {label}
       </div>
       <div className="mt-1 font-display font-extrabold text-2xl tabular-nums text-white">

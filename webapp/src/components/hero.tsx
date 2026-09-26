@@ -44,7 +44,7 @@ export function Hero() {
     <section
       id="hero"
       onMouseMove={onMove}
-      className="relative overflow-hidden pt-8 pb-20 md:pt-14 md:pb-28 isolate"
+      className="relative overflow-hidden pt-8 pb-16 md:pt-14 md:pb-20 isolate"
     >
       <motion.div
         aria-hidden="true"
@@ -86,7 +86,7 @@ export function Hero() {
         delay={1.5}
       />
 
-      <Container className="grid md:grid-cols-[minmax(0,1.4fr)_minmax(0,0.6fr)] gap-10 md:gap-12 items-center">
+      <Container className="grid md:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)] gap-10 md:gap-12 items-center">
         <motion.div
           variants={container}
           initial="hidden"
@@ -166,7 +166,8 @@ function HeadlineReveal({
 }) {
   const reduce = useReducedMotion();
 
-  const splitWords = (s: string) => s.split(/(\s+)/);
+  // Split on ordinary whitespace only, so a no-break space keeps its neighbours in one word.
+  const splitWords = (s: string) => s.split(/([ \t\n]+)/);
 
   const wordVariants: Variants = {
     hidden: { opacity: 0, y: reduce ? 0 : 16, filter: "blur(4px)" },
