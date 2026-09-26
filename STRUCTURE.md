@@ -37,7 +37,7 @@ The repo holds source only. There is no committed build output any more, and onl
 | Class helpers | `class-variance-authority`, `clsx`, `tailwind-merge` (`cn()` in `src/lib/utils.ts`) |
 | Animation | **Motion** (`motion/react`). All animations respect `useReducedMotion()` |
 | Icons | **lucide-react** |
-| Fonts | Google Fonts: **DM Sans** (headings), **Inter** (body), **Noto Sans JP** (Japanese), **DM Mono** (data labels) |
+| Fonts | Self-hosted via Fontsource (imported in `src/main.tsx`): **DM Sans** (headings), **Inter** (body), **Noto Sans JP Variable** (Japanese), **DM Mono** (data labels). No Google Fonts, which is blocked in China |
 | Linting | ESLint 9 (flat config) + `typescript-eslint`, `react-hooks`, `react-refresh`. 5 known errors predate the revamp |
 | i18n | Home-grown: a typed content dictionary plus a React context (no i18n library) |
 | Hosting | GitHub Pages via GitHub Actions |
@@ -93,7 +93,7 @@ Everything sits inside `<LangProvider>` and `<div id="top">`. Chapters: **01** t
 
 | Component | Anchor | Tone | What it shows |
 |---|---|---|---|
-| `Header` | — | — | Sticky nav (Problem, System, Aegis, Achievements, Talks, Team, Contact; links collapse into a Radix `Sheet` below 1024 px), "Live demo" button, EN/JA toggle |
+| `Header` | — | — | Sticky nav (Problem, System, Aegis, Achievements, Talks, Team, Contact; links collapse into a Radix `Sheet` below 1024 px), "Live demo" button, EN / 日本語 / China toggle |
 | `Hero` | `#hero` | cream | Animated headline with the red "19,000", ECG line, cursor-following glow, `devices.webp` |
 | `VenueStrip` | — | white | "Presented and recognised at": HEALTHINF, iCAN 2nd place, UbiComp/ISWC, IEEE GCCE, KUAS (text wordmarks) |
 | `Problem` | `#problem` | white · 01 | Statistics with `CountUp` and three risk cards |
@@ -103,7 +103,7 @@ Everything sits inside `<LangProvider>` and `<div id="top">`. Chapters: **01** t
 | `Novelties` | `#novelties` | navy · 02 | Three differentiators; continues the navy band |
 | `Aegis` | `#aegis` | Aegis blue wash · 02 | Web explanation of the Aegis AI layer in the UbiComp poster palette: problem, occupancy insight, four steps + guarantee, pilot results, MP4 video slot, citation |
 | `Achievements` | `#achievements` | white · 03 | Six venue cards (HEALTHINF, iCAN preliminary, iCAN 2nd place, iCAN final, UbiComp/ISWC, GCCE) |
-| `Resources` | `#resources` | cream · 03 | Two talk videos (YouTube via `VideoFrame`) |
+| `Resources` | `#resources` | cream · 03 | Two talk videos via `VideoFrame`: YouTube, or Bilibili in China mode |
 | `Team` | `#team` | white · 03 | Five members, centred wrap; Kawai Rostum's photo pending |
 | `Contact` | `#contact` | navy | Email button and location |
 | `Footer` | — | panel | KUAS logo, Ubicomp Lab link |
@@ -119,6 +119,7 @@ Everything sits inside `<LangProvider>` and `<div id="top">`. Chapters: **01** t
 - **To change text, edit `i18n.ts` only.**
 - Japanese typography: phrase-aware line breaking (`word-break: auto-phrase`) on headings and paragraphs; hero headline words split on ordinary spaces only, so a no-break space can keep "—" attached.
 - The meta/OG tags in `index.html` are static English.
+- **China mode** (`edition: "cn"` in `useLang()`, saved as `tg-edition`): English text, but `VideoFrame` plays Bilibili (`bilibiliId`) → MP4 → placeholder and never YouTube. It is selected with the "China" toggle, and is the default for browsers set to Chinese when nothing is saved. Each video entry in `i18n.ts` holds a YouTube `id` and a `bilibiliId`.
 
 ---
 
@@ -155,7 +156,7 @@ npm run preview   # serve dist/ locally
 ## 8. Known loose ends
 
 - `webapp/wrangler.jsonc` stays until the Cloudflare Worker is deleted, since Cloudflare still builds on each push until then.
-- Google Fonts, YouTube and the Vercel demo are blocked in mainland China. A "China" mode (Bilibili videos) and self-hosted fonts are in progress.
+- Bilibili BV ids are not set yet, so China mode shows "coming soon" for the videos. The Vercel live demo is blocked in mainland China.
 - The Aegis video and Kawai Rostum's photo are placeholders; the paper link waits for the DOI to resolve.
 - The OG image URL and `og:url` are hard-coded to the github.io address.
 - `webapp/README.md` is the unmodified Vite template README.
