@@ -9,10 +9,10 @@ export function Novelties() {
   const n = content.novelties;
 
   return (
-    <Section id="novelties">
+    <Section id="novelties" tone="navy">
       <Container>
         <Reveal>
-          <SectionHead kicker={t(n.kicker, lang)} title={t(n.heading, lang)} />
+          <SectionHead kicker={t(n.kicker, lang)} chapter="02" title={t(n.heading, lang)} tone="navy" />
         </Reveal>
 
         <Stagger stagger={0.12}>
@@ -23,7 +23,7 @@ export function Novelties() {
               variants={staggerChild}
               whileHover={{ y: -4 }}
               transition={{ type: "spring", stiffness: 260, damping: 20 }}
-              className="relative rounded-2xl bg-ink text-cream p-7 md:p-8 flex flex-col gap-4"
+              className="relative rounded-2xl bg-white/[0.04] ring-1 ring-white/10 text-cream p-7 md:p-8 flex flex-col gap-4"
             >
               <span className="kicker-uppercase text-brand">
                 {String(i + 1).padStart(2, "0")}
@@ -31,7 +31,7 @@ export function Novelties() {
               <h3 className="font-display text-xl font-bold text-cream">
                 {t(item.title, lang)}
               </h3>
-              <p className="text-sm leading-relaxed text-cream/75">
+              <p className="text-base leading-relaxed text-cream/75">
                 {t(item.body, lang)}
               </p>
             </motion.li>

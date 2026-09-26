@@ -7,12 +7,12 @@ export function Footer() {
   const f = content.footer;
 
   return (
-    <footer className="bg-ink text-cream">
+    <footer className="bg-panel text-cream">
       <Container className="py-12 md:py-16 grid gap-10 md:grid-cols-[1fr_auto] items-start">
         <div className="flex flex-col gap-3">
           <span className="kicker-uppercase text-cream/50">{t(f.developedAt, lang)}</span>
           <a href="https://www.kuas.ac.jp/en/" rel="noopener" className="inline-block">
-            <img src="assets/brand/kuas-logo.png" alt="Kyoto University of Advanced Science (KUAS)" className="h-40 w-auto" />
+            <img src="assets/brand/kuas-logo.png" alt="Kyoto University of Advanced Science (KUAS)" className="h-16 w-auto" />
           </a>
           <p className="text-base md:text-lg text-cream/70">
             <a href="https://www.ubicomp-lab.org/" rel="noopener" className="text-cream hover:text-brand transition-colors font-semibold">

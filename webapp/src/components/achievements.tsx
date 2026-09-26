@@ -10,13 +10,15 @@ export function Achievements() {
   const a = content.achievements;
 
   return (
-    <Section id="achievements" alt>
+    <Section id="achievements" tone="white">
       <Container>
         <Reveal>
           <SectionHead
             kicker={t(a.kicker, lang)}
+            chapter="03"
             title={t(a.heading, lang)}
             intro={t(a.intro, lang)}
+            tone="white"
           />
         </Reveal>
 
@@ -51,13 +53,13 @@ export function Achievements() {
                 />
               </a>
               <div className="p-6 flex flex-col gap-2">
-                <span className="kicker-uppercase text-brand">{t(item.label, lang)}</span>
+                <span className="kicker-uppercase text-brand-700">{t(item.label, lang)}</span>
                 <h3 className="font-display text-lg font-bold">{t(item.title, lang)}</h3>
                 <p className="flex items-start gap-1.5 text-sm font-semibold text-ink">
-                  <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-brand" />
+                  <MapPin className="h-4 w-4 shrink-0 mt-0.5 text-brand-700" />
                   {t(item.place, lang)}
                 </p>
-                <p className="text-sm text-ink/70 leading-relaxed">{t(item.body, lang)}</p>
+                <p className="text-base text-ink/70 leading-relaxed">{t(item.body, lang)}</p>
               </div>
             </motion.li>
             );

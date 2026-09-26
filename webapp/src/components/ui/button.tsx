@@ -10,7 +10,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-ink text-cream hover:bg-ink/90",
         primary: "bg-ink text-cream hover:bg-ink/90",
-        brand: "bg-brand text-white hover:bg-brand-600",
+        brand: "bg-brand text-ink hover:bg-brand-600",
         ghost: "bg-transparent text-ink hover:bg-ink/5",
         outline: "border border-ink/15 bg-transparent text-ink hover:bg-ink/5",
         link: "text-brand underline-offset-4 hover:underline",

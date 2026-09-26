@@ -4,6 +4,7 @@
   --font-display: "DM Sans", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter", "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
   --font-jp: "Noto Sans JP", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "DM Mono", "Noto Sans JP", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   --color-brand: #ff751f;
   --color-brand-50: #fff3eb;
@@ -30,6 +31,13 @@
   --color-sky-brand: #7b886b;
   --color-red-brand: #dc2626;
   --color-emerald-brand: #7b886b;
+
+  --color-panel: #0b1220;
+  --color-sage-700: #5a6650;
+  --color-amber-700: #a15c0e;
+  --color-red-text: #b91c1c;
+  --color-alert-on-dark: #f87171;
+  --color-safe-on-dark: #a9b89a;
 
   --radius: 0.75rem;
 }
@@ -113,10 +121,15 @@
   .font-jp { font-family: var(--font-jp); }
 
   .kicker-uppercase {
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
+  }
+
+  html[lang="ja"] .kicker-uppercase {
+    letter-spacing: 0.04em;
+    font-size: 13px;
   }
 
   .hero-headline {

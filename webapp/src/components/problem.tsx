@@ -7,9 +7,9 @@ import { content, t } from "@/content/i18n";
 import { cn } from "@/lib/utils";
 
 const accentMap = {
-  red: { text: "text-red-brand", border: "border-t-red-brand" },
-  amber: { text: "text-amber-brand", border: "border-t-amber-brand" },
-  sky: { text: "text-sky-brand", border: "border-t-sky-brand" },
+  red: { text: "text-red-text", border: "border-t-red-brand" },
+  amber: { text: "text-amber-700", border: "border-t-amber-brand" },
+  sky: { text: "text-sage-700", border: "border-t-sky-brand" },
 } as const;
 
 export function Problem() {
@@ -17,13 +17,15 @@ export function Problem() {
   const p = content.problem;
 
   return (
-    <Section id="problem" alt>
+    <Section id="problem" tone="white">
       <Container>
         <Reveal>
           <SectionHead
             kicker={t(p.kicker, lang)}
+            chapter="01"
             title={t(p.heading, lang)}
             intro={t(p.intro, lang)}
+            tone="white"
           />
         </Reveal>
 
@@ -36,7 +38,7 @@ export function Problem() {
                   <span className={cn("font-display text-4xl md:text-5xl font-extrabold leading-none tabular-nums", accent)}>
                     <CountUp to={stat.countTo} suffix={stat.suffix} />
                   </span>
-                  <span className="text-sm text-ink/60 leading-snug">
+                  <span className="text-sm text-ink/70 leading-snug">
                     {t(stat.label, lang)}
                   </span>
                 </motion.li>
@@ -69,7 +71,7 @@ export function Problem() {
                   <span className={cn("inline-block kicker-uppercase mb-3", text)}>
                     {t(risk.label, lang)}
                   </span>
-                  <p className="text-sm text-ink/80 leading-relaxed">
+                  <p className="text-base text-ink/80 leading-relaxed">
                     {t(risk.body, lang)}
                   </p>
                 </motion.li>

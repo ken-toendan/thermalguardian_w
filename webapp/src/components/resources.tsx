@@ -8,11 +8,12 @@ export function Resources() {
   const r = content.resources;
 
   return (
-    <Section id="resources" alt>
+    <Section id="resources">
       <Container>
         <Reveal>
           <SectionHead
             kicker={t(r.kicker, lang)}
+            chapter="03"
             title={t(r.heading, lang)}
             intro={t(r.intro, lang)}
           />
@@ -33,7 +34,7 @@ export function Resources() {
                     className="absolute inset-0 w-full h-full border-0"
                   />
                 </div>
-                <figcaption className="text-center text-sm text-ink/60">
+                <figcaption className="text-center text-sm text-ink/70">
                   {t(video.caption, lang)}
                 </figcaption>
               </figure>

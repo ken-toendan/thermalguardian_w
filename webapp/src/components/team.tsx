@@ -9,10 +9,10 @@ export function Team() {
   const tm = content.team;
 
   return (
-    <Section id="team">
+    <Section id="team" tone="white">
       <Container>
         <Reveal>
-          <SectionHead kicker={t(tm.kicker, lang)} title={t(tm.heading, lang)} />
+          <SectionHead kicker={t(tm.kicker, lang)} chapter="03" title={t(tm.heading, lang)} tone="white" />
         </Reveal>
 
         <Stagger stagger={0.08}>

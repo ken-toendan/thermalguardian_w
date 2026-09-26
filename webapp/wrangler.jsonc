@@ -1,5 +1,5 @@
 {
-  // Cloudflare Worker that serves the built site (webapp/dist) as static assets.
+  // Cloudflare Worker that serves the built site (webapp/dist) as assets.
   // Workers Builds runs `npm run build` then `npx wrangler deploy` from webapp/.
   "name": "thermalguardian-w",
   "compatibility_date": "2026-09-26",

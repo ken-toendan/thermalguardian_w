@@ -10,28 +10,29 @@ export function Contact() {
   const c = content.contact;
 
   return (
-    <Section id="contact" alt>
+    <Section id="contact" tone="navy">
       <Container className="grid md:grid-cols-[1.2fr_1fr] gap-10 md:gap-16 items-start">
         <Reveal>
           <SectionHead
             kicker={t(c.kicker, lang)}
             title={t(c.heading, lang)}
             intro={t(c.intro, lang)}
+            tone="navy"
             className="mb-0 max-w-xl"
           />
         </Reveal>
 
         <Reveal delay={0.15} className="flex flex-col gap-5"><div className="flex flex-col gap-5">
-          <Button asChild variant="primary" size="lg" className="w-fit">
+          <Button asChild variant="brand" size="lg" className="w-fit">
             <a href={`mailto:${c.email}`} className="inline-flex items-center gap-2">
               <Mail className="h-4 w-4" />
               {c.email}
             </a>
           </Button>
 
-          <dl className="rounded-xl bg-white border border-ink/10 p-5 flex flex-col gap-2">
-            <dt className="kicker-uppercase text-ink/50">{t(c.basedInLabel, lang)}</dt>
-            <dd className="text-sm text-ink/85">
+          <dl className="rounded-xl bg-white/[0.05] ring-1 ring-white/10 p-5 flex flex-col gap-2">
+            <dt className="kicker-uppercase text-cream/50">{t(c.basedInLabel, lang)}</dt>
+            <dd className="text-sm text-cream/85">
               {lang === "en" ? (
                 <>
                   Kyoto, Japan ·{" "}

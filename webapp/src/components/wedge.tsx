@@ -21,6 +21,7 @@ export function Wedge() {
         <Reveal>
           <SectionHead
             kicker={t(w.kicker, lang)}
+            chapter="01"
             title={t(w.heading, lang)}
             intro={t(w.intro, lang)}
           />
@@ -38,13 +39,13 @@ export function Wedge() {
                   transition={{ type: "spring", stiffness: 260, damping: 20 }}
                   className="rounded-xl bg-white border border-ink/10 p-6 hover:shadow-md"
                 >
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand/10 text-brand mb-4">
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand/10 text-brand-700 mb-4">
                     {Icon ? <Icon className="h-5 w-5" /> : null}
                   </span>
                   <h3 className="font-display text-lg font-bold mb-2">
                     {t(card.title, lang)}
                   </h3>
-                  <p className="text-sm text-ink/70 leading-relaxed">
+                  <p className="text-base text-ink/70 leading-relaxed">
                     {t(card.body, lang)}
                   </p>
                 </motion.li>
@@ -59,11 +60,11 @@ export function Wedge() {
           {lang === "ja"
             ? "は3つの信号すべてを段階対応で統合する — "
             : "combines all three signals, stage-aware — so a high heart rate "}
-          <em className="text-brand not-italic font-semibold">
+          <em className="text-brand-700 not-italic font-semibold">
             {lang === "ja" ? "入浴中" : "during immersion"}
           </em>
           {lang === "ja" ? "の高心拍と" : " means something different than a high heart rate "}
-          <em className="text-brand not-italic font-semibold">
+          <em className="text-brand-700 not-italic font-semibold">
             {lang === "ja" ? "退出後" : "after exit"}
           </em>
           {lang === "ja" ? "の高心拍では、意味がまったく異なる。" : "."}

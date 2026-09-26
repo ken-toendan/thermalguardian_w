@@ -5,20 +5,22 @@ import { useLang } from "@/hooks/use-lang";
 import { content, t } from "@/content/i18n";
 import { cn } from "@/lib/utils";
 
-const calloutAccent = ["text-brand", "text-sky-brand", "text-amber-brand"];
+const calloutAccent = ["text-brand-700", "text-sky-brand", "text-amber-brand"];
 
 export function HowItWorks() {
   const { lang } = useLang();
   const h = content.how;
 
   return (
-    <Section id="how-it-works" alt>
+    <Section id="how-it-works" tone="white">
       <Container>
         <Reveal>
           <SectionHead
             kicker={t(h.kicker, lang)}
+            chapter="02"
             title={t(h.heading, lang)}
             intro={t(h.intro, lang)}
+            tone="white"
           />
         </Reveal>
 
@@ -33,7 +35,7 @@ export function HowItWorks() {
                 loading="lazy"
               />
             </div>
-            <figcaption className="text-sm text-ink/60 text-center">
+            <figcaption className="text-sm text-ink/70 text-center">
               {t(h.hardwareCaption, lang)}
             </figcaption>
           </figure>
@@ -56,7 +58,7 @@ export function HowItWorks() {
                 <h4 className="font-display text-base font-bold mb-1.5">
                   {t(c.title, lang)}
                 </h4>
-                <p className="text-sm text-ink/70 leading-relaxed">
+                <p className="text-base text-ink/70 leading-relaxed">
                   {t(c.body, lang)}
                 </p>
               </motion.li>
@@ -74,7 +76,7 @@ export function HowItWorks() {
         <Reveal delay={0.15}>
           <div className="mt-8 md:mt-10 rounded-2xl bg-white border border-ink/10 p-6 md:p-8">
             <div className="flex items-baseline gap-3 flex-wrap mb-3">
-              <span className="kicker-uppercase text-brand">
+              <span className="kicker-uppercase text-brand-700">
                 {t(h.measurementsLabel, lang)}
               </span>
               <p className="text-sm text-ink/70 leading-relaxed">

@@ -126,7 +126,7 @@ export function Hero() {
               <Button asChild variant="ghost" size="lg">
                 <a href="#how-it-works" className="inline-flex items-center gap-2 group">
                   {t(h.ctaSecondary, lang)}
-                  <ArrowRight className="h-4 w-4 text-brand transition-transform group-hover:translate-x-0.5" />
+                  <ArrowRight className="h-4 w-4 text-brand-700 transition-transform group-hover:translate-x-0.5" />
                 </a>
               </Button>
             </motion.div>
@@ -134,7 +134,7 @@ export function Hero() {
 
           <motion.ul
             variants={item}
-            className="mt-2 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-ink/60"
+            className="mt-2 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-ink/70"
           >
             {h.metaItems.map((mi, i) => (
               <li key={i} className="flex items-center gap-2">

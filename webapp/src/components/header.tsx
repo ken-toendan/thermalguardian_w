@@ -79,7 +79,7 @@ export function Header() {
                     key={link.key}
                     href={link.href}
                     onClick={() => setSheetOpen(false)}
-                    className="text-lg font-semibold text-ink hover:text-brand transition-colors"
+                    className="text-lg font-semibold text-ink hover:text-brand-700 transition-colors"
                   >
                     {t(content.nav[link.key], lang)}
                   </a>

@@ -184,18 +184,20 @@ export function LiveMonitor() {
   const stageLabel = lm.stages[stageIdx];
 
   return (
-    <Section id="live-monitor">
+    <Section id="live-monitor" tone="navy">
       <Container>
         <Reveal>
           <SectionHead
             kicker={t(lm.kicker, lang)}
+            chapter="02"
             title={t(lm.heading, lang)}
             intro={t(lm.intro, lang)}
+            tone="navy"
           />
         </Reveal>
 
         <Reveal delay={0.1}>
-        <Card className="overflow-hidden bg-[#0b1220] text-cream border-white/5 p-6 md:p-8 shadow-xl">
+        <Card className="overflow-hidden bg-panel text-cream border-white/5 p-6 md:p-8 shadow-xl">
           <div className="grid md:grid-cols-5 gap-6 md:gap-8">
             <div className="md:col-span-3 flex flex-col gap-3">
               <div className="flex items-center gap-2 kicker-uppercase text-white/50">
