@@ -5,7 +5,9 @@ import { useLang } from "@/hooks/use-lang";
 import { content, t } from "@/content/i18n";
 import { cn } from "@/lib/utils";
 
-const calloutAccent = ["text-brand-700", "text-sky-brand", "text-amber-brand"];
+// Label colours are the text-safe shades (≥ 4.5:1 on white); borders use the brighter fills.
+const calloutAccent = ["text-brand-700", "text-ae-blue", "text-sage-700", "text-amber-700", "text-ae-green-text"];
+const calloutBorder = ["#ff751f", "#0072b2", "#7b886b", "#f3993e", "#3f9b4a"];
 
 export function HowItWorks() {
   const { lang } = useLang();
@@ -25,7 +27,8 @@ export function HowItWorks() {
         </Reveal>
 
         <div className="grid lg:grid-cols-[1fr_1fr] gap-10 md:gap-14 items-start">
-          <Reveal>
+          {/* Sticky on lg so the device image stays in view beside the five cards */}
+          <Reveal className="lg:sticky lg:top-28">
           <figure className="flex flex-col gap-4">
             <div className="rounded-2xl bg-white border border-ink/10 p-6 md:p-8 flex items-center justify-center">
               <img
@@ -50,7 +53,7 @@ export function HowItWorks() {
                 whileHover={{ x: 3 }}
                 transition={{ type: "spring", stiffness: 260, damping: 20 }}
                 className="rounded-xl bg-white border border-ink/10 border-l-2 p-5"
-                style={{ borderLeftColor: ["#ff751f", "#7b886b", "#f3993e"][i] }}
+                style={{ borderLeftColor: calloutBorder[i] }}
               >
                 <span className={cn("kicker-uppercase block mb-2", calloutAccent[i])}>
                   {t(c.tag, lang)}

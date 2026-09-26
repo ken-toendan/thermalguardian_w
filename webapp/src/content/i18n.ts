@@ -198,6 +198,14 @@ export const content = {
         },
       },
       {
+        tag: { en: "Radar node", ja: "レーダーノード" },
+        title: { en: "mmWave presence radar", ja: "ミリ波（mmWave）在室レーダー" },
+        body: {
+          en: "HLK-LD2410C radar with about 6 m range. Detects whether someone is present and whether they are moving or still, with no camera.",
+          ja: "検知範囲約 6 m の HLK-LD2410C レーダー。カメラを使わずに、人の在室と、動いているか静止しているかを検知する。",
+        },
+      },
+      {
         tag: { en: "Bathroom node", ja: "浴室 IoT センサー" },
         title: { en: "Ambient watcher with voice", ja: "環境モニター + 音声警告" },
         body: {
@@ -211,6 +219,14 @@ export const content = {
         body: {
           en: "Measures the cold-to-hot differential that starts most fatal events. Triggers a warning when the temperature gap crosses the 15 °C threshold.",
           ja: "致命的な事故の多くを引き起こす寒暖差を計測。温度差が 15 °C を超えると警告を発する。",
+        },
+      },
+      {
+        tag: { en: "Hub", ja: "ハブ" },
+        title: { en: "Raspberry Pi home hub", ja: "Raspberry Pi 家庭内ハブ" },
+        body: {
+          en: "Every device reports to it over MQTT. It runs the safety rules locally and raises alerts, so readings don't need to leave the home.",
+          ja: "すべてのデバイスが MQTT でデータを送る。安全ルールをローカルで実行して警告を出すため、測定データを家の外に出す必要がない。",
         },
       },
     ],
