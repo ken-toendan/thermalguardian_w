@@ -2,7 +2,7 @@
 
 Public single-page landing site for [Thermal Guardian](https://github.com/KUAS-ubicomp-lab/ThermalGuardian), a wearable IoT system for preventing bath-related accidents in elderly care. Bilingual (English / Japanese).
 
-**Live:** https://ken-toendan.github.io/thermalguardian_w (moving to Cloudflare and a custom domain)
+**Live:** https://ken-toendan.github.io/thermalguardian_w/
 
 ## What this is
 
@@ -21,8 +21,7 @@ npm run build    # type-check + production build → webapp/dist/
 
 ## Deploy
 
-- **Cloudflare Workers** builds `webapp/` on every push (`npm run build`, then `npx wrangler deploy`, config in `webapp/wrangler.jsonc`). `main` deploys to production; other branches get preview URLs.
-- **GitHub Pages** still serves the old URL from the compiled copy in the repo root (`index.html`, `_app/`, `assets/`) until the custom domain goes live. `.nojekyll` disables Jekyll processing.
+Push to `main`. GitHub Actions (`.github/workflows/deploy-pages.yml`) builds `webapp/` and deploys `webapp/dist` to GitHub Pages automatically.
 
 See [`STRUCTURE.md`](STRUCTURE.md) for the full layout, publishing steps and design tokens.
 
