@@ -86,7 +86,7 @@ export function Hero() {
         delay={1.5}
       />
 
-      <Container className="grid md:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-10 md:gap-20 items-center">
+      <Container className="grid md:grid-cols-[minmax(0,1.4fr)_minmax(0,0.6fr)] gap-10 md:gap-12 items-center">
         <motion.div
           variants={container}
           initial="hidden"
@@ -282,7 +282,7 @@ function HeroVisual() {
       initial={{ opacity: 0, y: 30, scale: 0.96 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.85, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className="relative aspect-[5/4] flex items-center justify-center md:justify-end [perspective:1200px]"
+      className="relative order-first md:order-none h-[200px] md:h-auto md:aspect-[5/4] mb-4 md:mb-0 flex items-center justify-center md:justify-end [perspective:1200px]"
       aria-hidden="true"
     >
       <HeroEcg />
@@ -291,7 +291,7 @@ function HeroVisual() {
         alt=""
         loading="eager"
         decoding="async"
-        className="relative z-10 max-w-full drop-shadow-[0_24px_40px_rgba(17,25,43,0.12)] will-change-transform"
+        className="relative z-10 max-w-full max-h-full drop-shadow-[0_24px_40px_rgba(17,25,43,0.12)] will-change-transform"
         style={{ rotateX: rx, rotateY: ry }}
         animate={reduce ? undefined : { y: [0, -8, 0] }}
         transition={reduce ? undefined : { duration: 5, repeat: Infinity, ease: "easeInOut" }}

@@ -1,6 +1,7 @@
 import { LangProvider } from "@/hooks/use-lang";
 import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
+import { VenueStrip } from "@/components/venue-strip";
 import { Problem } from "@/components/problem";
 import { Wedge } from "@/components/wedge";
 import { HowItWorks } from "@/components/how-it-works";
@@ -20,6 +21,7 @@ function App() {
         <Header />
         <main>
           <Hero />
+          <VenueStrip />
           <Problem />
           <Wedge />
           <HowItWorks />

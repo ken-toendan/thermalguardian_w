@@ -51,15 +51,11 @@ export const content = {
     },
     ctaPrimary: { en: "Contact information", ja: "お問い合わせ" },
     ctaSecondary: { en: "See how it works", ja: "仕組みを見る" },
+    venuesLabel: {
+      en: "Presented and recognised at",
+      ja: "発表・受賞歴",
+    },
     metaItems: [
-      {
-        en: "Presented at HEALTHINF 2026",
-        ja: "HEALTHINF 2026 で発表",
-      },
-      {
-        en: "iCAN 2026 · Apr 26",
-        ja: "iCAN 2026 4月26日",
-      },
       {
         en: "R&D since Oct 2025",
         ja: "2025年10月から研究開発",
