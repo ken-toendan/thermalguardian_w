@@ -1,211 +1,23 @@
-import * as React from "react";
-import { Play } from "lucide-react";
+import type { ReactNode } from "react";
+import { DoorOpen, TriangleAlert, ShieldCheck, ExternalLink, Play } from "lucide-react";
 import { Container, Section } from "@/components/section";
 import { Reveal } from "@/components/motion/reveal";
 import { VideoFrame } from "@/components/video-frame";
 import { useLang } from "@/hooks/use-lang";
-import { content, t, type Lang } from "@/content/i18n";
+import { content, t } from "@/content/i18n";
 import { cn } from "@/lib/utils";
 
-// "Label / State" and "Title / Sub" pairs are encoded as a single string in
-// i18n so translators only handle one field per node; split on the first
-// occurrence of the separator to get the two display parts.
-function splitPair(s: string, sep = " / "): [string, string | null] {
-  const i = s.indexOf(sep);
-  return i === -1 ? [s, null] : [s.slice(0, i), s.slice(i + sep.length)];
-}
-
-function AeHeading({ num, children }: { num: string; children: React.ReactNode }) {
+function BlockHeading({ children }: { children: ReactNode }) {
   return (
-    <h3 className="flex items-baseline gap-2.5 font-display font-bold text-lg md:text-xl pb-2 mb-3 border-b-2 border-ae-blue text-ae-text">
-      <span className="text-ae-blue font-extrabold">{num}</span>
+    <h3 className="font-display font-bold text-[22px] md:text-[26px] leading-snug text-ae-text [overflow-wrap:anywhere]">
       {children}
     </h3>
   );
 }
 
-function SenseNode({ text }: { text: string }) {
-  const [label, state] = splitPair(text);
-  return (
-    <div className="rounded-md bg-ae-grey border border-[#cfd5de] px-3 py-2 grid content-center gap-0.5 min-h-[52px]">
-      <span className="text-[11px] tracking-wide text-ae-slate">{label}</span>
-      <b className="text-[13.5px] text-ae-text">{state}</b>
-    </div>
-  );
-}
-
-function Arrow() {
-  return (
-    <div className="grid place-items-center text-ae-slate text-lg px-0.5 rotate-90 md:rotate-0 shrink-0" aria-hidden="true">
-      →
-    </div>
-  );
-}
-
-function AlarmPath({ original, never }: { original: string; never: string }) {
-  return (
-    <div className="flex-none md:flex-1 md:min-w-[120px] min-h-[44px] md:min-h-0 grid content-center gap-1 px-1 py-1">
-      <em className="not-italic text-[12px] font-bold text-ae-verm-text text-center">{original}</em>
-      <div
-        className={cn(
-          "relative h-[3px] bg-ae-verm my-1",
-          "after:content-[''] after:absolute after:right-0 after:top-1/2 after:-translate-y-1/2",
-          "after:border-y-[6.5px] after:border-y-transparent after:border-l-[9px] after:border-l-ae-verm"
-        )}
-      />
-      <small className="text-[11.5px] text-ae-verm-text text-center">{never}</small>
-    </div>
-  );
-}
-
-function CareNode({ text }: { text: string }) {
-  return (
-    <div className="rounded-md bg-white border-[1.5px] border-ae-text px-3 py-2 grid place-items-center min-h-[52px]">
-      <b className="text-[13.5px] text-ae-text">{text}</b>
-    </div>
-  );
-}
-
-function RuleNode({ text }: { text: string }) {
-  return (
-    <div className="rounded-md bg-ae-peach border-[1.5px] border-ae-verm px-3 py-2 grid place-items-center min-h-[52px] text-center">
-      <b className="text-[13.5px] text-ae-text">{text}</b>
-    </div>
-  );
-}
-
-function SidecarNode({
-  tone,
-  border,
-  title,
-  sub,
-}: {
-  tone: "tint" | "mint" | "peach";
-  border: "grey" | "green" | "verm" | "blue";
-  title: string;
-  sub: string | null;
-}) {
-  const bg = tone === "tint" ? "bg-ae-tint" : tone === "mint" ? "bg-ae-mint" : "bg-ae-peach";
-  const borderClass =
-    border === "green"
-      ? "border border-ae-green"
-      : border === "verm"
-      ? "border-[1.5px] border-ae-verm"
-      : border === "blue"
-      ? "border-[1.5px] border-ae-blue"
-      : "border border-[#9cc2de]";
-  return (
-    <div className={cn("rounded-md px-3 py-2 grid content-center gap-0.5 min-h-[52px] flex-1 min-w-[140px]", bg, borderClass)}>
-      <b className="text-[13.5px] text-ae-text">{title}</b>
-      {sub ? <span className="text-[11.5px] text-ae-text/75">{sub}</span> : null}
-    </div>
-  );
-}
-
-function Invariant({ text }: { text: string }) {
-  const parts = text.split(/(P\(Aegis\)|P\(M-011\))/g);
-  return (
-    <p className="mt-3 bg-ae-mint border-[1.5px] border-ae-green rounded-md px-3.5 py-3 text-[13.5px] font-bold leading-relaxed text-ae-green-text">
-      {parts.map((part, i) => {
-        if (part === "P(Aegis)") {
-          return (
-            <React.Fragment key={i}>
-              P<sub>Aegis</sub>
-            </React.Fragment>
-          );
-        }
-        if (part === "P(M-011)") {
-          return (
-            <React.Fragment key={i}>
-              P<sub>M-011</sub>
-            </React.Fragment>
-          );
-        }
-        return <React.Fragment key={i}>{part}</React.Fragment>;
-      })}
-    </p>
-  );
-}
-
-function FlowDiagram({ ae, lang }: { ae: typeof content.aegis; lang: Lang }) {
-  const d = ae.diagram;
-  const [sidecarTitle, sidecarMeta] = splitPair(t(d.sidecar, lang), " · ");
-  const [ebTitle, ebSub] = splitPair(t(d.evidenceBundle, lang));
-  const [alTitle, alSub] = splitPair(t(d.agentLoop, lang));
-  const [sgTitle, sgSub] = splitPair(t(d.safetyGate, lang));
-  const [elTitle, elSub] = splitPair(t(d.elevate, lang));
-  const [mnTitle, mnSub] = splitPair(t(d.maintain, lang));
-
-  return (
-    <div className="grid gap-3">
-      <div className="flex flex-col md:flex-row md:flex-wrap items-stretch gap-2">
-        <SenseNode text={t(d.wearable, lang)} />
-        <SenseNode text={t(d.wifiCsi, lang)} />
-        <SenseNode text={t(d.mmwave, lang)} />
-        <Arrow />
-        <RuleNode text={t(d.ruleFires, lang)} />
-        <AlarmPath original={t(d.originalPath, lang)} never={t(d.neverBlocked, lang)} />
-        <CareNode text={t(d.caregiver, lang)} />
-      </div>
-
-      <div className="border-[1.5px] border-dashed border-ae-blue rounded-lg p-3 grid gap-2.5">
-        <div className="text-[12.5px] font-bold text-ae-blue">
-          {sidecarTitle} <span className="font-normal text-ae-slate">{sidecarMeta}</span>
-        </div>
-        <div className="flex flex-col md:flex-row md:flex-wrap items-stretch gap-2">
-          <SidecarNode tone="tint" border="grey" title={ebTitle} sub={ebSub} />
-          <Arrow />
-          <SidecarNode tone="tint" border="grey" title={alTitle} sub={alSub} />
-          <Arrow />
-          <SidecarNode tone="mint" border="green" title={sgTitle} sub={sgSub} />
-          <Arrow />
-          <div className="grid gap-2 flex-1 min-w-[140px]">
-            <SidecarNode tone="peach" border="verm" title={elTitle} sub={elSub} />
-            <SidecarNode tone="tint" border="blue" title={mnTitle} sub={mnSub} />
-          </div>
-        </div>
-      </div>
-
-      <Invariant text={t(ae.invariant, lang)} />
-    </div>
-  );
-}
-
-function ResultsTable({ ae, lang }: { ae: typeof content.aegis; lang: Lang }) {
-  const r = ae.results;
-  const thClass = "text-[12.5px] font-bold pb-2 border-b-2 border-ae-text px-2.5";
-  const tdClass = "px-2.5 py-2.5 border-b border-[#e3e8ee] tabular-nums";
-  return (
-    <div className="overflow-x-auto">
-      <table className="w-full min-w-[560px] border-collapse text-[14.5px]">
-        <thead>
-          <tr>
-            <th className={cn(thClass, "text-left")}>{t(r.headers.method, lang)}</th>
-            <th className={cn(thClass, "text-left")}>{t(r.headers.evidence, lang)}</th>
-            <th className={cn(thClass, "text-center")}>{t(r.headers.exitsFound, lang)} ↑</th>
-            <th className={cn(thClass, "text-center")}>{t(r.headers.falseEscalations, lang)} ↓</th>
-            <th className={cn(thClass, "text-center")}>{t(r.headers.missedEscalations, lang)} ↓</th>
-          </tr>
-        </thead>
-        <tbody>
-          {r.rows.map((row, i) => (
-            <tr key={i} className={row.highlight ? "bg-ae-hl font-bold" : undefined}>
-              <td className={tdClass}>{t(row.method, lang)}</td>
-              <td className={tdClass}>{t(row.evidence, lang)}</td>
-              <td className={cn(tdClass, "text-center", row.exitsShort && "text-ae-verm-text")}>{row.exits}</td>
-              <td className={cn(tdClass, "text-center", row.falseEscShort && "text-ae-verm-text")}>{row.falseEsc}</td>
-              <td className={cn(tdClass, "text-center", row.missedEscShort && "text-ae-verm-text")}>{row.missedEsc}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}
-
 function AegisVideoPlaceholder({ label }: { label: string }) {
   return (
-    <div className="flex flex-col items-center gap-2.5 px-4 text-center">
+    <div className="flex flex-col items-center gap-3 px-4 text-center">
       <span className="grid place-items-center h-14 w-14 rounded-full border-[1.5px] border-ae-sky" aria-hidden="true">
         <Play className="h-4 w-4 translate-x-0.5 text-ae-sky" fill="currentColor" />
       </span>
@@ -221,84 +33,290 @@ export function Aegis() {
   return (
     <Section id="aegis" className="bg-ae-wash">
       <Container>
-        <Reveal>
-          <div className="max-w-2xl mb-12 md:mb-16">
-            <span className="kicker-uppercase block mb-3 text-ae-blue">
-              02 · {t(content.nav.aegis, lang)}
-            </span>
-            <h2 className="font-display text-[1.75rem] md:text-[2.5rem] leading-[1.12] font-extrabold text-ae-text">
-              {t(ae.pitch, lang)}
-            </h2>
-          </div>
-        </Reveal>
+        <div className="space-y-16 md:space-y-24">
+          {/* 0. Header */}
+          <Reveal>
+            <div className="min-w-0">
+              <span className="kicker-uppercase block mb-3 text-ae-blue">
+                02 · {t(ae.kicker, lang)}
+              </span>
+              <h2 className="max-w-3xl font-display text-[1.75rem] md:text-[2.5rem] leading-[1.12] font-extrabold text-ae-text [overflow-wrap:anywhere]">
+                {t(ae.heading, lang)}
+              </h2>
+              <p className="mt-5 max-w-3xl text-base md:text-lg leading-relaxed text-ae-text/80">
+                {t(ae.intro, lang)}
+              </p>
+              <div className="mt-6 flex flex-wrap gap-2">
+                {ae.badges.map((b, i) => {
+                  const isLast = i === ae.badges.length - 1;
+                  return (
+                    <span
+                      key={i}
+                      className={cn(
+                        "rounded-full bg-white border px-3.5 py-1.5 text-[12.5px]",
+                        isLast ? "text-ae-slate border-ae-slate/30" : "text-ae-blue border-ae-blue/25"
+                      )}
+                    >
+                      {t(b, lang)}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          </Reveal>
 
-        <Reveal delay={0.1}>
-          <article className="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-sm text-ae-text">
-            <header className="bg-ae-navy border-b-[6px] border-ae-blue rounded-t-xl px-6 py-8 md:px-10 md:py-10 grid gap-3 [&>*]:min-w-0">
-              <span className="text-[13px] font-semibold text-ae-sky [overflow-wrap:anywhere]">{t(ae.venue, lang)}</span>
-              {/* anywhere: JA phrase-aware breaking keeps long katakana compounds whole, which overflowed at 390px */}
-              <h3 className="font-display text-[1.4rem] md:text-[2rem] font-extrabold leading-snug text-white [overflow-wrap:anywhere]">
-                {t(ae.title, lang)}
-              </h3>
-              <p className="text-[14px] text-white/70">{ae.authors}</p>
-              <p className="text-[14px] text-white/70">{t(ae.lab, lang)}</p>
-            </header>
+          {/* 1. Problem */}
+          <Reveal>
+            <div className="min-w-0">
+              <BlockHeading>{t(ae.problem.heading, lang)}</BlockHeading>
+              <p className="mt-3 max-w-[42rem] text-[15.5px] leading-relaxed text-ae-text/80">
+                {t(ae.problem.body, lang)}
+              </p>
 
-            <div className="bg-white border border-t-0 border-[#d9e2ec] rounded-b-xl px-6 py-8 md:px-10 md:py-10 grid gap-7">
-              <div className="grid md:grid-cols-2 gap-6 items-start">
-                <div>
-                  <AeHeading num="1">{t(ae.problemHeading, lang)}</AeHeading>
-                  <p className="text-[15.5px] leading-relaxed">{t(ae.problem, lang)}</p>
+              <div className="mt-8 grid sm:grid-cols-2 gap-5">
+                <div className="min-w-0 rounded-xl bg-white border border-ae-text/10 border-t-[3px] border-t-ae-blue p-5 md:p-6">
+                  <DoorOpen className="h-5 w-5 text-ae-blue" aria-hidden="true" />
+                  <h4 className="mt-3 font-display font-bold text-ae-text">{t(ae.problem.exit.title, lang)}</h4>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-ae-text/80">{t(ae.problem.exit.body, lang)}</p>
                 </div>
-                <div>
-                  <AeHeading num="2">{t(ae.observationHeading, lang)}</AeHeading>
-                  <div className="bg-ae-tint border-l-[5px] border-ae-blue px-4 py-3.5">
-                    <p className="font-bold leading-snug">{t(ae.observation, lang)}</p>
-                    <p className="mt-1.5 text-sm font-normal text-ae-slate">{t(ae.observationNote, lang)}</p>
+                <div className="min-w-0 rounded-xl bg-white border border-ae-text/10 border-t-[3px] border-t-ae-verm p-5 md:p-6">
+                  <TriangleAlert className="h-5 w-5 text-ae-verm-text" aria-hidden="true" />
+                  <h4 className="mt-3 font-display font-bold text-ae-text">{t(ae.problem.collapse.title, lang)}</h4>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-ae-text/80">{t(ae.problem.collapse.body, lang)}</p>
+                </div>
+              </div>
+
+              <div className="mt-5 min-w-0 rounded-xl bg-white border border-dashed border-ae-slate/40 p-5">
+                <p className="text-[13px] text-ae-slate">{t(ae.problem.sameLabel, lang)}</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {ae.problem.sameStates.map((s, i) => (
+                    <span
+                      key={i}
+                      className="rounded-full bg-ae-grey border border-ae-text/10 px-3 py-1 text-[13px] text-ae-text"
+                    >
+                      {t(s, lang)}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <p className="mt-5 max-w-[42rem] font-semibold leading-relaxed text-ae-text">
+                {t(ae.problem.consequence, lang)}
+              </p>
+            </div>
+          </Reveal>
+
+          {/* 2. Insight */}
+          <Reveal>
+            <div className="min-w-0">
+              <BlockHeading>{t(ae.insight.heading, lang)}</BlockHeading>
+              <p className="mt-3 max-w-[42rem] text-[15.5px] leading-relaxed text-ae-text/80">
+                {t(ae.insight.body, lang)}
+              </p>
+
+              <div className="mt-8 min-w-0 rounded-xl bg-white border border-ae-text/10 p-5 md:p-7">
+                <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+                  <span className="text-[13px] text-ae-slate">{t(ae.insight.chartLabel, lang)}</span>
+                  <div className="flex items-center gap-4 text-[12.5px] text-ae-text/80">
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="inline-block h-3 w-3 rounded-sm bg-ae-chart" aria-hidden="true" />
+                      {t(ae.insight.occupied, lang)}
+                    </span>
+                    <span className="inline-flex items-center gap-1.5">
+                      <span
+                        className="inline-block h-3 w-3 rounded-sm bg-white border border-dashed border-ae-slate/60"
+                        aria-hidden="true"
+                      />
+                      {t(ae.insight.empty, lang)}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-6">
+                  {/* Exit bar */}
+                  <div className="min-w-0 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                    <span className="shrink-0 sm:w-20 text-[13px] font-semibold text-ae-text">
+                      {t(ae.insight.exitLabel, lang)}
+                    </span>
+                    <div className="relative min-w-0 flex-1 h-8 md:h-9 rounded-md overflow-hidden border border-ae-text/10 flex">
+                      <div className="w-[30%] bg-ae-chart" />
+                      <div
+                        className="relative flex-1 min-w-0 bg-white flex items-center justify-center px-2"
+                        style={{
+                          backgroundImage:
+                            "repeating-linear-gradient(45deg, color-mix(in srgb, var(--color-ae-slate) 18%, transparent) 0, color-mix(in srgb, var(--color-ae-slate) 18%, transparent) 2px, transparent 2px, transparent 8px)",
+                        }}
+                      >
+                        <span className="text-[12px] md:text-[13px] font-bold text-ae-blue text-center leading-snug">
+                          {t(ae.insight.exitNote, lang)}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Collapse bar */}
+                  <div className="min-w-0 flex flex-col gap-1.5">
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                      <span className="shrink-0 sm:w-20 text-[13px] font-semibold text-ae-text">
+                        {t(ae.insight.collapseLabel, lang)}
+                      </span>
+                      <span className="min-w-0 flex-1 text-right text-[12px] md:text-[13px] font-bold text-ae-verm-text leading-snug">
+                        {t(ae.insight.collapseNote, lang)}
+                      </span>
+                    </div>
+                    <div className="sm:pl-[calc(5rem+1rem)] min-w-0">
+                      <div className="h-8 md:h-9 rounded-md bg-ae-chart border border-ae-text/10" />
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <div className="min-w-0">
-                <AeHeading num="3">{t(ae.architectureHeading, lang)}</AeHeading>
-                <FlowDiagram ae={ae} lang={lang} />
+              <p className="mt-4 max-w-[42rem] text-[13.5px] leading-relaxed text-ae-slate">
+                {t(ae.insight.credit, lang)}
+              </p>
+            </div>
+          </Reveal>
+
+          {/* 3. How it works */}
+          <Reveal>
+            <div className="min-w-0">
+              <BlockHeading>{t(ae.how.heading, lang)}</BlockHeading>
+
+              <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {ae.how.steps.map((step, i) => (
+                  <div key={i} className="min-w-0 rounded-xl bg-white border border-ae-text/10 p-5">
+                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-ae-blue text-white font-display font-bold text-sm">
+                      {i + 1}
+                    </span>
+                    <h4 className="mt-3 font-display font-bold text-ae-text">{t(step.title, lang)}</h4>
+                    <p className="mt-1.5 text-[15px] leading-relaxed text-ae-text/80">{t(step.body, lang)}</p>
+                  </div>
+                ))}
               </div>
 
-              <div className="min-w-0">
-                <AeHeading num="4">{t(ae.resultsHeading, lang)}</AeHeading>
-                <ResultsTable ae={ae} lang={lang} />
-                <p className="mt-2 text-[13px] text-ae-slate">{t(ae.tableCaption, lang)}</p>
+              <div className="mt-6 min-w-0 rounded-xl bg-ae-mint border-l-[5px] border-ae-green px-5 py-5 md:px-6 flex gap-4">
+                <ShieldCheck className="h-6 w-6 shrink-0 text-ae-green-text" aria-hidden="true" />
+                <div className="min-w-0">
+                  <p className="font-bold text-ae-green-text">{t(ae.how.guaranteeTitle, lang)}</p>
+                  <p className="mt-1.5 text-[15px] leading-relaxed text-ae-text">{t(ae.how.guaranteeBody, lang)}</p>
+                </div>
               </div>
+            </div>
+          </Reveal>
 
-              <p className="bg-ae-hl border-l-[5px] border-ae-blue px-4 py-3.5 font-bold leading-snug">
-                {t(ae.summary, lang)}
+          {/* 4. Results */}
+          <Reveal>
+            <div className="min-w-0">
+              <BlockHeading>{t(ae.results.heading, lang)}</BlockHeading>
+              <p className="mt-3 max-w-[42rem] text-[15.5px] leading-relaxed text-ae-text/80">
+                {t(ae.results.context, lang)}
               </p>
 
-              <p className="text-sm leading-relaxed text-ae-slate">{t(ae.limitations, lang)}</p>
+              <p className="mt-6 text-[13.5px] text-ae-slate">{t(ae.results.statsLabel, lang)}</p>
+              <div className="mt-3 grid sm:grid-cols-3 gap-4">
+                {ae.results.stats.map((s, i) => (
+                  <div key={i} className="min-w-0 rounded-lg bg-white border-t-2 border-ae-blue px-5 py-5">
+                    <div className="font-display font-extrabold text-[40px] md:text-[48px] leading-none tabular-nums text-ae-text">
+                      {s.value}
+                    </div>
+                    <div className="mt-2 text-[14px] text-ae-slate">{t(s.label, lang)}</div>
+                  </div>
+                ))}
+              </div>
 
-              <VideoFrame
-                videoId={ae.videoId}
-                title="Aegis"
-                className="max-w-[720px] mx-auto rounded-md bg-ae-navy border-0 border-b-[5px] border-ae-blue"
-                placeholder={<AegisVideoPlaceholder label={t(ae.videoSoon, lang)} />}
-              />
+              <h4 className="mt-10 font-display font-bold text-lg text-ae-text [overflow-wrap:anywhere]">
+                {t(ae.results.compareHeading, lang)}
+              </h4>
+              <div className="mt-4 overflow-x-auto">
+                <table className="w-full min-w-[640px] border-collapse text-[14px]">
+                  <thead>
+                    <tr>
+                      <th className="text-left font-bold pb-2 border-b-2 border-ae-text px-2.5">
+                        {t(ae.results.columns.method, lang)}
+                      </th>
+                      <th className="text-center font-bold pb-2 border-b-2 border-ae-text px-2.5">
+                        {t(ae.results.columns.falseEsc, lang)}
+                      </th>
+                      <th className="text-center font-bold pb-2 border-b-2 border-ae-text px-2.5">
+                        {t(ae.results.columns.missed, lang)}
+                      </th>
+                      <th className="text-left font-bold pb-2 border-b-2 border-ae-text px-2.5">
+                        {t(ae.results.columns.note, lang)}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {ae.results.rows.map((row, i) => (
+                      <tr key={i} className={cn(row.highlight && "bg-ae-hl font-bold")}>
+                        <td className="px-2.5 py-2.5 border-b border-ae-text/10">{t(row.method, lang)}</td>
+                        <td
+                          className={cn(
+                            "px-2.5 py-2.5 border-b border-ae-text/10 text-center tabular-nums",
+                            row.falseEsc !== "0/4" && "text-ae-verm-text"
+                          )}
+                        >
+                          {row.falseEsc}
+                        </td>
+                        <td
+                          className={cn(
+                            "px-2.5 py-2.5 border-b border-ae-text/10 text-center tabular-nums",
+                            row.missed !== "0/13" && "text-ae-verm-text"
+                          )}
+                        >
+                          {row.missed}
+                        </td>
+                        <td className="px-2.5 py-2.5 border-b border-ae-text/10">{t(row.note, lang)}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
 
-              <div className="flex flex-wrap items-center gap-4">
-                <span className="text-sm text-ae-slate">{t(ae.citation, lang)}</span>
+              <p className="mt-4 max-w-[42rem] text-[14px] text-ae-slate">{t(ae.results.caveat, lang)}</p>
+            </div>
+          </Reveal>
+
+          {/* 5. Video, citation and authors */}
+          <Reveal>
+            <div className="min-w-0">
+              <BlockHeading>{t(ae.video.heading, lang)}</BlockHeading>
+
+              <div className="mt-6 max-w-3xl mx-auto min-w-0">
+                <VideoFrame
+                  videoId={null}
+                  src={ae.video.src}
+                  poster={ae.video.poster}
+                  title="Aegis"
+                  className="rounded-md bg-ae-navy border-0 border-b-[4px] md:border-b-[5px] border-ae-blue"
+                  placeholder={<AegisVideoPlaceholder label={t(ae.video.soon, lang)} />}
+                />
+              </div>
+
+              <div className="mt-6 max-w-3xl mx-auto min-w-0 flex flex-wrap items-center gap-4">
+                <span className="text-[14px] text-ae-slate">{t(ae.citation, lang)}</span>
                 {ae.paperUrl ? (
                   <a
                     href={ae.paperUrl}
                     target="_blank"
-                    rel="noopener"
-                    className="inline-flex items-center h-10 px-5 rounded-md bg-ae-blue text-white text-sm font-semibold hover:opacity-90 transition-opacity"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 h-10 px-5 rounded-md bg-ae-blue text-white text-sm font-semibold hover:opacity-90 transition-opacity"
                   >
-                    {t(ae.paperButton, lang)}
+                    {t(ae.readPaper, lang)}
+                    <ExternalLink className="h-4 w-4" aria-hidden="true" />
                   </a>
                 ) : null}
               </div>
+
+              <div className="mt-6 max-w-3xl mx-auto min-w-0">
+                <p className="text-[14px] text-ae-text">
+                  <span className="text-ae-slate">{t(ae.authorsLabel, lang)}: </span>
+                  {ae.authors}
+                </p>
+                <p className="mt-1 text-[13px] text-ae-slate">{t(ae.authorsNote, lang)}</p>
+              </div>
             </div>
-          </article>
-        </Reveal>
+          </Reveal>
+        </div>
       </Container>
     </Section>
   );

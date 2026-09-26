@@ -3,12 +3,14 @@ import { cn } from "@/lib/utils";
 
 interface VideoFrameProps {
   videoId?: string | null;
+  src?: string | null;
+  poster?: string | null;
   title: string;
   placeholder?: React.ReactNode;
   className?: string;
 }
 
-export function VideoFrame({ videoId, title, placeholder, className }: VideoFrameProps) {
+export function VideoFrame({ videoId, src, poster, title, placeholder, className }: VideoFrameProps) {
   return (
     <div
       className={cn(
@@ -16,7 +18,17 @@ export function VideoFrame({ videoId, title, placeholder, className }: VideoFram
         className
       )}
     >
-      {videoId ? (
+      {src ? (
+        <video
+          controls
+          playsInline
+          preload="metadata"
+          poster={poster ?? undefined}
+          className="absolute inset-0 h-full w-full bg-black object-contain"
+        >
+          <source src={src} type="video/mp4" />
+        </video>
+      ) : videoId ? (
         <iframe
           src={`https://www.youtube-nocookie.com/embed/${videoId}`}
           title={title}

@@ -343,152 +343,199 @@ export const content = {
     ],
   },
   aegis: {
-    venue: {
-      en: "UbiComp / ISWC 2026 Student Challenge · Shanghai, 11–15 October 2026",
-      ja: "UbiComp / ISWC 2026 スチューデントチャレンジ・上海 2026 年 10 月 11–15 日",
+    // Source: Aegis_explained.md (team write-up, 26 Sep 2026) + the UbiComp/ISWC 2026 poster.
+    // Follows the write-up's "claims to make / avoid" list: no accuracy or Pi-speed claims,
+    // occupancy idea credited to Trinh et al. 2026, pilot caveats kept.
+    kicker: { en: "Aegis", ja: "Aegis" },
+    heading: {
+      en: "An on-device AI that explains alarms, and can never silence them",
+      ja: "アラームの理由を説明し、決して鳴り止ませないオンデバイス AI",
     },
-    title: {
-      en: "Aegis: An On-Device Foundation Model Agent for Resolving Conflicting Sensor Evidence in Elderly Bathing",
-      ja: "Aegis：高齢者の入浴における矛盾するセンサー情報を解決するオンデバイス基盤モデルエージェント",
+    intro: {
+      en: "Aegis is a small language model that runs on Thermal Guardian's home hub. When a safety rule fires but the sensors disagree, it looks at what happened next, decides how urgent the alarm is, and tells the caregiver why in English and Japanese. By design it can raise an alarm's priority or leave it unchanged. It cannot lower or silence one.",
+      ja: "Aegis は、サーマルガーディアンの家庭内ハブ上で動作する小規模な言語モデルである。安全ルールが発動してもセンサー同士の判断が食い違うとき、その後に起きたことを確かめてアラームの緊急度を判断し、その理由を英語と日本語で介護者に伝える。設計上、Aegis にできるのはアラームの優先度を引き上げるか、そのまま維持することだけで、引き下げたり鳴り止ませたりすることはできない。",
     },
-    pitch: {
-      en: "Aegis can prioritise and explain an alarm, but never silence it.",
-      ja: "Aegisはアラームの優先度を判断し、その理由を説明できるが、鳴り止ませることは決してない。",
-    },
-    authors: "A K M Akaiduzzaman, Ethan Taku Shimada, Joseph Arthur Koo, Ken Argani Toendan, Kawai Rostum, Zilu Liang",
-    lab: {
-      en: "Ubiquitous and Personal Computing Lab, Kyoto University of Advanced Science, Kyoto, Japan",
-      ja: "Ubiquitous and Personal Computing Lab・京都先端科学大学（京都）",
-    },
-    problemHeading: { en: "The problem", ja: "問題" },
+    badges: [
+      { en: "UbiComp / ISWC 2026 Student Challenge · Shanghai, 11–15 Oct", ja: "UbiComp / ISWC 2026 スチューデントチャレンジ・上海 10 月 11–15 日" },
+      { en: "Runs locally · Qwen2.5 3B", ja: "ローカルで動作・Qwen2.5 3B" },
+      { en: "Research prototype", ja: "研究プロトタイプ" },
+    ] as BiText[],
+
     problem: {
-      en: 'Rule M-011 fires when the wearable reports "not worn" while the room still reads occupied for 5 s. A deliberate exit and a collapse produce the same conflict, so a real exit from the bathroom always becomes a false alarm.',
-      ja: "ルール M-011 は、ウェアラブルが「未装着」を報告しているにもかかわらず、室内センサーが 5 秒間在室を示し続けると発動する。意図的な退出と昏倒は同じ矛盾を生むため、浴室からの実際の退出は常に誤報になってしまう。",
-    },
-    observationHeading: { en: "Key observation", ja: "重要な観察" },
-    observation: {
-      en: "Every genuine exit emptied the room for 10 to 23 s. No simulated collapse did.",
-      ja: "実際の退出では、いずれも室内が 10〜23 秒間無人になった。模擬昏倒では一度もそうならなかった。",
-    },
-    observationNote: {
-      en: "The discriminating evidence arrives only after the alarm, in how room occupancy evolves.",
-      ja: "判別の手がかりとなる証拠はアラーム発生後にしか得られず、在室状況の推移にそれが表れる。",
-    },
-    architectureHeading: { en: "Safety-constrained agent", ja: "安全制約付きエージェント" },
-    diagram: {
-      wearable: { en: "Wearable / Not worn", ja: "ウェアラブル / 未装着" },
-      wifiCsi: { en: "WiFi CSI / Occupied", ja: "WiFi CSI / 在室" },
-      mmwave: { en: "mmWave radar / Occupied", ja: "mmWave レーダー / 在室" },
-      ruleFires: { en: "Rule M-011 fires", ja: "ルール M-011 の発動" },
-      originalPath: { en: "Original M-011 alarm path", ja: "元の M-011 アラーム経路" },
-      neverBlocked: { en: "never blocked, delayed or suppressed", ja: "遮断・遅延・抑制されない" },
-      caregiver: { en: "Caregiver", ja: "介護者" },
-      sidecar: {
-        en: "Aegis sidecar · advisory · on-device · Qwen2.5 3B",
-        ja: "Aegis サイドカー・助言的・オンデバイス・Qwen2.5 3B",
+      heading: { en: "One alarm, two opposite situations", ja: "1 つのアラーム、正反対の 2 つの状況" },
+      body: {
+        en: "Rule M-011 fires when the wearable reports it isn't being worn while the room sensors still detect someone for 5 seconds. That can mean two very different things.",
+        ja: "ルール M-011 は、ウェアラブルが「未装着」を報告しているにもかかわらず、室内センサーが 5 秒間在室を示し続けると発動する。これは正反対の 2 つの状況を意味しうる。",
       },
-      evidenceBundle: { en: "EvidenceBundle / schema-validated states", ja: "EvidenceBundle / スキーマ検証済みの状態" },
-      agentLoop: {
-        en: "Agent loop / plan → act → observe, max 4 steps",
-        ja: "エージェントループ / 計画 → 行動 → 観察、最大 4 ステップ",
+      exit: {
+        title: { en: "Deliberate exit", ja: "意図的な退出" },
+        body: {
+          en: "The person took the wearable off and walked out of the bathroom. Harmless.",
+          ja: "ウェアラブルを外して浴室から出た。危険はない。",
+        },
       },
-      safetyGate: { en: "Safety gate / deterministic, τ = 0.55", ja: "安全ゲート / 決定論的、τ = 0.55" },
-      elevate: {
-        en: "Elevate / everything else, incl. errors and timeouts",
-        ja: "引き上げ / それ以外すべて（エラーやタイムアウトを含む）",
+      collapse: {
+        title: { en: "Collapse", ja: "昏倒" },
+        body: {
+          en: "The person collapsed and the wearable came off. An emergency.",
+          ja: "昏倒し、その際にウェアラブルが外れた。緊急事態である。",
+        },
       },
-      maintain: { en: "Maintain / only if exit-consistent and c ≥ τ", ja: "維持 / 退出と整合し、かつ c ≥ τ の場合のみ" },
+      sameLabel: {
+        en: "In both cases, at the moment the rule fires",
+        ja: "どちらの場合も、ルール発動の瞬間のセンサーは同じ",
+      },
+      sameStates: [
+        { en: "Wearable: not worn", ja: "ウェアラブル：未装着" },
+        { en: "Room: occupied", ja: "室内：在室" },
+        { en: "Movement: low", ja: "動き：少ない" },
+      ] as BiText[],
+      consequence: {
+        en: "Because the two look identical, today's system treats every trigger as an emergency, and every harmless exit becomes a false alarm.",
+        ja: "両者は見分けがつかないため、現在のシステムはすべての発動を緊急事態として扱い、無害な退出もすべて誤報になる。",
+      },
     },
-    invariant: {
-      en: "Safety invariant: P(Aegis) ≥ P(M-011). Aegis may raise the alarm priority or leave it unchanged. No action lowers or silences it.",
-      ja: "安全不変条件：P(Aegis) ≥ P(M-011)。Aegisはアラームの優先度を引き上げるか、変更せずそのまま保つかのいずれかしかできない。どの動作もそれを引き下げたり抑制したりすることはない。",
+
+    insight: {
+      heading: { en: "What happens next tells them apart", ja: "その後の数秒が両者を見分ける" },
+      body: {
+        en: "In recorded trials on the real hardware, movement at the moment of the alarm overlapped between exits and collapses. What separated them was the next few seconds: after every genuine exit the room read empty for 10 to 23 seconds, and after every simulated collapse it never emptied.",
+        ja: "実機での記録試験では、アラーム発生時点の動きは退出と昏倒で重なっていた。両者を分けたのはその後の数秒だった。実際の退出ではいずれも室内が 10〜23 秒間無人になり、模擬昏倒では一度も無人にならなかった。",
+      },
+      chartLabel: { en: "Room occupancy after the alarm (illustration)", ja: "アラーム後の在室状況（イメージ図）" },
+      occupied: { en: "occupied", ja: "在室" },
+      empty: { en: "empty", ja: "無人" },
+      exitLabel: { en: "Exit", ja: "退出" },
+      exitNote: { en: "room empty for 10–23 s", ja: "10〜23 秒間 無人" },
+      collapseLabel: { en: "Collapse", ja: "昏倒" },
+      collapseNote: { en: "room never empties (0 s)", ja: "無人にならない（0 秒）" },
+      credit: {
+        en: "Using room occupancy after a fall is not a new idea (Trinh et al., 2026). What Aegis adds is using it as evidence inside a fail-safe agent that resolves a wearable-versus-room conflict.",
+        ja: "転倒後の在室状況を用いる考え方自体は新しいものではない（Trinh et al., 2026）。Aegis の新しさは、それをウェアラブルと室内センサーの矛盾を解決するフェイルセーフなエージェントの判断材料として使う点にある。",
+      },
     },
-    resultsHeading: { en: "Results", ja: "結果" },
+
+    how: {
+      heading: { en: "How Aegis works", ja: "Aegis の仕組み" },
+      steps: [
+        {
+          title: { en: "Summarise", ja: "要約する" },
+          body: {
+            en: "The hub packs the situation into one checked record, like a nurse's handover note: states, trends and durations only. No raw signals, audio, video or personal identifiers, and heart rate appears only as a trend.",
+            ja: "ハブが状況を 1 つの検証済みの記録にまとめる。看護師の申し送りのように状態・傾向・継続時間だけを含み、生の信号・音声・映像・個人を特定する情報は含まない。心拍も傾向としてのみ扱う。",
+          },
+        },
+        {
+          title: { en: "Investigate", ja: "確かめる" },
+          body: {
+            en: "Before deciding, the model can ask for recent sensor history or clinical background, repeating plan, act and observe for up to four steps.",
+            ja: "判断の前に、モデルは直近のセンサー履歴や臨床的な背景知識を参照できる。計画 → 実行 → 観察を最大 4 ステップ繰り返す。",
+          },
+        },
+        {
+          title: { en: "Decide inside a safety gate", ja: "安全ゲートの中で判断する" },
+          body: {
+            en: "Only two answers exist: Elevate or Maintain. Maintain is allowed only when the evidence is consistent with an exit and confidence is at least 0.55. Errors, timeouts and malformed output all become Elevate.",
+            ja: "答えは「引き上げ」か「維持」の 2 つしかない。「維持」が許されるのは、証拠が退出と整合し、確信度が 0.55 以上の場合だけである。エラー・タイムアウト・不正な出力はすべて「引き上げ」になる。",
+          },
+        },
+        {
+          title: { en: "Explain", ja: "説明する" },
+          body: {
+            en: "The caregiver receives the priority with a short explanation in English and Japanese.",
+            ja: "介護者は優先度とともに、英語と日本語の短い説明を受け取る。",
+          },
+        },
+      ],
+      guaranteeTitle: { en: "The original alarm never waits", ja: "元のアラームは決して待たない" },
+      guaranteeBody: {
+        en: "M-011's alarm fires on its own 5-second timer whatever Aegis decides. “Silence” is not a rejected answer: the model's output format has no way to express it. In the worst case, the system behaves exactly as it does today.",
+        ja: "M-011 のアラームは、Aegis の判断に関係なく独自の 5 秒タイマーで発動する。「鳴り止ませる」は却下される答えではなく、モデルの出力形式にそもそも存在しない。最悪の場合でも、システムの動作は現在とまったく同じである。",
+      },
+    },
+
     results: {
-      headers: {
-        method: { en: "Method", ja: "手法" },
-        evidence: { en: "Evidence", ja: "エビデンス" },
-        exitsFound: { en: "Exits found", ja: "退出検出" },
-        falseEscalations: { en: "False escalations", ja: "誤エスカレーション" },
-        missedEscalations: { en: "Missed escalations", ja: "エスカレーション漏れ" },
+      heading: { en: "Results from a real-hardware pilot", ja: "実機パイロット試験の結果" },
+      context: {
+        en: "Three adult participants and 17 scripted conflict windows recorded on the real sensors: 4 exits, 3 simulated collapses and 10 with degraded sensing.",
+        ja: "成人参加者3名が実機センサーで台本に沿って記録した17件の矛盾ウィンドウ（退出4件、模擬昏倒3件、センシング劣化10件）。",
+      },
+      statsLabel: {
+        en: "Aegis 3B with the occupancy signal, in all five repeated runs",
+        ja: "在室の推移を用いた Aegis 3B（5 回の繰り返し実行すべてで）",
+      },
+      stats: [
+        { value: "4/4", label: { en: "exits recognised", ja: "退出を正しく認識" } },
+        { value: "0/4", label: { en: "exits wrongly escalated", ja: "退出の誤エスカレーション" } },
+        { value: "0/13", label: { en: "emergencies missed", ja: "緊急事態の見逃し" } },
+      ],
+      compareHeading: { en: "Compared with other approaches on the same 17 windows", ja: "同じ17件での他の手法との比較" },
+      columns: {
+        method: { en: "Approach", ja: "手法" },
+        falseEsc: { en: "Exits wrongly escalated", ja: "退出の誤エスカレーション" },
+        missed: { en: "Emergencies missed", ja: "緊急事態の見逃し" },
+        note: { en: "Notes", ja: "備考" },
       },
       rows: [
         {
-          method: { en: "Always-escalate", ja: "常時エスカレーション" },
-          evidence: { en: "none", ja: "なし" },
-          exits: "0/4",
-          exitsShort: true,
+          method: { en: "Today: escalate every trigger", ja: "現在：すべてをエスカレーション" },
           falseEsc: "4/4",
-          falseEscShort: true,
-          missedEsc: "0/13",
-          missedEscShort: false,
+          missed: "0/13",
+          note: { en: "Every harmless exit becomes an emergency", ja: "無害な退出もすべて緊急扱いになる" },
           highlight: false,
         },
         {
-          method: { en: "Dempster-Shafer fusion", ja: "Dempster-Shafer 融合" },
-          evidence: { en: "+temporal", ja: "+時系列" },
-          exits: "4/4",
-          exitsShort: false,
+          method: { en: "Classical fusion (Dempster–Shafer) + occupancy", ja: "従来の統合手法（Dempster–Shafer）＋在室推移" },
           falseEsc: "0/4",
-          falseEscShort: false,
-          missedEsc: "1/13",
-          missedEscShort: true,
+          missed: "1/13",
+          note: { en: "Misses one emergency and cannot say “I don't know”", ja: "緊急事態を1件見逃し、「判断できない」と答えられない" },
           highlight: false,
         },
         {
-          method: { en: "Hand-written policy", ja: "人手で設計したポリシー" },
-          evidence: { en: "+temporal", ja: "+時系列" },
-          exits: "4/4",
-          exitsShort: false,
+          method: { en: "Hand-written rule + occupancy", ja: "人手で設計したルール＋在室推移" },
           falseEsc: "0/4",
-          falseEscShort: false,
-          missedEsc: "0/13",
-          missedEscShort: false,
+          missed: "0/13",
+          note: {
+            en: "Ties Aegis on this rule, but a person had to find the deciding signal first, and it gives no explanation",
+            ja: "このルールでは Aegis と同等だが、決め手となる信号を人が先に見つける必要があり、説明も出さない",
+          },
           highlight: false,
         },
         {
-          method: { en: "Aegis 3B", ja: "Aegis 3B" },
-          evidence: { en: "+temporal", ja: "+時系列" },
-          exits: "4/4",
-          exitsShort: false,
+          method: { en: "Aegis 3B + occupancy", ja: "Aegis 3B＋在室推移" },
           falseEsc: "0/4",
-          falseEscShort: false,
-          missedEsc: "0/13",
-          missedEscShort: false,
+          missed: "0/13",
+          note: { en: "Also explains each decision in English and Japanese", ja: "さらに各判断を英語と日本語で説明する" },
           highlight: true,
         },
-      ] as {
-        method: BiText;
-        evidence: BiText;
-        exits: string;
-        exitsShort: boolean;
-        falseEsc: string;
-        falseEscShort: boolean;
-        missedEsc: string;
-        missedEscShort: boolean;
-        highlight: boolean;
-      }[],
+      ],
+      caveat: {
+        en: "This is a pilot, so the zeros are not a reliability estimate, and Aegis has not been tested with older adults. Decisions took 5.4–6.1 s on a desktop GPU; measurement on the Raspberry Pi hub is still pending.",
+        ja: "これはパイロット試験であり、ゼロという結果は信頼性の推定値ではない。また高齢者での検証もまだ行っていない。判断にかかった時間はデスクトップ GPU で 5.4〜6.1 秒で、Raspberry Pi ハブでの計測はまだ行っていない。",
+      },
     },
-    tableCaption: {
-      en: "Selected rows from the poster's Table 1 · 17 conflict windows: 4 exits, 3 simulated collapses, 10 indeterminate. Values short of the ideal are coloured.",
-      ja: "ポスターの表1から抜粋・17件の競合ウィンドウ（退出4件、模擬昏倒3件、判定不能10件）。理想値に届かない値には色を付けている。",
+
+    video: {
+      heading: { en: "See it in action", ja: "動作の様子" },
+      soon: { en: "Aegis video coming soon", ja: "Aegis の動画は近日公開" },
+      // Self-hosted MP4 (YouTube is blocked in mainland China). Set to e.g.
+      // "assets/video/aegis.mp4" once the file (≤ 25 MB, H.264) is in webapp/public/assets/video/.
+      src: null as string | null,
+      poster: null as string | null,
     },
-    summary: {
-      en: "Aegis 3B with post-trigger evidence: 4/4 exits found, 0/4 false escalations and 0/13 missed escalations in all five runs.",
-      ja: "トリガー後のエビデンスを用いたAegis 3Bは、5 回の実行すべてで退出検出4/4件、誤エスカレーション0/4件、エスカレーション漏れ0/13件だった。",
-    },
-    limitations: {
-      en: "Pilot scale: three participants, 17 scripted windows, simulated collapses. Zero errors here do not estimate real-world or clinical reliability.",
-      ja: "パイロット規模：参加者3名、台本に沿ったウィンドウ17件、模擬昏倒によるテスト。ここでのエラー0件は、実世界や臨床現場における信頼性を推定するものではない。",
-    },
-    videoId: null as string | null,
-    videoSoon: { en: "Aegis video coming soon", ja: "Aegis の動画は近日公開" },
     citation: {
-      en: "UbiComp Companion '26 · DOI 10.1145/3798063.3837317",
-      ja: "UbiComp Companion '26・DOI 10.1145/3798063.3837317",
+      en: "To appear in UbiComp Companion '26 · DOI 10.1145/3798063.3837317",
+      ja: "UbiComp Companion '26 に掲載予定・DOI 10.1145/3798063.3837317",
     },
+    // Set once the DOI resolves (it returned 404 on 26 Sep 2026).
     paperUrl: null as string | null,
-    paperButton: { en: "Read the paper", ja: "論文を読む" },
+    readPaper: { en: "Read the paper", ja: "論文を読む" },
+    authorsLabel: { en: "Authors", ja: "著者" },
+    authors: "A K M Akaiduzzaman, Ethan Taku Shimada, Joseph Arthur Koo, Ken Argani Toendan, Kawai Rostum, Zilu Liang",
+    authorsNote: {
+      en: "Zilu Liang is the faculty supervisor · Ubiquitous and Personal Computing Lab, Kyoto University of Advanced Science",
+      ja: "Zilu Liang（指導教員）・京都先端科学大学 Ubiquitous and Personal Computing Lab",
+    },
   },
   achievements: {
     kicker: { en: "Achievements", ja: "実績" },
