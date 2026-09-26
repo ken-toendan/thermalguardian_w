@@ -43,12 +43,12 @@ export function Header() {
           <img src="assets/brand/logo-lockup.png" alt="Thermal Guardian" className="h-12 md:h-14" />
         </a>
 
-        <nav className="hidden md:flex items-center gap-8" aria-label="Main">
+        <nav className="hidden md:flex items-center gap-5 lg:gap-8" aria-label="Main">
           {links.map((link) => (
             <a
               key={link.key}
               href={link.href}
-              className="text-sm font-medium text-ink/80 hover:text-ink transition-colors"
+              className="text-sm font-medium text-ink/80 hover:text-ink transition-colors whitespace-nowrap"
             >
               {t(content.nav[link.key], lang)}
             </a>

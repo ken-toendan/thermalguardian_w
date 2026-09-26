@@ -12,7 +12,7 @@ const toggleGroupVariants = cva(
 );
 
 const toggleItemVariants = cva(
-  "inline-flex items-center justify-center rounded-full px-3 py-1.5 text-xs font-semibold transition-colors cursor-pointer data-[state=on]:bg-ink data-[state=on]:text-cream text-ink/70 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-semibold transition-colors cursor-pointer data-[state=on]:bg-ink data-[state=on]:text-cream text-ink/70 hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand/40",
   {
     variants: { size: { default: "h-7 px-3", sm: "h-6 px-2 text-[11px]" } },
     defaultVariants: { size: "default" },
