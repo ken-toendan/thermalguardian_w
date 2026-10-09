@@ -667,7 +667,7 @@ export const content = {
     videos: [
       {
         id: "t1nbr8O1m8s",
-        bilibiliId: null as string | null,
+        bilibiliId: "BV1P6aR6jEfr" as string | null, // Bilibili: "Thermal Guardian | HEALTHINF 2026"
         title: "Thermal Guardian — conference pitch",
         caption: {
           en: "Conference pitch · the full system, explained in under a few minutes.",
@@ -676,7 +676,7 @@ export const content = {
       },
       {
         id: "U9No2XLw9bI",
-        bilibiliId: null as string | null,
+        bilibiliId: "BV1s6aR6jEGZ" as string | null, // Bilibili: "Thermal Guardian | iCAN'26 Japan Preliminary"
         title: "Thermal Guardian — iCAN 2026 presentation",
         caption: {
           en: "iCAN 2026 Japan Preliminary presentation · awarded 2nd place.",
