@@ -32,6 +32,10 @@ export const content = {
     china: { en: "China", ja: "China" },
     chinaHint: { en: "China version: videos play from Bilibili", ja: "中国版：動画は Bilibili で再生" },
   },
+  video: {
+    // China version on phones, where Bilibili's embedded player fails: the video opens on Bilibili instead.
+    watchOnBilibili: { en: "Watch on Bilibili", ja: "Bilibili で見る" },
+  },
   hero: {
     kicker: {
       en: "Preventing silent bathroom deaths",

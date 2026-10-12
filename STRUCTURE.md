@@ -120,7 +120,7 @@ Everything sits inside `<LangProvider>` and `<div id="top">`. Chapters: **01** t
 - **To change text, edit `i18n.ts` only.**
 - Japanese typography: phrase-aware line breaking (`word-break: auto-phrase`) on headings and paragraphs; hero headline words split on ordinary spaces only, so a no-break space can keep "—" attached.
 - The meta/OG tags in `index.html` are static English.
-- **China mode** (`edition: "cn"` in `useLang()`, saved as `tg-edition`): English text, but `VideoFrame` plays Bilibili (`bilibiliId`) → MP4 → placeholder and never YouTube. It is selected with the "China" toggle, and is the default for browsers set to Chinese when nothing is saved. Each video entry in `i18n.ts` holds a YouTube `id` and a `bilibiliId`.
+- **China mode** (`edition: "cn"` in `useLang()`, saved as `tg-edition`): English text, but `VideoFrame` plays Bilibili (`bilibiliId`) → MP4 → placeholder and never YouTube. On phones it shows a "Watch on Bilibili" button that opens the video on Bilibili instead of the embedded player: Bilibili swaps its embed for an older mobile player there, and its anti-bot check refuses that player's requests ("412 request was banned"). It is selected with the "China" toggle, and is the default for browsers set to Chinese when nothing is saved. Each video entry in `i18n.ts` holds a YouTube `id` and a `bilibiliId`.
 
 ---
 
