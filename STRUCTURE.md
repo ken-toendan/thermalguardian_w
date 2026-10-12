@@ -35,7 +35,7 @@ The repo holds source only. There is no committed build output any more, and onl
 | Styling | **Tailwind CSS v4** via `@tailwindcss/vite` (CSS-first config in `src/index.css` using `@theme`; no `tailwind.config.js`) |
 | UI primitives | **shadcn/ui** ("new-york" style, `components.json`) built on **Radix UI** (dialog/sheet, separator, slot, toggle, toggle-group, accordion) |
 | Class helpers | `class-variance-authority`, `clsx`, `tailwind-merge` (`cn()` in `src/lib/utils.ts`) |
-| Animation | **Motion** (`motion/react`). All animations respect `useReducedMotion()` |
+| Animation | **Motion** (`motion/react`). All animations respect `useReducedMotion()`. The Aegis mascot plays Lottie files with `lottie-web`'s light SVG player, loaded only when a mascot nears the viewport |
 | Icons | **lucide-react** |
 | Fonts | Self-hosted via Fontsource (imported in `src/main.tsx`): **DM Sans** (headings), **Inter** (body), **Noto Sans JP Variable** (Japanese), **DM Mono** (data labels). No Google Fonts, which is blocked in China |
 | Linting | ESLint 9 (flat config) + `typescript-eslint`, `react-hooks`, `react-refresh`. 5 known errors predate the revamp |
@@ -68,6 +68,7 @@ ThermalGuardian-website/
     │   ├── brand/          #   logos, favicons, KUAS logo
     │   ├── docs/           #   PDFs (booth script, briefing, HEALTHINF slides), not linked
     │   ├── hardware/       #   devices.webp (wearable, radar, Pi hub, two temperature nodes)
+    │   ├── mascot/         #   Aegis mascot Lottie files (appear, idle, investigate, maintain, elevate), orange theme
     │   ├── social/         #   og.png (+ og.html used to render it)
     │   ├── team/           #   headshots
     │   └── video/          #   aegis.mp4 (720p, ~15 MB) + aegis-poster.jpg
@@ -75,6 +76,7 @@ ThermalGuardian-website/
         ├── main.tsx · App.tsx          # Entry and page composition (section order)
         ├── index.css                   # Tailwind import, @theme tokens (site + Aegis palette), base styles
         ├── content/i18n.ts             # ALL site copy, EN + JA, plus `t()` helper
+        ├── content/aegis-data.ts       # Real occupancy/motion series and the 17-window vacancies behind the Aegis charts
         ├── hooks/use-lang.tsx          # LangProvider / useLang (language state)
         ├── lib/utils.ts                # cn()
         └── components/
@@ -82,6 +84,9 @@ ThermalGuardian-website/
             ├── motion/reveal.tsx       # Reveal, Stagger, staggerChild scroll animations
             ├── video-frame.tsx         # 16:9 frame: self-hosted MP4, YouTube embed, or placeholder
             ├── count-up.tsx            # Animated number counter
+            ├── aegis-mascot.tsx        # Lottie player for the mascot: lazy-loaded, plays in view, still frame for reduced motion
+            ├── aegis-architecture.tsx  # The Aegis architecture diagram (poster Figure 1), responsive
+            ├── aegis-charts.tsx        # The real-data occupancy charts (poster Figure 2)
             ├── ui/                     # shadcn primitives: badge, button, card, separator, sheet, toggle-group
             └── <page sections>         # see §4
 ```
@@ -102,7 +107,7 @@ Everything sits inside `<LangProvider>` and `<div id="top">`. Chapters: **01** t
 | `HowItWorks` | `#how-it-works` | white · 02 | Flow diagram, `devices.webp` (sticky on lg) and five hardware cards: wearable, radar, bathroom node, changing-room node, Pi hub |
 | `LiveMonitor` | `#live-monitor` | navy · 02 | Simulated dashboard cycling pre-bath → immersion → exit, data labels in DM Mono |
 | `Novelties` | `#novelties` | navy · 02 | Three differentiators; continues the navy band |
-| `Aegis` | `#aegis` | Aegis blue wash · 02 | Web explanation of the Aegis AI layer in the UbiComp poster palette: problem, occupancy insight, four steps + guarantee, pilot results, the Aegis demo video (MP4, or Bilibili in China mode), citation |
+| `Aegis` | `#aegis` | Aegis blue wash · 02 | The full content of the UbiComp poster in the site's own words, in the poster palette, with the orange mascot: problem, why it is hard, real occupancy charts, architecture diagram + four steps + guarantee, how it was tested, results (all 8 methods) + findings, running on the hub, limitations and next steps, the Aegis demo video (MP4, or Bilibili in China mode), citation |
 | `Achievements` | `#achievements` | white · 03 | Six venue cards (HEALTHINF, iCAN preliminary, iCAN 2nd place, iCAN final, UbiComp/ISWC, GCCE) |
 | `Resources` | `#resources` | cream · 03 | Two talk videos via `VideoFrame`: YouTube, or Bilibili in China mode |
 | `Team` | `#team` | white · 03 | Five members, centred wrap; Kawai Rostum's photo pending |

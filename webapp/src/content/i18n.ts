@@ -386,8 +386,8 @@ export const content = {
     problem: {
       heading: { en: "One alarm, two opposite situations", ja: "1 つのアラーム、正反対の 2 つの状況" },
       body: {
-        en: "Rule M-011 fires when the wearable reports it isn't being worn while the room sensors still detect someone for 5 seconds. That can mean two very different things.",
-        ja: "ルール M-011 は、ウェアラブルが「未装着」を報告しているにもかかわらず、室内センサーが 5 秒間在室を示し続けると発動する。これは正反対の 2 つの状況を意味しうる。",
+        en: "Bathing accidents are a major risk for older adults, with an estimated 19,000 deaths a year in Japan. Thermal Guardian watches the bath with an arm-worn wearable and contact-free room sensing (WiFi CSI and mmWave radar), and a Raspberry Pi hub checks the readings against threshold-based medical rules. One of them, M-011, fires when the wearable reports it isn't being worn while the room sensors still detect someone for 5 seconds. That can mean two very different things.",
+        ja: "入浴中の事故は高齢者にとって大きなリスクであり、日本では年間約 19,000 人が亡くなっていると推計されている。サーマルガーディアンは、腕に装着するウェアラブルと非接触の室内センシング（WiFi CSI とミリ波レーダー）で入浴を見守り、Raspberry Pi のハブがしきい値に基づく医療ルールで計測値を判定する。そのひとつ M-011 は、ウェアラブルが「未装着」を報告しているにもかかわらず、室内センサーが 5 秒間在室を示し続けると発動する。これは正反対の 2 つの状況を意味しうる。",
       },
       exit: {
         title: { en: "Deliberate exit", ja: "意図的な退出" },
@@ -418,19 +418,71 @@ export const content = {
       },
     },
 
+    challenge: {
+      heading: { en: "Why this is hard", ja: "なぜ難しいのか" },
+      items: [
+        {
+          title: { en: "The trigger moment can't tell them apart", ja: "発動の瞬間には見分けられない" },
+          body: {
+            en: "When M-011 fires, both events give identical evidence: wearable off, room occupied. Combining the same observations more cleverly cannot separate them. From that moment alone, classical fusion (Dempster–Shafer) and Aegis 3B both recognise 0 of 4 exits.",
+            ja: "M-011 が発動した瞬間、2 つの状況はまったく同じ証拠を示す。ウェアラブルは外れ、室内は在室。同じ観測をどれだけ工夫して組み合わせても両者は区別できず、その瞬間の情報だけでは従来の統合手法（Dempster–Shafer）も Aegis 3B も、4 件の退出を 1 件も認識できない。",
+          },
+        },
+        {
+          title: { en: "The answer arrives after the alarm", ja: "答えはアラームの後に現れる" },
+          body: {
+            en: "The evidence that separates them only appears afterwards, in how room occupancy changes over the following seconds.",
+            ja: "両者を分ける証拠は、その後の数秒間に室内の在室状況がどう変わるかという形で、アラームの後になって初めて現れる。",
+          },
+        },
+        {
+          title: { en: "An AI in a safety path can fail", ja: "安全に関わる経路の AI は失敗しうる" },
+          body: {
+            en: "A language model can be wrong, slow or return malformed output, and a wrong action could contribute to a missed emergency.",
+            ja: "言語モデルは誤ることも、遅れることも、形式の崩れた出力を返すこともある。誤った行動は緊急事態の見逃しにつながりかねない。",
+          },
+        },
+      ],
+      requirementTitle: { en: "The requirement", ja: "求められる条件" },
+      requirementBody: {
+        en: "Use the evidence that arrives after the alarm, while limiting what the AI is allowed to do, so that no model output can weaken the original alarm.",
+        ja: "アラームの後に得られる証拠を活かしつつ AI に許す権限を限定し、モデルのどんな出力も元のアラームを弱められないようにすること。",
+      },
+    },
+
     insight: {
       heading: { en: "What happens next tells them apart", ja: "その後の数秒が両者を見分ける" },
       body: {
         en: "In recorded trials on the real hardware, movement at the moment of the alarm overlapped between exits and collapses. What separated them was the next few seconds: after every genuine exit the room read empty for 10 to 23 seconds, and after every simulated collapse it never emptied.",
         ja: "実機での記録試験では、アラーム発生時点の動きは退出と昏倒で重なっていた。両者を分けたのはその後の数秒だった。実際の退出ではいずれも室内が 10〜23 秒間無人になり、模擬昏倒では一度も無人にならなかった。",
       },
-      chartLabel: { en: "Room occupancy after the alarm (illustration)", ja: "アラーム後の在室状況（イメージ図）" },
+      keyObservation: {
+        en: "Key observation: every genuine exit emptied the room for 10 to 23 s. No simulated collapse did.",
+        ja: "重要な観察：実際の退出ではすべて室内が 10〜23 秒間無人になった。模擬昏倒では一度もそうならなかった。",
+      },
       occupied: { en: "occupied", ja: "在室" },
       empty: { en: "empty", ja: "無人" },
-      exitLabel: { en: "Exit", ja: "退出" },
-      exitNote: { en: "room empty for 10–23 s", ja: "10〜23 秒間 無人" },
-      collapseLabel: { en: "Collapse", ja: "昏倒" },
-      collapseNote: { en: "room never empties (0 s)", ja: "無人にならない（0 秒）" },
+      occupancyLegend: { en: "room occupancy", ja: "在室状況" },
+      motionLegend: { en: "radar motion energy", ja: "レーダーの動きの強さ" },
+      timeAxis: { en: "time within the labelled window (s)", ja: "ウィンドウ内の経過時間（秒）" },
+      exitTitle: { en: "Deliberate exit, participant S1", ja: "意図的な退出（参加者 S1）" },
+      exitNote: { en: "room empty for 11 s", ja: "11 秒間 無人" },
+      collapseTitle: { en: "Simulated collapse, participant S1", ja: "模擬昏倒（参加者 S1）" },
+      collapseNote: { en: "occupancy persists, no vacancy detected", ja: "在室が続き、無人の時間は検出されない" },
+      allTitle: { en: "All 17 conflict windows, three participants", ja: "全 17 件の矛盾ウィンドウ（参加者 3 名）" },
+      allRows: [
+        { label: { en: "Deliberate exit (n = 4)", ja: "意図的な退出（n = 4）" }, note: { en: "10 to 23 s", ja: "10〜23 秒" } },
+        { label: { en: "Simulated collapse (n = 3)", ja: "模擬昏倒（n = 3）" }, note: { en: "0 s in all 3 windows", ja: "3 件すべて 0 秒" } },
+        { label: { en: "Indeterminate (n = 10)", ja: "判定不能（n = 10）" }, note: { en: "0 s in all 10 windows", ja: "10 件すべて 0 秒" } },
+      ],
+      allAxis: {
+        en: "longest continuous vacancy after wearable contact is lost (s)",
+        ja: "ウェアラブルが外れた後、連続して無人だった最長の時間（秒）",
+      },
+      caption: {
+        en: "Real recordings on the Thermal Guardian hardware: room occupancy and radar motion after wearable contact is lost, for one exit and one simulated collapse by the same participant, and the longest vacancy in all 17 windows. Motion is noisy in both cases and does not separate them. Occupancy does.",
+        ja: "サーマルガーディアンの実機での実際の記録。同じ参加者による退出 1 件と模擬昏倒 1 件について、ウェアラブルが外れた後の在室状況とレーダーの動きを示し、あわせて全 17 件の最長無人時間を示す。動きはどちらでもばらつきが大きく両者を分けられないが、在室状況は分けられる。",
+      },
       credit: {
         en: "Using room occupancy after a fall is not a new idea (Trinh et al., 2026). What Aegis adds is using it as evidence inside a fail-safe agent that resolves a wearable-versus-room conflict.",
         ja: "転倒後の在室状況を用いる考え方自体は新しいものではない（Trinh et al., 2026）。Aegis の新しさは、それをウェアラブルと室内センサーの矛盾を解決するフェイルセーフなエージェントの判断材料として使う点にある。",
@@ -443,22 +495,22 @@ export const content = {
         {
           title: { en: "Summarise", ja: "要約する" },
           body: {
-            en: "The hub packs the situation into one checked record, like a nurse's handover note: states, trends and durations only. No raw signals, audio, video or personal identifiers, and heart rate appears only as a trend.",
-            ja: "ハブが状況を 1 つの検証済みの記録にまとめる。看護師の申し送りのように状態・傾向・継続時間だけを含み、生の信号・音声・映像・個人を特定する情報は含まない。心拍も傾向としてのみ扱う。",
+            en: "The hub packs the situation into one checked record, like a nurse's handover note: states, trends and durations only. No raw signals, audio, video or personal identifiers, and heart rate appears only as a trend. A record that fails the check never reaches the model.",
+            ja: "ハブが状況を 1 つの検証済みの記録にまとめる。看護師の申し送りのように状態・傾向・継続時間だけを含み、生の信号・音声・映像・個人を特定する情報は含まない。心拍も傾向としてのみ扱う。検証を通らない記録はモデルに届かない。",
           },
         },
         {
           title: { en: "Investigate", ja: "確かめる" },
           body: {
-            en: "Before deciding, the model can ask for recent sensor history or clinical background, repeating plan, act and observe for up to four steps.",
-            ja: "判断の前に、モデルは直近のセンサー履歴や臨床的な背景知識を参照できる。計画 → 実行 → 観察を最大 4 ステップ繰り返す。",
+            en: "Before deciding, the model (Qwen2.5 3B) can call two grounded tools, recent sensor history and clinical knowledge, repeating plan, act and observe for up to four steps. It returns a state, a confidence and a caregiver-facing explanation.",
+            ja: "判断の前に、モデル（Qwen2.5 3B）は直近のセンサー履歴と臨床知識という 2 つのツールを使える。計画 → 実行 → 観察を最大 4 ステップ繰り返し、状態・確信度・介護者向けの説明を返す。",
           },
         },
         {
           title: { en: "Decide inside a safety gate", ja: "安全ゲートの中で判断する" },
           body: {
-            en: "Only two answers exist: Elevate or Maintain. Maintain is allowed only when the evidence is consistent with an exit and confidence is at least 0.55. Errors, timeouts and malformed output all become Elevate.",
-            ja: "答えは「引き上げ」か「維持」の 2 つしかない。「維持」が許されるのは、証拠が退出と整合し、確信度が 0.55 以上の場合だけである。エラー・タイムアウト・不正な出力はすべて「引き上げ」になる。",
+            en: "A fixed rule, not the model, turns that answer into one of two actions: Elevate or Maintain. Maintain is allowed only when the evidence is consistent with an exit and confidence is at least 0.55. Errors, timeouts and malformed output all become Elevate.",
+            ja: "その答えを、モデルではなく固定のルールが 2 つの行動のどちらかに変換する。「引き上げ」か「維持」である。「維持」が許されるのは、証拠が退出と整合し、確信度が 0.55 以上の場合だけである。エラー・タイムアウト・不正な出力はすべて「引き上げ」になる。",
           },
         },
         {
@@ -471,17 +523,121 @@ export const content = {
       ],
       guaranteeTitle: { en: "The original alarm never waits", ja: "元のアラームは決して待たない" },
       guaranteeBody: {
-        en: "M-011's alarm fires on its own 5-second timer whatever Aegis decides. “Silence” is not a rejected answer: the model's output format has no way to express it. In the worst case, the system behaves exactly as it does today.",
-        ja: "M-011 のアラームは、Aegis の判断に関係なく独自の 5 秒タイマーで発動する。「鳴り止ませる」は却下される答えではなく、モデルの出力形式にそもそも存在しない。最悪の場合でも、システムの動作は現在とまったく同じである。",
+        en: "M-011's alarm fires on its own 5-second timer whatever Aegis decides, and it follows its own path without waiting for the model. So after triage, its priority is never below the one M-011 gave it. “Silence” is not a rejected answer: the model's output format has no way to express it. In the worst case, the system behaves exactly as it does today.",
+        ja: "M-011 のアラームは、Aegis の判断に関係なく独自の 5 秒タイマーで発動し、モデルを待たずに独立した経路で届く。そのためトリアージ後の優先度が、M-011 が付けた優先度を下回ることはない。「鳴り止ませる」は却下される答えではなく、モデルの出力形式にそもそも存在しない。最悪の場合でも、システムの動作は現在とまったく同じである。",
       },
+      diagram: {
+        sensingLabel: { en: "Multimodal sensing", ja: "マルチモーダルセンシング" },
+        sensors: [
+          { name: { en: "Wearable", ja: "ウェアラブル" }, state: { en: "not worn", ja: "未装着" } },
+          { name: { en: "WiFi CSI", ja: "WiFi CSI" }, state: { en: "occupied", ja: "在室" } },
+          { name: { en: "mmWave radar", ja: "ミリ波レーダー" }, state: { en: "occupied", ja: "在室" } },
+        ],
+        rule: {
+          title: { en: "Rule M-011 fires", ja: "ルール M-011 が発動" },
+          body: {
+            en: "Wearable off while the room stays occupied for 5 s. At this instant an exit and a collapse look the same.",
+            ja: "室内が在室のまま、ウェアラブルが 5 秒間外れている。この瞬間、退出と昏倒は同じに見える。",
+          },
+        },
+        alarm: {
+          title: { en: "Original M-011 alarm path", ja: "元の M-011 アラーム経路" },
+          body: {
+            en: "Goes straight to the caregiver, independent of the model: never blocked, delayed or suppressed.",
+            ja: "モデルとは独立して介護者へ直接届く。遮られることも、遅れることも、抑えられることもない。",
+          },
+        },
+        sidecar: {
+          title: { en: "Aegis sidecar", ja: "Aegis サイドカー" },
+          tag: { en: "advisory · on-device · Qwen2.5 3B", ja: "助言のみ・端末内で動作・Qwen2.5 3B" },
+        },
+        boxes: [
+          {
+            title: { en: "EvidenceBundle", ja: "EvidenceBundle" },
+            body: { en: "Schema-checked, interpreted sensor states, not raw signals", ja: "スキーマで検証された解釈済みのセンサー状態。生の信号は含まない" },
+          },
+          {
+            title: { en: "Agent loop", ja: "エージェントループ" },
+            body: {
+              en: "Plan → act → observe, at most 4 steps. Returns state y, confidence c and explanation e",
+              ja: "計画 → 実行 → 観察を最大 4 ステップ。状態 y・確信度 c・説明 e を返す",
+            },
+          },
+          {
+            title: { en: "Safety gate G(y, c)", ja: "安全ゲート G(y, c)" },
+            body: {
+              en: "A fixed mapping of (y, c) to one of two actions, threshold τ = 0.55",
+              ja: "(y, c) を 2 つの行動のどちらかに固定的に対応付ける。しきい値 τ = 0.55",
+            },
+          },
+        ],
+        tools: { en: "Tools: sensor history · clinical knowledge", ja: "ツール：センサー履歴・臨床知識" },
+        actionsLabel: { en: "The only two actions", ja: "許される行動は 2 つだけ" },
+        elevate: {
+          title: { en: "Elevate", ja: "引き上げ" },
+          body: { en: "Everything else, including errors, timeouts and c < τ", ja: "それ以外すべて（エラー、タイムアウト、c < τ を含む）" },
+        },
+        maintain: {
+          title: { en: "Maintain", ja: "維持" },
+          body: { en: "Only if exit-consistent and c ≥ τ", ja: "退出と整合し、かつ c ≥ τ の場合のみ" },
+        },
+        caregiver: {
+          title: { en: "Caregiver", ja: "介護者" },
+          body: {
+            en: "Gets the alarm at once. The priority and a written explanation follow after triage.",
+            ja: "アラームはすぐに届く。優先度と説明文はトリアージの後に届く。",
+          },
+        },
+        invariant: {
+          title: { en: "Safety rule: Aegis's priority ≥ M‑011's priority", ja: "安全の原則：Aegis の優先度 ≥ M‑011 の優先度" },
+          body: {
+            en: "Aegis may raise the alarm's priority or leave it unchanged. No action lowers or silences it.",
+            ja: "Aegis はアラームの優先度を引き上げるか、そのままにすることしかできない。下げたり鳴り止ませたりする行動は存在しない。",
+          },
+        },
+        caption: {
+          en: "Aegis adds a reasoning layer after M-011 fires. The alarm path is independent of the model and the gate admits only two actions, so Aegis can prioritise and explain an alarm but never silence it.",
+          ja: "Aegis は M-011 の発動後に推論の層を加える。アラーム経路はモデルから独立し、ゲートは 2 つの行動しか認めない。そのため Aegis はアラームに優先度を付けて説明することはできても、鳴り止ませることはできない。",
+        },
+      },
+    },
+
+    design: {
+      heading: { en: "How we tested it", ja: "検証の方法" },
+      items: [
+        {
+          title: { en: "Data", ja: "データ" },
+          body: {
+            en: "Three adult participants performed scripted deliberate exits, simulated collapses and sensor dropouts on the real hardware, giving 17 M-011 conflict windows: 4 exits, 3 simulated collapses and 10 indeterminate.",
+            ja: "成人参加者 3 名が実機で、台本に沿った意図的な退出・模擬昏倒・センサーの途絶を行い、M-011 の矛盾ウィンドウを 17 件得た。内訳は退出 4 件、模擬昏倒 3 件、判定不能 10 件。",
+          },
+        },
+        {
+          title: { en: "Two kinds of evidence", ja: "2 種類の証拠" },
+          body: {
+            en: "Instant is the sensor snapshot at the moment of the trigger. +temporal adds the occupancy trajectory that follows.",
+            ja: "「instant」は発動の瞬間のセンサーの状態。「+temporal」は、その後の在室状況の推移を加えたもの。",
+          },
+        },
+        {
+          title: { en: "Methods compared", ja: "比較した手法" },
+          body: {
+            en: "Always-escalate (the deployed status quo), Dempster–Shafer fusion, a hand-written temporal policy, and Aegis with Qwen2.5 at 1.5B, 3B and 7B, each run three to five times.",
+            ja: "常にエスカレーション（現在運用中の方式）、Dempster–Shafer による統合、人手で書いた時間方向のルール、そして Qwen2.5 の 1.5B・3B・7B による Aegis。それぞれ 3〜5 回繰り返して実行した。",
+          },
+        },
+        {
+          title: { en: "Main safety measure", ja: "主な安全指標" },
+          body: {
+            en: "Missed escalations: collapse or indeterminate windows wrongly given Maintain.",
+            ja: "エスカレーションの見逃し：昏倒または判定不能のウィンドウに誤って「維持」が付いた件数。",
+          },
+        },
+      ],
     },
 
     results: {
       heading: { en: "Results from a real-hardware pilot", ja: "実機パイロット試験の結果" },
-      context: {
-        en: "Three adult participants and 17 scripted conflict windows recorded on the real sensors: 4 exits, 3 simulated collapses and 10 with degraded sensing.",
-        ja: "成人参加者3名が実機センサーで台本に沿って記録した17件の矛盾ウィンドウ（退出4件、模擬昏倒3件、センシング劣化10件）。",
-      },
       statsLabel: {
         en: "Aegis 3B with the occupancy signal, in all five repeated runs",
         ja: "在室の推移を用いた Aegis 3B（5 回の繰り返し実行すべてで）",
@@ -491,50 +647,106 @@ export const content = {
         { value: "0/4", label: { en: "exits wrongly escalated", ja: "退出の誤エスカレーション" } },
         { value: "0/13", label: { en: "emergencies missed", ja: "緊急事態の見逃し" } },
       ],
-      compareHeading: { en: "Compared with other approaches on the same 17 windows", ja: "同じ17件での他の手法との比較" },
+      tableHeading: { en: "Every method on the same 17 windows", ja: "同じ 17 件での全手法の結果" },
       columns: {
-        method: { en: "Approach", ja: "手法" },
-        falseEsc: { en: "Exits wrongly escalated", ja: "退出の誤エスカレーション" },
-        missed: { en: "Emergencies missed", ja: "緊急事態の見逃し" },
-        note: { en: "Notes", ja: "備考" },
+        method: { en: "Method", ja: "手法" },
+        evidence: { en: "Evidence", ja: "証拠" },
+        exits: { en: "Exits found ↑", ja: "退出の認識 ↑" },
+        falseEsc: { en: "False escalations ↓", ja: "誤エスカレーション ↓" },
+        missed: { en: "Missed escalations ↓", ja: "エスカレーションの見逃し ↓" },
+      },
+      evidence: {
+        none: { en: "none", ja: "なし" },
+        instant: { en: "instant", ja: "instant" },
+        temporal: { en: "+temporal", ja: "+temporal" },
+      },
+      // Values short of the ideal (4/4 exits found, 0/4 false, 0/13 missed) are coloured in the table.
+      rows: [
+        { method: { en: "Always-escalate (today's system)", ja: "常にエスカレーション（現在のシステム）" }, evidence: "none", exits: "0/4", falseEsc: "4/4", missed: "0/13", highlight: false },
+        { method: { en: "Dempster–Shafer fusion", ja: "Dempster–Shafer による統合" }, evidence: "instant", exits: "0/4", falseEsc: "4/4", missed: "2/13", highlight: false },
+        { method: { en: "Dempster–Shafer fusion", ja: "Dempster–Shafer による統合" }, evidence: "temporal", exits: "4/4", falseEsc: "0/4", missed: "1/13", highlight: false },
+        { method: { en: "Hand-written policy", ja: "人手で書いたルール" }, evidence: "temporal", exits: "4/4", falseEsc: "0/4", missed: "0/13", highlight: false },
+        { method: { en: "Aegis 1.5B", ja: "Aegis 1.5B" }, evidence: "temporal", exits: "2–3/4", falseEsc: "1–2/4", missed: "6–8/13", highlight: false },
+        { method: { en: "Aegis 3B", ja: "Aegis 3B" }, evidence: "instant", exits: "0/4", falseEsc: "4/4", missed: "0–3/13", highlight: false },
+        { method: { en: "Aegis 3B", ja: "Aegis 3B" }, evidence: "temporal", exits: "4/4", falseEsc: "0/4", missed: "0/13", highlight: true },
+        { method: { en: "Aegis 7B", ja: "Aegis 7B" }, evidence: "temporal", exits: "4/4", falseEsc: "0/4", missed: "0/13", highlight: false },
+      ] as { method: BiText; evidence: "none" | "instant" | "temporal"; exits: string; falseEsc: string; missed: string; highlight: boolean }[],
+      tableNote: {
+        en: "Ranges are minimum to maximum over repeated runs. Arrows give the better direction. Values short of the ideal are coloured.",
+        ja: "範囲は繰り返し実行での最小〜最大。矢印は良い方向を示す。理想に届かない値は色付きで示す。",
+      },
+      findingsHeading: { en: "What the results show", ja: "結果からわかること" },
+      findings: [
+        {
+          en: "Trigger-instant evidence is not enough: Dempster–Shafer fusion and Aegis 3B both find 0 of 4 exits.",
+          ja: "発動の瞬間の証拠だけでは足りない。Dempster–Shafer による統合も Aegis 3B も、退出を 4 件中 0 件しか見つけられない。",
+        },
+        {
+          en: "Occupancy after the trigger resolves the exits: both then find 4 of 4, with 0 of 4 false escalations.",
+          ja: "発動後の在室状況で退出を見分けられる。どちらも 4 件中 4 件を見つけ、誤エスカレーションは 4 件中 0 件になる。",
+        },
+        {
+          en: "The gate keeps the remaining errors safe. Dempster–Shafer fusion misses 1 of 13 escalations and cannot say “I don't know”, and the 1.5B model misses 6 to 8. Aegis 3B misses none.",
+          ja: "ゲートが残りの誤りを安全側にとどめる。Dempster–Shafer による統合はエスカレーションを 13 件中 1 件見逃し、「判断できない」と答えることもできない。1.5B モデルは 6〜8 件を見逃す。Aegis 3B の見逃しは 0 件。",
+        },
+        {
+          en: "3B is the best trade-off we observed: 7B matches it, but runs at 17 to 22 tokens/s against 82 to 89.",
+          ja: "観測した中で最もバランスが良いのは 3B。7B も同じ結果だが、処理速度は 3B の毎秒 82〜89 トークンに対し 17〜22 トークンにとどまる。",
+        },
+        {
+          en: "A hand-written temporal policy ties Aegis on this single rule, but a person had to find the deciding signal first. Aegis adds the explanation for the caregiver.",
+          ja: "人手で書いた時間方向のルールは、この 1 つのルールに限れば Aegis と同等。ただし決め手となる信号を人が先に見つける必要があった。Aegis はさらに介護者への説明を加える。",
+        },
+      ] as BiText[],
+    },
+
+    edge: {
+      heading: { en: "Running on the hub", ja: "ハブでの動作" },
+      body: {
+        en: "Everything runs locally. A slow or timed-out model changes only the priority and the explanation, never the M-011 alarm: under the 45-second timeout, five CPU-only 3B windows defaulted to Elevate.",
+        ja: "すべてローカルで動作する。モデルが遅れたりタイムアウトしたりしても変わるのは優先度と説明だけで、M-011 のアラームは変わらない。45 秒のタイムアウトのもとで、CPU のみで動かした 3B では 5 件のウィンドウが自動的に「引き上げ」になった。",
+      },
+      columns: {
+        platform: { en: "Platform", ja: "プラットフォーム" },
+        model: { en: "Model", ja: "モデル" },
+        latency: { en: "Agent-loop time", ja: "エージェントループの所要時間" },
       },
       rows: [
-        {
-          method: { en: "Today: escalate every trigger", ja: "現在：すべてをエスカレーション" },
-          falseEsc: "4/4",
-          missed: "0/13",
-          note: { en: "Every harmless exit becomes an emergency", ja: "無害な退出もすべて緊急扱いになる" },
-          highlight: false,
-        },
-        {
-          method: { en: "Classical fusion (Dempster–Shafer) + occupancy", ja: "従来の統合手法（Dempster–Shafer）＋在室推移" },
-          falseEsc: "0/4",
-          missed: "1/13",
-          note: { en: "Misses one emergency and cannot say “I don't know”", ja: "緊急事態を1件見逃し、「判断できない」と答えられない" },
-          highlight: false,
-        },
-        {
-          method: { en: "Hand-written rule + occupancy", ja: "人手で設計したルール＋在室推移" },
-          falseEsc: "0/4",
-          missed: "0/13",
-          note: {
-            en: "Ties Aegis on this rule, but a person had to find the deciding signal first, and it gives no explanation",
-            ja: "このルールでは Aegis と同等だが、決め手となる信号を人が先に見つける必要があり、説明も出さない",
-          },
-          highlight: false,
-        },
-        {
-          method: { en: "Aegis 3B + occupancy", ja: "Aegis 3B＋在室推移" },
-          falseEsc: "0/4",
-          missed: "0/13",
-          note: { en: "Also explains each decision in English and Japanese", ja: "さらに各判断を英語と日本語で説明する" },
-          highlight: true,
-        },
+        { platform: { en: "Desktop GPU, RTX 3070", ja: "デスクトップ GPU（RTX 3070）" }, model: "Qwen2.5 3B", latency: { en: "5.4–6.1 s", ja: "5.4〜6.1 秒" }, pending: false },
+        { platform: { en: "Desktop, CPU only", ja: "デスクトップ（CPU のみ）" }, model: "Qwen2.5 3B", latency: { en: "42 s", ja: "42 秒" }, pending: false },
+        { platform: { en: "Desktop, CPU only", ja: "デスクトップ（CPU のみ）" }, model: "Qwen2.5 1.5B", latency: { en: "23 s", ja: "23 秒" }, pending: false },
+        { platform: { en: "Raspberry Pi 5, CPU only", ja: "Raspberry Pi 5（CPU のみ）" }, model: "Qwen2.5 3B", latency: { en: "measurement pending", ja: "計測待ち" }, pending: true },
       ],
-      caveat: {
-        en: "This is a pilot, so the zeros are not a reliability estimate, and Aegis has not been tested with older adults. Decisions took 5.4–6.1 s on a desktop GPU; measurement on the Raspberry Pi hub is still pending.",
-        ja: "これはパイロット試験であり、ゼロという結果は信頼性の推定値ではない。また高齢者での検証もまだ行っていない。判断にかかった時間はデスクトップ GPU で 5.4〜6.1 秒で、Raspberry Pi ハブでの計測はまだ行っていない。",
-      },
+    },
+
+    limits: {
+      heading: { en: "Limitations and next steps", ja: "限界と今後の課題" },
+      limitsLabel: { en: "Limitations", ja: "限界" },
+      limits: [
+        {
+          en: "Pilot scale: three participants, 17 scripted windows and simulated collapses. Zero errors here do not estimate real-world or clinical reliability, and Aegis has not been tested with older adults.",
+          ja: "パイロット規模：参加者 3 名、台本に沿った 17 件のウィンドウ、模擬的な昏倒。ここでの誤りゼロは実環境や臨床での信頼性を示すものではなく、高齢者での検証もまだ行っていない。",
+        },
+        {
+          en: "The threshold τ = 0.55 is not calibrated, and speed was measured on a desktop GPU, not on the hub itself.",
+          ja: "しきい値 τ = 0.55 は較正されておらず、速度はハブ本体ではなくデスクトップ GPU で計測したもの。",
+        },
+      ] as BiText[],
+      nextLabel: { en: "Next steps", ja: "今後の課題" },
+      next: [
+        {
+          en: "Test whether one reusable reasoning layer holds across more medical rules and sensor conflicts. On M-011 alone, a fixed rule already suffices.",
+          ja: "1 つの再利用可能な推論の層が、より多くの医療ルールやセンサー間の矛盾にも通用するかを検証する。M-011 だけなら固定のルールで十分である。",
+        },
+        {
+          en: "Deploy on the Raspberry Pi hub, with optimisation and fine-tuning of smaller models.",
+          ja: "Raspberry Pi のハブに実装し、より小さなモデルの最適化とファインチューニングを進める。",
+        },
+        {
+          en: "Study with caregivers whether the explanations are useful and trusted.",
+          ja: "説明が役に立ち、信頼されるかを介護者とともに検証する。",
+        },
+      ] as BiText[],
     },
 
     video: {
@@ -547,9 +759,10 @@ export const content = {
       // Bilibili BV id for the China version.
       bilibiliId: "BV17op96VERk" as string | null, // Bilibili: "Aegis Demo"
     },
+    paperTitle: "Aegis: An On-Device Foundation Model Agent for Resolving Conflicting Sensor Evidence in Elderly Bathing",
     citation: {
-      en: "To appear in UbiComp Companion '26 · DOI 10.1145/3798063.3837317",
-      ja: "UbiComp Companion '26 に掲載予定・DOI 10.1145/3798063.3837317",
+      en: "To appear in UbiComp Companion '26 · October 11–15, 2026, Shanghai, China · DOI 10.1145/3798063.3837317 · CC BY 4.0",
+      ja: "UbiComp Companion '26 に掲載予定・2026 年 10 月 11–15 日、中国・上海・DOI 10.1145/3798063.3837317・CC BY 4.0",
     },
     // Set once the DOI resolves (it returned 404 on 26 Sep 2026).
     paperUrl: null as string | null,
