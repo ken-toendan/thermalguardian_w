@@ -69,7 +69,8 @@ ThermalGuardian-website/
     │   ├── docs/           #   PDFs (booth script, briefing, HEALTHINF slides), not linked
     │   ├── hardware/       #   devices.webp (wearable, radar, Pi hub, two temperature nodes)
     │   ├── social/         #   og.png (+ og.html used to render it)
-    │   └── team/           #   headshots
+    │   ├── team/           #   headshots
+    │   └── video/          #   aegis.mp4 (720p, ~15 MB) + aegis-poster.jpg
     └── src/
         ├── main.tsx · App.tsx          # Entry and page composition (section order)
         ├── index.css                   # Tailwind import, @theme tokens (site + Aegis palette), base styles
@@ -101,7 +102,7 @@ Everything sits inside `<LangProvider>` and `<div id="top">`. Chapters: **01** t
 | `HowItWorks` | `#how-it-works` | white · 02 | Flow diagram, `devices.webp` (sticky on lg) and five hardware cards: wearable, radar, bathroom node, changing-room node, Pi hub |
 | `LiveMonitor` | `#live-monitor` | navy · 02 | Simulated dashboard cycling pre-bath → immersion → exit, data labels in DM Mono |
 | `Novelties` | `#novelties` | navy · 02 | Three differentiators; continues the navy band |
-| `Aegis` | `#aegis` | Aegis blue wash · 02 | Web explanation of the Aegis AI layer in the UbiComp poster palette: problem, occupancy insight, four steps + guarantee, pilot results, MP4 video slot, citation |
+| `Aegis` | `#aegis` | Aegis blue wash · 02 | Web explanation of the Aegis AI layer in the UbiComp poster palette: problem, occupancy insight, four steps + guarantee, pilot results, the Aegis demo video (MP4, or Bilibili in China mode), citation |
 | `Achievements` | `#achievements` | white · 03 | Six venue cards (HEALTHINF, iCAN preliminary, iCAN 2nd place, iCAN final, UbiComp/ISWC, GCCE) |
 | `Resources` | `#resources` | cream · 03 | Two talk videos via `VideoFrame`: YouTube, or Bilibili in China mode |
 | `Team` | `#team` | white · 03 | Five members, centred wrap; Kawai Rostum's photo pending |
@@ -156,7 +157,7 @@ npm run preview   # serve dist/ locally
 ## 8. Known loose ends
 
 - `webapp/wrangler.jsonc` stays until the Cloudflare Worker is deleted, since Cloudflare still builds on each push until then.
-- Bilibili BV ids are not set yet, so China mode shows "coming soon" for the videos. The Vercel live demo is blocked in mainland China.
-- The Aegis video and Kawai Rostum's photo are placeholders; the paper link waits for the DOI to resolve.
+- The Vercel live demo is blocked in mainland China.
+- Kawai Rostum's photo is a placeholder; the paper link waits for the DOI to resolve.
 - The OG image URL and `og:url` are hard-coded to the github.io address.
 - `webapp/README.md` is the unmodified Vite template README.

@@ -536,12 +536,12 @@ export const content = {
     video: {
       heading: { en: "See it in action", ja: "動作の様子" },
       soon: { en: "Aegis video coming soon", ja: "Aegis の動画は近日公開" },
-      // Self-hosted MP4 (YouTube is blocked in mainland China). Set to e.g.
-      // "assets/video/aegis.mp4" once the file (≤ 25 MB, H.264) is in webapp/public/assets/video/.
-      src: null as string | null,
-      poster: null as string | null,
-      // Bilibili BV id for the China version, e.g. "BV1xx411c7mD".
-      bilibiliId: null as string | null,
+      // Self-hosted MP4 (YouTube is blocked in mainland China): 720p H.264, ≤ 25 MB,
+      // in webapp/public/assets/video/.
+      src: "assets/video/aegis.mp4" as string | null,
+      poster: "assets/video/aegis-poster.jpg" as string | null,
+      // Bilibili BV id for the China version.
+      bilibiliId: "BV17op96VERk" as string | null, // Bilibili: "Aegis Demo"
     },
     citation: {
       en: "To appear in UbiComp Companion '26 · DOI 10.1145/3798063.3837317",
