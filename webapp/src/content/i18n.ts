@@ -366,7 +366,8 @@ export const content = {
   },
   aegis: {
     // Source: Aegis_explained.md (team write-up, 26 Sep 2026) + the UbiComp/ISWC 2026 poster.
-    // Follows the write-up's "claims to make / avoid" list: no accuracy or Pi-speed claims,
+    // Follows the write-up's "claims to make / avoid" list: no accuracy claims (the Pi time is the team's
+    // own measurement, added Oct 2026),
     // occupancy idea credited to Trinh et al. 2026, pilot caveats kept.
     kicker: { en: "Aegis", ja: "Aegis" },
     heading: {
@@ -715,7 +716,7 @@ export const content = {
         { platform: { en: "Desktop GPU, RTX 3070", ja: "デスクトップ GPU（RTX 3070）" }, model: "Qwen2.5 3B", latency: { en: "5.4–6.1 s", ja: "5.4〜6.1 秒" }, pending: false },
         { platform: { en: "Desktop, CPU only", ja: "デスクトップ（CPU のみ）" }, model: "Qwen2.5 3B", latency: { en: "42 s", ja: "42 秒" }, pending: false },
         { platform: { en: "Desktop, CPU only", ja: "デスクトップ（CPU のみ）" }, model: "Qwen2.5 1.5B", latency: { en: "23 s", ja: "23 秒" }, pending: false },
-        { platform: { en: "Raspberry Pi 5, CPU only", ja: "Raspberry Pi 5（CPU のみ）" }, model: "Qwen2.5 3B", latency: { en: "measurement pending", ja: "計測待ち" }, pending: true },
+        { platform: { en: "Raspberry Pi 5, CPU only", ja: "Raspberry Pi 5（CPU のみ）" }, model: "Qwen2.5 3B", latency: { en: "~62 s", ja: "約 62 秒" }, pending: false },
       ],
     },
 
@@ -728,8 +729,8 @@ export const content = {
           ja: "パイロット規模：参加者 3 名、台本に沿った 17 件のウィンドウ、模擬的な昏倒。ここでの誤りゼロは実環境や臨床での信頼性を示すものではなく、高齢者での検証もまだ行っていない。",
         },
         {
-          en: "The threshold τ = 0.55 is not calibrated, and speed was measured on a desktop GPU, not on the hub itself.",
-          ja: "しきい値 τ = 0.55 は較正されておらず、速度はハブ本体ではなくデスクトップ GPU で計測したもの。",
+          en: "The threshold τ = 0.55 is not calibrated, and on the Raspberry Pi hub the 3B agent loop takes about 62 s, against 5.4–6.1 s on a desktop GPU.",
+          ja: "しきい値 τ = 0.55 は較正されていない。また Raspberry Pi のハブでは 3B のエージェントループに約 62 秒かかる（デスクトップ GPU では 5.4〜6.1 秒）。",
         },
       ] as BiText[],
       nextLabel: { en: "Next steps", ja: "今後の課題" },
@@ -776,7 +777,7 @@ export const content = {
   },
   achievements: {
     kicker: { en: "Achievements", ja: "実績" },
-    heading: { en: "HEALTHINF, iCAN, UbiComp and GCCE 2026", ja: "HEALTHINF・iCAN・UbiComp・GCCE 2026" },
+    heading: { en: "HEALTHINF, iCAN, UbiComp, CUHK‑X and GCCE 2026", ja: "HEALTHINF・iCAN・UbiComp・CUHK‑X・GCCE 2026" },
     intro: { en: "The venues where the system is being presented in 2026.", ja: "2026 年にシステムを発表している場。" },
     items: [
       {
@@ -851,6 +852,21 @@ export const content = {
           ja: "ACM UbiComp/ISWC 2026 スチューデントチャレンジに採択。",
         },
         url: "https://www.ubicomp.org/ubicomp-iswc-2026/student-challenge-2026/",
+        image: "assets/achievements/ubicomp-2026-logo.png",
+        imageStyle: "banner" as const,
+      },
+      {
+        label: { en: "Academic · Award", ja: "学術 受賞" },
+        title: { en: "CUHK-X 2026 — award received", ja: "CUHK-X 2026 受賞" },
+        place: {
+          en: "UbiComp/ISWC 2026 · Shanghai, China · October 2026",
+          ja: "UbiComp/ISWC 2026・中国・上海 2026 年 10 月",
+        },
+        body: {
+          en: "Received an award at the CUHK-X Multimodal Human Activity Challenge (Small Model Track), organised by the AIoT Lab at The Chinese University of Hong Kong.",
+          ja: "香港中文大学 AIoT Lab 主催の CUHK-X Multimodal Human Activity Challenge（Small Model Track）で受賞。",
+        },
+        url: "https://www.ubicomp.org/ubicomp-iswc-2026/cuhk-x-competition/",
         image: "assets/achievements/ubicomp-2026-logo.png",
         imageStyle: "banner" as const,
       },

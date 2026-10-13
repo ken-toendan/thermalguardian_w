@@ -108,7 +108,7 @@ Everything sits inside `<LangProvider>` and `<div id="top">`. Chapters: **01** t
 | `LiveMonitor` | `#live-monitor` | navy · 02 | Simulated dashboard cycling pre-bath → immersion → exit, data labels in DM Mono |
 | `Novelties` | `#novelties` | navy · 02 | Three differentiators; continues the navy band |
 | `Aegis` | `#aegis` | Aegis blue wash · 02 | The full content of the UbiComp poster in the site's own words, in the poster palette, with the orange mascot: problem, why it is hard, real occupancy charts, architecture diagram + four steps + guarantee, how it was tested, results (all 8 methods) + findings, running on the hub, limitations and next steps, the Aegis demo video (MP4, or Bilibili in China mode), citation |
-| `Achievements` | `#achievements` | white · 03 | Six venue cards (HEALTHINF, iCAN preliminary, iCAN 2nd place, iCAN final, UbiComp/ISWC, GCCE) |
+| `Achievements` | `#achievements` | white · 03 | Seven venue cards (HEALTHINF, iCAN preliminary, iCAN 2nd place, iCAN final, UbiComp/ISWC, CUHK-X award, GCCE) |
 | `Resources` | `#resources` | cream · 03 | Two talk videos via `VideoFrame`: YouTube, or Bilibili in China mode |
 | `Team` | `#team` | white · 03 | Five members, centred wrap; Kawai Rostum's photo pending |
 | `Contact` | `#contact` | navy | Email button and location |
